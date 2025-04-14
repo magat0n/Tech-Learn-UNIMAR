@@ -1,4 +1,4 @@
-# CodeLearn - Plataforma de Ensino de Programação
+# Central - Plataforma de Ensino de Programação
 
 Uma plataforma interativa e gamificada para aprender programação de forma prática e divertida.
 
