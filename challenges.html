@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/challenges.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Desafios - TechLearn</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <div class="logo">
+          <div class="logo-icon">TL</div>
+          <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+        </div>
+        
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#courses">Cursos</a></li>
+            <li><a href="challenges.html" class="active">Desafios</a></li>
+            <li><a href="index.html#leaderboard">Ranking</a></li>
+          </ul>
+        </nav>
+        
+        <div class="user-menu">
+          <div class="level-badge">Nível 5</div>
+          <div class="xp-badge">2.450 XP</div>
+          <div class="avatar">JS</div>
+          <button id="menuToggle" class="menu-toggle">☰</button>
+        </div>
+      </div>
+      
+      <div id="mobileMenu" class="mobile-menu">
+        <ul>
+          <li><a href="index.html"><span>🏠</span> Início</a></li>
+          <li><a href="index.html#courses"><span>📚</span> Cursos</a></li>
+          <li><a href="challenges.html"><span>🏆</span> Desafios</a></li>
+          <li><a href="index.html#leaderboard"><span>📊</span> Ranking</a></li>
+          <li><a href="#"><span>📝</span> Cadastrar</a></li>
+          <li><a href="#"><span>🔑</span> Entrar</a></li>
+        </ul>
+        <div class="mobile-user-info">
+          <div class="level-badge">Nível 5</div>
+          <div class="xp-badge">2.450 XP</div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Challenges Hero Section -->
+    <section class="challenges-hero">
+      <div class="container">
+        <div class="challenges-hero-content">
+          <h1>Desafios de <span class="accent-text">Programação</span></h1>
+          <p>Teste suas habilidades, aprenda novas técnicas e ganhe XP para subir de nível!</p>
+          
+          <div class="challenges-stats">
+            <div class="stat-item">
+              <span class="stat-value">100+</span>
+              <span class="stat-label">Desafios</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">5</span>
+              <span class="stat-label">Linguagens</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">3</span>
+              <span class="stat-label">Níveis</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">10k+</span>
+              <span class="stat-label">Usuários</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Challenges Filters Section -->
+    <section class="challenges-filters-section">
+      <div class="container">
+        <div class="challenges-filters">
+          <div class="filter-group">
+            <label>Nível:</label>
+            <div class="filter-options">
+              <button class="filter-btn active" data-filter="all">Todos</button>
+              <button class="filter-btn" data-filter="beginner">Iniciante</button>
+              <button class="filter-btn" data-filter="intermediate">Intermediário</button>
+              <button class="filter-btn" data-filter="advanced">Avançado</button>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <label>Linguagem:</label>
+            <div class="filter-options">
+              <button class="filter-btn active" data-filter="all">Todas</button>
+              <button class="filter-btn" data-filter="javascript">JavaScript</button>
+              <button class="filter-btn" data-filter="python">Python</button>
+              <button class="filter-btn" data-filter="java">Java</button>
+              <button class="filter-btn" data-filter="cpp">C++</button>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <label>Ordenar por:</label>
+            <div class="filter-options">
+              <button class="filter-btn active" data-sort="popular">Popular</button>
+              <button class="filter-btn" data-sort="newest">Mais Recentes</button>
+              <button class="filter-btn" data-sort="difficulty">Dificuldade</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Challenges Grid Section -->
+    <section class="challenges-grid-section">
+      <div class="container">
+        <div class="challenges-grid">
+          <div class="challenge-card" data-level="beginner" data-language="javascript">
+            <div class="challenge-header">
+              <div class="challenge-badges">
+                <span class="level-badge">Iniciante</span>
+                <span class="language-badge">JavaScript</span>
+              </div>
+              <div class="challenge-xp">50 XP</div>
+            </div>
+            
+            <h3>Calculadora Simples</h3>
+            <p>Crie uma calculadora que realize operações básicas (+, -, *, /) entre dois números.</p>
+            
+            <div class="challenge-details">
+              <div class="detail">
+                <span class="detail-icon">⏱️</span>
+                <span>30 min</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">👥</span>
+                <span>1.2k tentativas</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">✅</span>
+                <span>85% completado</span>
+              </div>
+            </div>
+            
+            <div class="challenge-footer">
+              <a href="#" class="btn btn-sm" data-challenge-id="calculator">Iniciar Desafio</a>
+            </div>
+          </div>
+          
+          <div class="challenge-card" data-level="intermediate" data-language="python">
+            <div class="challenge-header">
+              <div class="challenge-badges">
+                <span class="level-badge intermediate">Intermediário</span>
+                <span class="language-badge">Python</span>
+              </div>
+              <div class="challenge-xp">100 XP</div>
+            </div>
+            
+            <h3>Análise de Dados</h3>
+            <p>Analise um conjunto de dados e encontre padrões, médias e tendências.</p>
+            
+            <div class="challenge-details">
+              <div class="detail">
+                <span class="detail-icon">⏱️</span>
+                <span>45 min</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">👥</span>
+                <span>850 tentativas</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">✅</span>
+                <span>65% completado</span>
+              </div>
+            </div>
+            
+            <div class="challenge-footer">
+              <a href="#" class="btn btn-sm" data-challenge-id="data-analysis">Iniciar Desafio</a>
+            </div>
+          </div>
+          
+          <div class="challenge-card" data-level="advanced" data-language="java">
+            <div class="challenge-header">
+              <div class="challenge-badges">
+                <span class="level-badge advanced">Avançado</span>
+                <span class="language-badge">Java</span>
+              </div>
+              <div class="challenge-xp">200 XP</div>
+            </div>
+            
+            <h3>Algoritmo de Ordenação</h3>
+            <p>Implemente um algoritmo de ordenação eficiente e compare seu desempenho.</p>
+            
+            <div class="challenge-details">
+              <div class="detail">
+                <span class="detail-icon">⏱️</span>
+                <span>60 min</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">👥</span>
+                <span>520 tentativas</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">✅</span>
+                <span>45% completado</span>
+              </div>
+            </div>
+            
+            <div class="challenge-footer">
+              <a href="#" class="btn btn-sm" data-challenge-id="sorting">Iniciar Desafio</a>
+            </div>
+          </div>
+          
+          <div class="challenge-card" data-level="beginner" data-language="cpp">
+            <div class="challenge-header">
+              <div class="challenge-badges">
+                <span class="level-badge">Iniciante</span>
+                <span class="language-badge">C++</span>
+              </div>
+              <div class="challenge-xp">75 XP</div>
+            </div>
+            
+            <h3>Jogo da Velha</h3>
+            <p>Crie um jogo da velha interativo com interface de linha de comando.</p>
+            
+            <div class="challenge-details">
+              <div class="detail">
+                <span class="detail-icon">⏱️</span>
+                <span>40 min</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">👥</span>
+                <span>780 tentativas</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">✅</span>
+                <span>70% completado</span>
+              </div>
+            </div>
+            
+            <div class="challenge-footer">
+              <a href="#" class="btn btn-sm" data-challenge-id="tic-tac-toe">Iniciar Desafio</a>
+            </div>
+          </div>
+          
+          <div class="challenge-card" data-level="intermediate" data-language="javascript">
+            <div class="challenge-header">
+              <div class="challenge-badges">
+                <span class="level-badge intermediate">Intermediário</span>
+                <span class="language-badge">JavaScript</span>
+              </div>
+              <div class="challenge-xp">150 XP</div>
+            </div>
+            
+            <h3>API REST</h3>
+            <p>Desenvolva uma API REST simples com endpoints para CRUD de recursos.</p>
+            
+            <div class="challenge-details">
+              <div class="detail">
+                <span class="detail-icon">⏱️</span>
+                <span>90 min</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">👥</span>
+                <span>620 tentativas</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">✅</span>
+                <span>55% completado</span>
+              </div>
+            </div>
+            
+            <div class="challenge-footer">
+              <a href="#" class="btn btn-sm" data-challenge-id="rest-api">Iniciar Desafio</a>
+            </div>
+          </div>
+          
+          <div class="challenge-card" data-level="advanced" data-language="python">
+            <div class="challenge-header">
+              <div class="challenge-badges">
+                <span class="level-badge advanced">Avançado</span>
+                <span class="language-badge">Python</span>
+              </div>
+              <div class="challenge-xp">250 XP</div>
+            </div>
+            
+            <h3>Machine Learning Básico</h3>
+            <p>Implemente um modelo de regressão linear para prever valores com base em dados.</p>
+            
+            <div class="challenge-details">
+              <div class="detail">
+                <span class="detail-icon">⏱️</span>
+                <span>120 min</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">👥</span>
+                <span>380 tentativas</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">✅</span>
+                <span>35% completado</span>
+              </div>
+            </div>
+            
+            <div class="challenge-footer">
+              <a href="#" class="btn btn-sm" data-challenge-id="machine-learning">Iniciar Desafio</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="challenges-pagination">
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">4</button>
+          <button class="pagination-btn">5</button>
+          <button class="pagination-btn next">Próximo <span class="arrow">→</span></button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Challenge Modal -->
+    <div id="challengeModal" class="challenge-modal">
+      <div class="challenge-modal-content">
+        <div class="challenge-modal-header">
+          <h2 id="challengeTitle">Desafio</h2>
+          <button id="closeModal" class="close-modal">×</button>
+        </div>
+        
+        <div class="challenge-modal-body">
+          <div class="challenge-tabs">
+            <button class="challenge-tab active" data-tab="instructions">Instruções</button>
+            <button class="challenge-tab" data-tab="editor">Editor</button>
+            <button class="challenge-tab" data-tab="solution">Solução</button>
+            <button class="challenge-tab" data-tab="output">Saída</button>
+          </div>
+          
+          <div class="challenge-tab-content">
+            <div id="instructionsTab" class="tab-pane active">
+              <div class="challenge-info">
+                <div class="challenge-info-header">
+                  <div class="challenge-badges">
+                    <span id="challengeLevel" class="level-badge">Iniciante</span>
+                    <span id="challengeLanguage" class="language-badge">JavaScript</span>
+                  </div>
+                  <div id="challengeXp" class="challenge-xp">50 XP</div>
+                </div>
+                
+                <div class="challenge-description">
+                  <h3>Descrição</h3>
+                  <p id="challengeDescription">Crie uma calculadora que realize operações básicas (+, -, *, /) entre dois números.</p>
+                  
+                  <h3>Requisitos</h3>
+                  <ul id="challengeRequirements">
+                    <li>A função deve aceitar dois números e um operador como parâmetros</li>
+                    <li>O operador deve ser um dos seguintes: +, -, *, /</li>
+                    <li>A função deve retornar o resultado da operação</li>
+                    <li>Trate o caso de divisão por zero</li>
+                  </ul>
+                  
+                  <h3>Exemplos</h3>
+                  <div class="code-example">
+                    <pre><code>// Exemplo 1
+calculator(5, 3, '+') // Deve retornar 8
+
+// Exemplo 2
+calculator(10, 2, '*') // Deve retornar 20
+
+// Exemplo 3
+calculator(15, 3, '/') // Deve retornar 5
+
+// Exemplo 4
+calculator(8, 0, '/') // Deve retornar "Erro: Divisão por zero"</code></pre>
+                  </div>
+                  
+                  <h3>Dicas</h3>
+                  <ul id="challengeTips">
+                    <li>Use uma estrutura condicional (if/else) para verificar o operador</li>
+                    <li>Use o operador switch para uma solução mais elegante</li>
+                    <li>Lembre-se de verificar se o segundo número é zero quando o operador for divisão</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div id="editorTab" class="tab-pane">
+              <div class="code-editor-container">
+                <div class="code-editor-header">
+                  <div class="window-controls">
+                    <div class="control red"></div>
+                    <div class="control yellow"></div>
+                    <div class="control green"></div>
+                  </div>
+                  <div class="language">JavaScript</div>
+                  <div class="code-actions">
+                    <button class="icon-btn" id="resetCode">🔄</button>
+                    <button class="icon-btn" id="runCode">▶️</button>
+                    <button class="icon-btn" id="submitCode">📤</button>
+                  </div>
+                </div>
+                
+                <div class="code-editor-content">
+                  <textarea id="codeEditor" spellcheck="false">// Escreva sua solução aqui
+function calculator(num1, num2, operator) {
+  // Seu código aqui
+  
+}</textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div id="solutionTab" class="tab-pane">
+              <div class="solution-container">
+                <h3>Solução Sugerida</h3>
+                <div class="code-solution">
+                  <pre><code>function calculator(num1, num2, operator) {
+  switch(operator) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      if (num2 === 0) {
+        return "Erro: Divisão por zero";
+      }
+      return num1 / num2;
+    default:
+      return "Operador inválido";
+  }
+}</code></pre>
+                </div>
+                
+                <h3>Explicação</h3>
+                <p>Esta solução utiliza uma estrutura switch para verificar qual operador foi fornecido e realizar a operação correspondente. Para a divisão, verificamos se o segundo número é zero para evitar um erro de divisão por zero.</p>
+                
+                <h3>Alternativas</h3>
+                <p>Você também poderia usar uma estrutura if/else:</p>
+                <div class="code-example">
+                  <pre><code>function calculator(num1, num2, operator) {
+  if (operator === '+') {
+    return num1 + num2;
+  } else if (operator === '-') {
+    return num1 - num2;
+  } else if (operator === '*') {
+    return num1 * num2;
+  } else if (operator === '/') {
+    if (num2 === 0) {
+      return "Erro: Divisão por zero";
+    }
+    return num1 / num2;
+  } else {
+    return "Operador inválido";
+  }
+}</code></pre>
+                </div>
+              </div>
+            </div>
+            
+            <div id="outputTab" class="tab-pane">
+              <div class="output-container">
+                <h3>Saída do Código</h3>
+                <div class="output-content">
+                  <pre id="codeOutput">// Execute o código para ver a saída</pre>
+                </div>
+                
+                <h3>Testes</h3>
+                <div class="test-results">
+                  <div class="test-item">
+                    <span class="test-name">Teste 1: Soma</span>
+                    <span class="test-result pending">Pendente</span>
+                  </div>
+                  <div class="test-item">
+                    <span class="test-name">Teste 2: Subtração</span>
+                    <span class="test-result pending">Pendente</span>
+                  </div>
+                  <div class="test-item">
+                    <span class="test-name">Teste 3: Multiplicação</span>
+                    <span class="test-result pending">Pendente</span>
+                  </div>
+                  <div class="test-item">
+                    <span class="test-name">Teste 4: Divisão</span>
+                    <span class="test-result pending">Pendente</span>
+                  </div>
+                  <div class="test-item">
+                    <span class="test-name">Teste 5: Divisão por zero</span>
+                    <span class="test-result pending">Pendente</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <div class="logo footer-logo">
+              <div class="logo-icon small">TL</div>
+              <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+            </div>
+            <p>TechLearn é uma plataforma de aprendizado interativo para desenvolvedores aspirantes. Aprenda programação através de prática prática e projetos do mundo real.</p>
+          </div>
+          
+          <div class="footer-links">
+            <h3>Links Rápidos</h3>
+            <ul>
+              <li><a href="index.html">Início</a></li>
+              <li><a href="index.html#courses">Cursos</a></li>
+              <li><a href="challenges.html">Desafios</a></li>
+              <li><a href="index.html#leaderboard">Ranking</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-links">
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="#">Documentação</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Comunidade</a></li>
+              <li><a href="#">Central de Ajuda</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-contact">
+            <h3>Contato</h3>
+            <ul>
+              <li>contato@techlearn.com.br</li>
+              <li>+55 (11) 99999-9999</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2025 TechLearn. Todos os direitos reservados.</p>
+          <div class="footer-legal">
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Serviço</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="challenges.js"></script>
+  </body>
+</html> 

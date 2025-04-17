@@ -222,7 +222,7 @@ bemVindo();`;
 
     // Animar os elementos na página ao fazer scroll
     const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.feature-card, .course-card, .section-header, .cta-content');
+        const elements = document.querySelectorAll('.feature-card, .course-card, .section-header, .cta-content, .challenge-card');
         
         elements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
@@ -236,7 +236,7 @@ bemVindo();`;
     };
     
     // Inicializa os elementos com opacidade 0 para a animação
-    document.querySelectorAll('.feature-card, .course-card, .section-header:not(.hero *), .cta-content').forEach(element => {
+    document.querySelectorAll('.feature-card, .course-card, .section-header:not(.hero *), .cta-content, .challenge-card').forEach(element => {
         element.style.transform = 'translateY(20px)';
         element.style.opacity = '0';
         element.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
@@ -247,4 +247,109 @@ bemVindo();`;
     
     // Chama a função uma vez para animar os elementos que já estão visíveis
     setTimeout(animateOnScroll, 100);
+    
+    // Funcionalidade de filtragem para os desafios
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const challengeCards = document.querySelectorAll('.challenge-card');
+    
+    // Armazena os filtros ativos
+    let activeFilters = {
+        level: 'all',
+        language: 'all'
+    };
+    
+    // Função para filtrar os desafios
+    const filterChallenges = () => {
+        challengeCards.forEach(card => {
+            const level = card.getAttribute('data-level');
+            const language = card.getAttribute('data-language');
+            
+            // Verifica se o card deve ser exibido com base nos filtros ativos
+            const levelMatch = activeFilters.level === 'all' || level === activeFilters.level;
+            const languageMatch = activeFilters.language === 'all' || language === activeFilters.language;
+            
+            if (levelMatch && languageMatch) {
+                card.style.display = 'flex';
+                // Adiciona uma pequena animação de fade-in
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                }, 50);
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Verifica se há cards visíveis
+        const visibleCards = document.querySelectorAll('.challenge-card[style="display: flex;"]');
+        if (visibleCards.length === 0) {
+            // Se não houver cards visíveis, mostra uma mensagem
+            const noResults = document.createElement('div');
+            noResults.className = 'no-results';
+            noResults.innerHTML = '<p>Nenhum desafio encontrado com os filtros selecionados.</p>';
+            
+            // Verifica se já existe uma mensagem de "nenhum resultado"
+            const existingNoResults = document.querySelector('.no-results');
+            if (!existingNoResults) {
+                document.querySelector('.challenges-grid').appendChild(noResults);
+            }
+        } else {
+            // Remove a mensagem de "nenhum resultado" se existir
+            const existingNoResults = document.querySelector('.no-results');
+            if (existingNoResults) {
+                existingNoResults.remove();
+            }
+        }
+    };
+    
+    // Adiciona eventos de clique aos botões de filtro
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove a classe ativa de todos os botões do mesmo grupo
+            const filterGroup = button.closest('.filter-options');
+            filterGroup.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Adiciona a classe ativa ao botão clicado
+            button.classList.add('active');
+            
+            // Atualiza os filtros ativos
+            const filterType = button.closest('.filter-group').querySelector('label').textContent.toLowerCase().replace(':', '');
+            activeFilters[filterType] = button.getAttribute('data-filter');
+            
+            // Aplica os filtros
+            filterChallenges();
+        });
+    });
+    
+    // Paginação dos desafios
+    const paginationButtons = document.querySelectorAll('.pagination-btn');
+    
+    paginationButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove a classe ativa de todos os botões de paginação
+            paginationButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Adiciona a classe ativa ao botão clicado
+            button.classList.add('active');
+            
+            // Aqui você pode adicionar a lógica para carregar a página correspondente
+            // Por enquanto, apenas simulamos a mudança de página
+            if (!button.classList.contains('next')) {
+                const pageNumber = button.textContent;
+                console.log(`Carregando página ${pageNumber}...`);
+                
+                // Simula um carregamento
+                const challengesGrid = document.querySelector('.challenges-grid');
+                challengesGrid.style.opacity = '0.5';
+                
+                setTimeout(() => {
+                    challengesGrid.style.opacity = '1';
+                }, 500);
+            }
+        });
+    });
 });
