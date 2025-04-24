@@ -1,100 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>TechLearn</title>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="container header-container">
-        <div class="logo">
-          <div class="logo-icon">TL</div>
-          <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
-        </div>
-        
-        <nav class="main-nav">
-          <ul>
-            <li><a href="#" class="active">Início</a></li>
-            <li><a href="#courses">Cursos</a></li>
-            <li><a href="#challenges">Desafios</a></li>
-            <li><a href="#leaderboard">Ranking</a></li>
-          </ul>
-        </nav>
-        
-        <div class="user-menu">
-          <div class="level-badge">Nível 5</div>
-          <div class="xp-badge">2.450 XP</div>
-          <div class="avatar">JS</div>
-          <button id="menuToggle" class="menu-toggle">☰</button>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/style.css">
+  <title>TechLearn</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-icon">TL</div>
+        <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
       </div>
-      
-      <div id="mobileMenu" class="mobile-menu">
+
+      <nav class="main-nav">
         <ul>
-          <li><a href="#"><span>🏠</span> Início</a></li>
-          <li><a href="#courses"><span>📚</span> Cursos</a></li>
-          <li><a href="challenges.html"><span>🏆</span> Desafios</a></li>
-          <li><a href="#leaderboard"><span>📊</span> Ranking</a></li>
-          <li><a href="#"><span>📝</span> Cadastrar</a></li>
-          <li><a href="#"><span>🔑</span> Entrar</a></li>
+          <li><a href="#" class="active">Início</a></li>
+          <li><a href="#courses">Cursos</a></li>
+          <li><a href="#challenges">Desafios</a></li>
+          <li><a href="#leaderboard">Ranking</a></li>
         </ul>
-        <div class="mobile-user-info">
-          <div class="level-badge">Nível 5</div>
-          <div class="xp-badge">2.450 XP</div>
+      </nav>
+
+      <div class="user-menu">
+        <div class="level-badge">Nível 5</div>
+        <div class="xp-badge">2.450 XP</div>
+        <div class="avatar">JS</div>
+        <button id="menuToggle" class="menu-toggle">☰</button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu">
+      <ul>
+        <li><a href="#"><span>🏠</span> Início</a></li>
+        <li><a href="#courses"><span>📚</span> Cursos</a></li>
+        <li><a href="challenges.html"><span>🏆</span> Desafios</a></li>
+        <li><a href="#leaderboard"><span>📊</span> Ranking</a></li>
+        <li><a href="#"><span>📝</span> Cadastrar</a></li>
+        <!-- Changed the login link below -->
+        <li><a href="paginas/login.html" class="btn btn-primary mobile-menu-login-btn"><span>🔑</span> Entrar</a></li>
+      </ul>
+      <!-- Removed the separate button div -->
+      <div class="mobile-user-info"> <!-- This should ideally be hidden if not logged in -->
+        <div class="level-badge">Nível 5</div>
+        <div class="xp-badge">2.450 XP</div>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge">Plataforma Interativa de Programação</div>
+        <h1>Aprenda a programar <span class="accent-text">do jeito certo</span> com TechLearn</h1>
+        <p>Domine habilidades de programação através de aulas interativas, projetos do mundo real e desafios de código.
+          Junte-se a milhares de estudantes hoje!</p>
+
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary">Começar Agora <span class="arrow">→</span></a>
+          <a href="#" class="btn btn-outline">Explorar Cursos</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">✓ 50+ Cursos Interativos</div>
+          <div class="stat-item">✓ 1000+ Desafios de Código</div>
+          <div class="stat-item">✓ Suporte da Comunidade 24/7</div>
         </div>
       </div>
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <div class="badge">Plataforma Interativa de Programação</div>
-          <h1>Aprenda a programar <span class="accent-text">do jeito certo</span> com TechLearn</h1>
-          <p>Domine habilidades de programação através de aulas interativas, projetos do mundo real e desafios de código. Junte-se a milhares de estudantes hoje!</p>
-          
-          <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Começar Agora <span class="arrow">→</span></a>
-            <a href="#" class="btn btn-outline">Explorar Cursos</a>
-          </div>
-          
-          <div class="hero-stats">
-            <div class="stat-item">✓ 50+ Cursos Interativos</div>
-            <div class="stat-item">✓ 1000+ Desafios de Código</div>
-            <div class="stat-item">✓ Suporte da Comunidade 24/7</div>
-          </div>
-        </div>
-        
-        <div class="hero-code-editor">
-          <div class="code-editor">
-            <div class="code-header">
-              <div class="window-controls">
-                <div class="control red"></div>
-                <div class="control yellow"></div>
-                <div class="control green"></div>
-              </div>
-              <div class="language">JavaScript</div>
-              <div class="code-actions">
-                <button class="icon-btn">📋</button>
-                <button class="icon-btn">▶️</button>
-              </div>
+
+      <div class="hero-code-editor">
+        <div class="code-editor">
+          <div class="code-header">
+            <div class="window-controls">
+              <div class="control red"></div>
+              <div class="control yellow"></div>
+              <div class="control green"></div>
             </div>
-            
-            <div class="code-tabs">
-              <button class="tab active">Código</button>
-              <button class="tab">Instruções</button>
-              <button class="tab">Saída</button>
+            <div class="language">JavaScript</div>
+            <div class="code-actions">
+              <button class="icon-btn">📋</button>
+              <button class="icon-btn">▶️</button>
             </div>
-            
-            <div class="code-content">
-              <pre><code>// Bem-vindo ao TechLearn!
+          </div>
+
+          <div class="code-tabs">
+            <button class="tab active">Código</button>
+            <button class="tab">Instruções</button>
+            <button class="tab">Saída</button>
+          </div>
+
+          <div class="code-content">
+            <pre><code>// Bem-vindo ao TechLearn!
 // Experimente nosso editor de código
 
 function bemVindo() {
@@ -352,11 +358,6 @@ bemVindo();</code></pre>
             <a href="#">Termos de Serviço</a>
           </div>
         </div>
-      </div>
-
-      <div class="Página de Suporte">
-        <button onclick="window.location" href='suppage.html'">Ir para a Página de Suporte</button>
-        <link rel="stylesheet" href="suppage.css">
       </div>
     </footer>
     
