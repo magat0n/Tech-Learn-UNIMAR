@@ -1559,3 +1559,19 @@ img {
         opacity: 0;
     }
 }
+.button-suporte {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: c;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff; /* Cor azul padrão */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .button-suporte:hover {
+    background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
+  }
