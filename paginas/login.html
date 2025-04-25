@@ -1,11 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - TechLearn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
-    
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <a href="../index.html" class="logo">
+                    <div class="logo-icon">TL</div>
+                    <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+                </a>
+                <h1>Bem-vindo de volta!</h1>
+                <p>Entre para continuar sua jornada de aprendizado</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required placeholder="Sua senha">
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            <span class="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <span>Lembrar de mim</span>
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary login-btn">Entrar</button>
+
+                <div class="social-login">
+                    <p>Ou entre com</p>
+                    <div class="social-buttons">
+                        <button type="button" class="btn btn-social google">
+                            <img src="https://www.google.com/favicon.ico" alt="Google">
+                            Google
+                        </button>
+                        <button type="button" class="btn btn-social github">
+                            <img src="https://github.com/favicon.ico" alt="GitHub">
+                            GitHub
+                        </button>
+                    </div>
+                </div>
+
+                <div class="register-link">
+                    Não tem uma conta? <a href="#" onclick="showRegisterForm()">Cadastre-se</a>
+                </div>
+            </form>
+
+            <form id="registerForm" class="register-form" style="display: none;">
+                <div class="form-group">
+                    <label for="name">Nome completo</label>
+                    <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">E-mail</label>
+                    <input type="email" id="registerEmail" name="email" required placeholder="seu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Senha</label>
+                    <div class="password-input">
+                        <input type="password" id="registerPassword" name="password" required placeholder="Crie uma senha">
+                        <button type="button" class="toggle-password" onclick="toggleRegisterPassword()">
+                            <span class="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar senha</label>
+                    <div class="password-input">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirme sua senha">
+                        <button type="button" class="toggle-password" onclick="toggleConfirmPassword()">
+                            <span class="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary register-btn">Criar conta</button>
+
+                <div class="login-link">
+                    Já tem uma conta? <a href="#" onclick="showLoginForm()">Entre aqui</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts/login.js"></script>
 </body>
 </html>

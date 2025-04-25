@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte - TechLearn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/suporte.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">TL</div>
+                <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../index.html#courses">Cursos</a></li>
+                    <li><a href="challenges.html">Desafios</a></li>
+                    <li><a href="../index.html#leaderboard">Ranking</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-menu">
+                <div class="level-badge">Nível 5</div>
+                <div class="xp-badge">2.450 XP</div>
+                <div class="avatar">JS</div>
+                <button id="menuToggle" class="menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="support-hero">
+        <div class="container">
+            <h1>Como podemos ajudar?</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Busque por ajuda...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Categories -->
+    <section class="support-categories">
+        <div class="container">
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <h3>Cursos e Aprendizado</h3>
+                    <p>Dúvidas sobre cursos, conteúdo e progresso</p>
+                    <a href="#cursos" class="btn btn-outline">Ver Artigos</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>Problemas Técnicos</h3>
+                    <p>Erros, bugs e problemas de plataforma</p>
+                    <a href="#tecnicos" class="btn btn-outline">Ver Artigos</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">💰</div>
+                    <h3>Pagamentos e Assinatura</h3>
+                    <p>Informações sobre planos e pagamentos</p>
+                    <a href="#pagamentos" class="btn btn-outline">Ver Artigos</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">👤</div>
+                    <h3>Conta e Perfil</h3>
+                    <p>Gerenciamento de conta e configurações</p>
+                    <a href="#conta" class="btn btn-outline">Ver Artigos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Como posso recuperar minha senha?</h3>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para recuperar sua senha, clique no link "Esqueceu a senha?" na página de login. Você receberá um email com instruções para redefinir sua senha.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Como funciona o sistema de XP?</h3>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O XP é ganho completando cursos, desafios e projetos. Quanto mais difícil a atividade, mais XP você ganha. O XP determina seu nível na plataforma.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Posso acessar os cursos offline?</h3>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Atualmente, os cursos só podem ser acessados online. Estamos trabalhando em uma funcionalidade de download para acesso offline.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Ainda precisa de ajuda?</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>suporte@techlearn.com.br</p>
+                    <p class="response-time">Resposta em até 24h</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>Chat ao Vivo</h3>
+                    <p>Disponível 24/7</p>
+                    <button class="btn btn-primary">Iniciar Chat</button>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>WhatsApp</h3>
+                    <p>+55 (11) 99999-9999</p>
+                    <p class="response-time">Atendimento em horário comercial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo footer-logo">
+                        <div class="logo-icon small">TL</div>
+                        <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+                    </div>
+                    <p>TechLearn é uma plataforma de aprendizado interativo para desenvolvedores aspirantes.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="../index.html#courses">Cursos</a></li>
+                        <li><a href="challenges.html">Desafios</a></li>
+                        <li><a href="../index.html#leaderboard">Ranking</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="#">Documentação</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Comunidade</a></li>
+                        <li><a href="suporte.html">Central de Ajuda</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>contato@techlearn.com.br</li>
+                        <li>+55 (11) 99999-9999</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechLearn. Todos os direitos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Serviço</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/suporte.js"></script>
+    
+    <!-- Chat Flutuante -->
+    <div class="floating-chat">
+        <button class="chat-toggle" id="chatToggle">
+            <span class="chat-icon">💬</span>
+            <span class="chat-label">Suporte</span>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Chat de Suporte</h3>
+                <button class="close-chat" id="closeChat">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message system">
+                    <p>Bem-vindo ao chat de suporte! Como podemos ajudar?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+                <button id="sendMessage">Enviar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
