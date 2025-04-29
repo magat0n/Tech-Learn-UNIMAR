@@ -103,8 +103,6 @@ img {
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: bold;
