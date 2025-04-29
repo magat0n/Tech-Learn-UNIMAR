@@ -352,4 +352,118 @@ bemVindo();`;
             }
         });
     });
+
+    // Funções de gerenciamento de usuário
+    updateUserInterface();
+
+    // Chat Flutuante
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
+    const chatInput = document.getElementById('chatInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const chatMessages = document.getElementById('chatMessages');
+
+    // Respostas automáticas para perguntas comuns
+    const autoResponses = {
+        'oi': 'Olá! Como posso ajudar você hoje?',
+        'ola': 'Olá! Como posso ajudar você hoje?',
+        'ajuda': 'Claro! Em que posso ajudar? Você pode me fazer perguntas sobre cursos, problemas técnicos, pagamentos ou sua conta.',
+        'curso': 'Temos diversos cursos disponíveis. Você pode navegar pela seção de cursos para ver todos os títulos disponíveis. Precisa de ajuda para encontrar algum curso específico?',
+        'preco': 'Nossos planos começam a partir de R$ 29,90/mês. Você pode ver todos os planos e preços na seção de assinaturas.',
+        'pagamento': 'Aceitamos cartões de crédito, boleto bancário e PIX. Precisa de ajuda com algum pagamento específico?',
+        'senha': 'Para recuperar sua senha, clique no link "Esqueceu a senha?" na página de login. Você receberá um email com instruções para redefinir sua senha.',
+        'xp': 'O XP é ganho completando cursos, desafios e projetos. Quanto mais difícil a atividade, mais XP você ganha.',
+        'offline': 'Atualmente, os cursos só podem ser acessados online. Estamos trabalhando em uma funcionalidade de download para acesso offline.'
+    };
+
+    // Função para adicionar mensagem ao chat
+    function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user' : 'system'}`;
+        messageDiv.innerHTML = `<p>${text}</p>`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Função para processar a mensagem do usuário
+    function processUserMessage(message) {
+        const lowerMessage = message.toLowerCase();
+        let response = 'Desculpe, não entendi sua pergunta. Pode reformular ou escolher um dos tópicos: cursos, preços, pagamento, senha, xp, offline.';
+        
+        // Verifica se a mensagem contém alguma palavra-chave
+        for (const [keyword, autoResponse] of Object.entries(autoResponses)) {
+            if (lowerMessage.includes(keyword)) {
+                response = autoResponse;
+                break;
+            }
+        }
+        
+        // Simula um pequeno delay antes de responder
+        setTimeout(() => {
+            addMessage(response);
+        }, 500);
+    }
+
+    // Toggle do chat
+    chatToggle.addEventListener('click', () => {
+        chatWindow.classList.add('active');
+    });
+
+    // Fechar chat
+    closeChat.addEventListener('click', () => {
+        chatWindow.classList.remove('active');
+    });
+
+    // Enviar mensagem
+    function sendUserMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+            addMessage(message, true);
+            chatInput.value = '';
+            processUserMessage(message);
+        }
+    }
+
+    sendMessage.addEventListener('click', sendUserMessage);
+    
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendUserMessage();
+        }
+    });
 });
+
+// Funções de gerenciamento de usuário
+function updateUserInterface() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const userMenu = document.querySelector('.user-menu');
+    const mobileUserInfo = document.querySelector('.mobile-user-info');
+    const avatar = document.querySelector('.avatar');
+    const levelBadge = document.querySelector('.level-badge');
+    const xpBadge = document.querySelector('.xp-badge');
+
+    if (user) {
+        // Atualiza o avatar com as iniciais do nome
+        const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+        avatar.textContent = initials;
+
+        // Atualiza o nível e XP
+        levelBadge.textContent = `Nível ${user.level}`;
+        xpBadge.textContent = `${user.xp} XP`;
+
+        // Mostra os elementos do usuário
+        userMenu.style.display = 'flex';
+        mobileUserInfo.style.display = 'flex';
+    } else {
+        // Esconde os elementos do usuário
+        userMenu.style.display = 'none';
+        mobileUserInfo.style.display = 'none';
+    }
+}
+
+// Função para fazer logout
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.reload();
+}
