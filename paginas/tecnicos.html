@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problemas Técnicos - TechLearn</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/tecnicos.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon" aria-label="Logo TechLearn">TL</div>
+                <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../index.html#courses">Cursos</a></li>
+                    <li><a href="challenges.html">Desafios</a></li>
+                    <li><a href="../index.html#leaderboard">Ranking</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="report-section">
+            <div class="container">
+                <h1>Relate um Problema Técnico</h1>
+                <p>Descreva o problema que você está enfrentando para que possamos ajudar o mais rápido possível.</p>
+                <form id="report-form">
+                    <label for="issue">Descrição do Problema:</label>
+                    <textarea id="issue" placeholder="Descreva o problema que você está enfrentando"></textarea>
+                    
+                    <label for="screenshot">Anexar Captura de Tela:</label>
+                    <input type="file" id="screenshot" accept="image/*">
+                    
+                    <button type="button" class="btn btn-primary" onclick="submitReport()">Enviar Relato</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 TechLearn. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/tecnicos.js"></script>
+</body>
+</html>

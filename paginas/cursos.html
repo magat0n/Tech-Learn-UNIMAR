@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos e Conteúdo - TechLearn</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/cursos.css">
+</head>
+<body>
+    <header>
+        <h1>Cursos e Conteúdo</h1>
+    </header>
+    <main>
+        <section class="course-list">
+            <h2>Explore nossos cursos</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <h3>Introdução à Programação</h3>
+                    <p>Aprenda os fundamentos da programação com exemplos práticos.</p>
+                    <button class="btn btn-primary" onclick="enrollCourse('Introdução à Programação')">Inscrever-se</button>
+                </div>
+                <div class="course-card">
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Crie sites modernos e responsivos com HTML, CSS e JavaScript.</p>
+                    <button class="btn btn-primary" onclick="enrollCourse('Desenvolvimento Web')">Inscrever-se</button>
+                </div>
+                <div class="course-card">
+                    <h3>Banco de Dados</h3>
+                    <p>Entenda como projetar e gerenciar bancos de dados eficientes.</p>
+                    <button class="btn btn-primary" onclick="enrollCourse('Banco de Dados')">Inscrever-se</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../scripts/cursos.js"></script>
+</body>
+</html>
