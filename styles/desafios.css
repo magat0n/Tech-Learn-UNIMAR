@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f4f4;
+  }
+  
+  #desafio-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  textarea {
+    width: 100%;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+  
+  pre {
+    background: #222;
+    color: #0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+  
