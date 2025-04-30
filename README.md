@@ -36,7 +36,8 @@ Uma plataforma interativa e gamificada para aprender programação de forma prá
 
 ## 🤝 Contribuição
 
-
+## Link do deploy
+<a href="https://magat0n.github.io/Tech-Learn-UNIMAR/">Link do site</a>
 ## 📞 Suporte
 
 Para suporte, envie um email para magatonf2919@gmail.com ou abra uma issue no GitHub.
