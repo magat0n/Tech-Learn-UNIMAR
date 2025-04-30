@@ -2,7 +2,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
     padding: var(--spacing-md);
 }
