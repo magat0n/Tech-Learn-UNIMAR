@@ -7,8 +7,8 @@ body {
 }
 
 .header {
-    background-color: #007BFF; /* Azul principal */
-    color: white;
+    background-color: white; /* Azul principal */
+    color: #007BFF;
     padding: 15px 0;
 }
 
@@ -24,7 +24,7 @@ body {
 .header .logo-text {
     font-weight: bold;
     font-size: 1.5rem;
-    color: white; /* Texto branco para contraste */
+    color: #333; /* Texto branco para contraste */
 }
 
 .main-nav ul {
@@ -37,13 +37,13 @@ body {
 
 .main-nav ul li a {
     text-decoration: none;
-    color: white; /* Texto branco para contraste */
+    color: #0056b3; /* Texto branco para contraste */
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .main-nav ul li a:hover {
-    color: #FFD700; /* Amarelo para destaque no hover */
+    color: #0056b3; /* Amarelo para destaque no hover */
 }
 
 .report-section {
