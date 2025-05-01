@@ -208,58 +208,137 @@ nav a i {
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-}
-
-.editor-header {
     background: var(--dark);
-    color: white;
-    padding: 1rem;
+}
+
+.code-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: #21252b;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.editor-actions {
+.window-controls {
     display: flex;
-    gap: 1rem;
+    gap: 6px;
 }
 
-.editor-actions button {
+.control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.control:hover {
+    transform: scale(1.1);
+}
+
+.control.red { background: #ff5f56; }
+.control.yellow { background: #ffbd2e; }
+.control.green { background: #27c93f; }
+
+.language-selector select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
     padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 500;
 }
 
-.editor-actions button:hover {
+.language-selector select:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.language-selector option {
+    background: #282c34;
+    color: white;
+}
+
+.code-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
 
-#btn-limpar {
-    background: var(--error);
-    color: white;
+.code-content {
+    padding: 1rem;
+    background: #282c34;
+    max-height: 400px;
+    overflow: auto;
+    border-radius: 0 0 8px 8px;
 }
 
-#btn-executar {
-    background: var(--success);
-    color: white;
+.code-content pre {
+    margin: 0;
+    padding: 0;
 }
 
-.editor {
-    height: 400px;
-    border: none;
+.code-content code {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    tab-size: 4;
+}
+
+/* Estilização da barra de rolagem */
+.code-content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.code-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.code-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.code-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .io-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .input-container, .output-container {
+    background: white;
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
@@ -268,8 +347,9 @@ nav a i {
 .input-container h3, .output-container h3 {
     background: var(--dark);
     color: white;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     margin: 0;
+    font-size: 1rem;
 }
 
 #input {
@@ -279,17 +359,27 @@ nav a i {
     border: none;
     resize: vertical;
     font-family: 'Fira Code', monospace;
-    background: var(--light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: #f8fafc;
+}
+
+#input:focus {
+    outline: none;
+    background: white;
 }
 
 #saida {
     height: 150px;
     padding: 1rem;
-    background: var(--dark);
-    color: white;
     margin: 0;
     overflow-y: auto;
     font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: #f8fafc;
+    white-space: pre-wrap;
+    color: var(--text-primary);
 }
 
 footer {
@@ -328,18 +418,20 @@ footer {
 
 .template-buttons {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
 .template-btn {
     padding: 0.5rem 1rem;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 6px;
     background: white;
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .template-btn:hover {

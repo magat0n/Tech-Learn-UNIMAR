@@ -17,11 +17,7 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100,
-        validacao: (log, input) => {
-            const [a, b] = input.split(' ').map(Number);
-            return log[0] === (a + b).toString();
-        }
+        pontos: 100
     },
     {
         id: 2,
@@ -40,12 +36,7 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100,
-        validacao: (log, input) => {
-            const [a, b] = input.split(' ').map(Number);
-            const media = ((a * 3.5) + (b * 7.5)) / 11;
-            return Math.abs(parseFloat(log[0]) - media) < 0.00001;
-        }
+        pontos: 100
     },
     {
         id: 3,
@@ -64,11 +55,7 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100,
-        validacao: (log, input) => {
-            const [a, b, c, d] = input.split(' ').map(Number);
-            return parseInt(log[0]) === (a * b - c * d);
-        }
+        pontos: 100
     },
     {
         id: 4,
@@ -87,12 +74,7 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100,
-        validacao: (log, input) => {
-            const [nome, salario, vendas] = input.split(' ');
-            const total = parseFloat(salario) + (parseFloat(vendas) * 0.15);
-            return log[0] === `TOTAL = R$ ${total.toFixed(2)}`;
-        }
+        pontos: 100
     },
     {
         id: 5,
@@ -111,12 +93,7 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100,
-        validacao: (log, input) => {
-            const [distancia, combustivel] = input.split(' ').map(Number);
-            const consumo = distancia / combustivel;
-            return log[0] === `${consumo.toFixed(3)} km/l`;
-        }
+        pontos: 100
     },
     {
         id: 6,
@@ -135,123 +112,77 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100,
-        validacao: (log, input) => {
-            const [linha1, linha2] = input.split('\n');
-            const [x1, y1] = linha1.split(' ').map(Number);
-            const [x2, y2] = linha2.split(' ').map(Number);
-            const distancia = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-            return Math.abs(parseFloat(log[0]) - distancia) < 0.0001;
-        }
+        pontos: 100
     }
 ];
 
+// Templates de código
+const codeTemplates = {
+    javascript: `// Seu código JavaScript aqui
+function resolverDesafio(input) {
+    // Implemente sua solução
+    return input;
+}
+
+// Exemplo de uso
+console.log(resolverDesafio("teste"));`,
+    python: `# Seu código Python aqui
+def resolver_desafio(entrada):
+    # Implemente sua solução
+    return entrada
+
+# Exemplo de uso
+print(resolver_desafio("teste"))`,
+    java: `// Seu código Java aqui
+public class Solucao {
+    public static String resolverDesafio(String entrada) {
+        // Implemente sua solução
+        return entrada;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(resolverDesafio("teste"));
+    }
+}`,
+    csharp: `// Seu código C# aqui
+using System;
+
+public class Solucao {
+    public static string ResolverDesafio(string entrada) {
+        // Implemente sua solução
+        return entrada;
+    }
+
+    public static void Main() {
+        Console.WriteLine(ResolverDesafio("teste"));
+    }
+}`
+};
+
+// Variáveis globais
 let indice = 0;
-let editor;
 let desafiosCompletos = new Set();
 let pyodide;
 
-// Templates de código para cada desafio
-const templates = {
-    javascript: {
-        1: `// Soma Simples
-const [a, b] = input.split(' ').map(Number);
-console.log(a + b);`,
-        2: `// Média 1
-const [a, b] = input.split(' ').map(Number);
-const media = ((a * 3.5) + (b * 7.5)) / 11;
-console.log(media.toFixed(5));`,
-        3: `// Diferença
-const [a, b, c, d] = input.split(' ').map(Number);
-console.log(a * b - c * d);`,
-        4: `// Salário com Bônus
-const [nome, salario, vendas] = input.split(' ');
-const total = parseFloat(salario) + (parseFloat(vendas) * 0.15);
-console.log(\`TOTAL = R$ \${total.toFixed(2)}\`);`,
-        5: `// Consumo
-const [distancia, combustivel] = input.split(' ').map(Number);
-const consumo = distancia / combustivel;
-console.log(\`\${consumo.toFixed(3)} km/l\`);`,
-        6: `// Distância Entre Dois Pontos
-const [linha1, linha2] = input.split('\\n');
-const [x1, y1] = linha1.split(' ').map(Number);
-const [x2, y2] = linha2.split(' ').map(Number);
-const distancia = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-console.log(distancia.toFixed(4));`
-    },
-    python: {
-        1: `# Soma Simples
-a, b = map(int, input().split())
-print(a + b)`,
-        2: `# Média 1
-a, b = map(float, input().split())
-media = ((a * 3.5) + (b * 7.5)) / 11
-print(f"{media:.5f}")`,
-        3: `# Diferença
-a, b, c, d = map(int, input().split())
-print(a * b - c * d)`,
-        4: `# Salário com Bônus
-nome, salario, vendas = input().split()
-total = float(salario) + (float(vendas) * 0.15)
-print(f"TOTAL = R$ {total:.2f}")`,
-        5: `# Consumo
-distancia, combustivel = map(float, input().split())
-consumo = distancia / combustivel
-print(f"{consumo:.3f} km/l")`,
-        6: `# Distância Entre Dois Pontos
-x1, y1 = map(float, input().split())
-x2, y2 = map(float, input().split())
-distancia = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
-print(f"{distancia:.4f}")`
-    }
+// Elementos do DOM
+const elementos = {
+    titulo: document.getElementById("titulo-desafio"),
+    descricao: document.getElementById("descricao-desafio"),
+    exemplos: document.getElementById("exemplos-desafio"),
+    input: document.getElementById("input"),
+    saida: document.getElementById("saida"),
+    btnExec: document.getElementById("btn-executar"),
+    btnLimpar: document.getElementById("btn-limpar"),
+    nivelDificuldade: document.getElementById("nivel-dificuldade"),
+    pontosDesafio: document.getElementById("pontos-desafio"),
+    listaDesafios: document.getElementById("lista-desafios"),
+    codeExample: document.getElementById("code-example"),
+    languageSelect: document.getElementById("code-language")
 };
 
-// Elementos da interface
-const tituloEl = document.getElementById("titulo-desafio");
-const descEl = document.getElementById("descricao-desafio");
-const exemplosEl = document.getElementById("exemplos-desafio");
-const inputEl = document.getElementById("input");
-const saidaEl = document.getElementById("saida");
-const btnExec = document.getElementById("btn-executar");
-const btnLimpar = document.getElementById("btn-limpar");
-const nivelDificuldadeEl = document.getElementById("nivel-dificuldade");
-const pontosDesafioEl = document.getElementById("pontos-desafio");
-const listaDesafiosEl = document.getElementById("lista-desafios");
-const linguagemSelect = document.getElementById("linguagem-select");
-
-// Inicializa o editor Monaco
-require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' }});
-require(['vs/editor/editor.main'], function() {
-    editor = monaco.editor.create(document.getElementById('editor'), {
-        value: '// Digite seu código aqui\n',
-        language: 'javascript',
-        theme: 'vs-dark',
-        automaticLayout: true,
-        minimap: { enabled: false },
-        fontSize: 14,
-        lineNumbers: 'on',
-        roundedSelection: false,
-        scrollBeyondLastLine: false,
-        readOnly: false,
-        cursorStyle: 'line',
-        automaticLayout: true
-    });
-    
-    // Carrega o primeiro desafio após a inicialização do editor
-    carregarListaDesafios();
-    carregarDesafio();
-});
-
-// Inicializa o Pyodide
-async function initPyodide() {
-    pyodide = await loadPyodide({
-        indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
-    });
-}
-
-// Carrega a lista de desafios na sidebar
+// Carrega a lista de desafios
 function carregarListaDesafios() {
-    listaDesafiosEl.innerHTML = '';
+    elementos.listaDesafios.innerHTML = '';
     desafios.forEach((desafio, index) => {
         const item = document.createElement('div');
         item.className = `desafio-item ${desafiosCompletos.has(desafio.id) ? 'completo' : ''}`;
@@ -263,77 +194,104 @@ function carregarListaDesafios() {
             indice = index;
             carregarDesafio();
         });
-        listaDesafiosEl.appendChild(item);
+        elementos.listaDesafios.appendChild(item);
     });
 }
 
 // Carrega o desafio atual
 function carregarDesafio() {
     const d = desafios[indice];
-    tituloEl.innerText = d.titulo;
-    descEl.innerHTML = `
+    elementos.titulo.innerText = d.titulo;
+    elementos.descricao.innerHTML = `
         <p><strong>Descrição:</strong> ${d.descricao}</p>
         <p><strong>Entrada:</strong> ${d.entrada}</p>
         <p><strong>Saída:</strong> ${d.saida}</p>
     `;
-    exemplosEl.innerHTML = d.exemplos.map((ex, i) => `
+    elementos.exemplos.innerHTML = d.exemplos.map((ex, i) => `
         <div class="exemplo">
             <p><strong>Exemplo ${i + 1}</strong></p>
             <p><strong>Entrada:</strong><br><pre>${ex.entrada}</pre></p>
             <p><strong>Saída:</strong><br><pre>${ex.saida}</pre></p>
         </div>
     `).join('');
-    nivelDificuldadeEl.innerText = d.dificuldade;
-    pontosDesafioEl.innerText = `${d.pontos} pontos`;
-    inputEl.value = d.exemplos[0].entrada;
-    saidaEl.innerText = '';
-    carregarTemplate(linguagemSelect.value);
+    
+    elementos.nivelDificuldade.innerText = d.dificuldade;
+    elementos.pontosDesafio.innerText = `${d.pontos} pontos`;
+    elementos.input.value = d.exemplos[0].entrada;
+    elementos.saida.innerText = '';
+    
+    carregarTemplateDesafio(elementos.languageSelect.value);
 }
 
-// Limpa o editor
-btnLimpar.addEventListener("click", () => {
-    carregarTemplate(linguagemSelect.value);
-    saidaEl.innerText = '';
-});
-
-// Muda a linguagem do editor
-linguagemSelect.addEventListener("change", () => {
-    const linguagem = linguagemSelect.value;
-    monaco.editor.setModelLanguage(editor.getModel(), linguagem);
-    carregarTemplate(linguagem);
-});
-
 // Carrega o template de código
-function carregarTemplate(linguagem) {
-    const template = templates[linguagem][desafios[indice].id];
-    if (template) {
-        editor.setValue(template);
+function carregarTemplateDesafio(linguagem) {
+    elementos.codeExample.textContent = codeTemplates[linguagem];
+    elementos.codeExample.className = `language-${linguagem} line-numbers`;
+    if (window.Prism) {
+        Prism.highlightElement(elementos.codeExample);
     }
 }
 
-// Adiciona eventos para os botões de template
-document.getElementById('btn-template-js').addEventListener('click', () => {
-    carregarTemplate('javascript');
-    linguagemSelect.value = 'javascript';
-    monaco.editor.setModelLanguage(editor.getModel(), 'javascript');
+// Inicializa o Pyodide
+async function initPyodide() {
+    try {
+        pyodide = await loadPyodide();
+    } catch (error) {
+        console.error('Erro ao inicializar Pyodide:', error);
+    }
+}
+
+// Event Listeners
+elementos.btnLimpar.addEventListener('click', () => {
+    carregarTemplateDesafio(elementos.languageSelect.value);
+    elementos.saida.innerText = '';
 });
 
-document.getElementById('btn-template-py').addEventListener('click', () => {
-    carregarTemplate('python');
-    linguagemSelect.value = 'python';
-    monaco.editor.setModelLanguage(editor.getModel(), 'python');
+elementos.languageSelect.addEventListener('change', (e) => {
+    carregarTemplateDesafio(e.target.value);
 });
 
-// Executa o código JavaScript
+document.querySelectorAll('.template-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const linguagem = button.dataset.language;
+        elementos.languageSelect.value = linguagem;
+        carregarTemplateDesafio(linguagem);
+    });
+});
+
+// Executa o código
+elementos.btnExec.addEventListener('click', async () => {
+    const codigo = elementos.codeExample.textContent;
+    const input = elementos.input.value;
+    const linguagem = elementos.languageSelect.value;
+    
+    let resultado;
+    if (linguagem === 'javascript') {
+        resultado = await executarJavaScript(codigo, input);
+    } else if (linguagem === 'python') {
+        resultado = await executarPython(codigo, input);
+    } else {
+        elementos.saida.innerText = `A execução de código ${linguagem} ainda não é suportada.`;
+        return;
+    }
+
+    if (resultado.erro) {
+        elementos.saida.innerText = `Erro: ${resultado.erro}`;
+        return;
+    }
+
+    elementos.saida.innerText = resultado.saida;
+});
+
+// Executa código JavaScript
 async function executarJavaScript(codigo, input) {
     let log = [];
     const consoleBackup = console.log;
     console.log = (...args) => log.push(args.join(' '));
 
     try {
-        // Adiciona o código para ler a entrada
         const codigoCompleto = `
-            const input = "${input}";
+            const input = \`${input.replace(/`/g, '\\`')}\`;
             ${codigo}
         `;
         eval(codigoCompleto);
@@ -345,74 +303,55 @@ async function executarJavaScript(codigo, input) {
     }
 }
 
-// Executa o código Python
+// Executa código Python
 async function executarPython(codigo, input) {
     try {
-        // Adiciona o código para ler a entrada
+        if (!pyodide) {
+            pyodide = await loadPyodide();
+        }
+
         const codigoCompleto = `
 import sys
 import io
 
-# Redireciona stdout para capturar a saída
 old_stdout = sys.stdout
 new_stdout = io.StringIO()
 sys.stdout = new_stdout
 
-# Simula a entrada
 input_lines = """${input}""".split('\\n')
+input_index = 0
 def input():
-    if input_lines:
-        return input_lines.pop(0)
+    global input_index
+    if input_index < len(input_lines):
+        result = input_lines[input_index]
+        input_index += 1
+        return result
     return ""
 
 ${codigo}
 
-# Restaura stdout e retorna a saída
 sys.stdout = old_stdout
 print(new_stdout.getvalue())
         `;
         
-        // Executa o código
-        const resultado = await pyodide.runPythonAsync(codigoCompleto);
-        return { saida: resultado, erro: null };
+        await pyodide.runPythonAsync(codigoCompleto);
+        const output = pyodide.globals.get('new_stdout').getvalue();
+        return { saida: output.trim(), erro: null };
     } catch (e) {
-        return { saida: null, erro: e.message };
+        return { saida: null, erro: e.toString() };
     }
 }
 
-// Executa e valida o código
-btnExec.addEventListener("click", async () => {
-    const userCode = editor.getValue();
-    const input = inputEl.value;
-    const linguagem = linguagemSelect.value;
-    
-    let resultado;
-    if (linguagem === 'javascript') {
-        resultado = await executarJavaScript(userCode, input);
-    } else if (linguagem === 'python') {
-        resultado = await executarPython(userCode, input);
-    }
-
-    if (resultado.erro) {
-        saidaEl.innerText = `Erro: ${resultado.erro}`;
-        return;
-    }
-
-    saidaEl.innerText = resultado.saida;
-
-    if (desafios[indice].validacao(resultado.saida.split('\n'), input)) {
-        desafiosCompletos.add(desafios[indice].id);
-        alert("✅ Parabéns! Desafio concluído.");
+// Inicia a aplicação
+async function iniciarAplicacao() {
+    try {
+        await initPyodide();
         carregarListaDesafios();
-        indice = (indice + 1) % desafios.length;
         carregarDesafio();
-    } else {
-        alert("⚠️ Tente novamente.");
+    } catch (error) {
+        console.error('Erro ao iniciar a aplicação:', error);
     }
-});
+}
 
-// Inicia
-window.onload = async () => {
-    await initPyodide();
-    carregarListaDesafios();
-};
+// Inicia quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', iniciarAplicacao);

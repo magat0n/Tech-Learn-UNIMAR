@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="../styles/desafios.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
 </head>
 <body>
   <header class="header">
@@ -53,25 +55,37 @@
             <div class="templates">
               <h3>Templates</h3>
               <div class="template-buttons">
-                <button id="btn-template-js" class="template-btn">JavaScript</button>
-                <button id="btn-template-py" class="template-btn">Python</button>
+                <button class="template-btn" data-language="javascript">JavaScript</button>
+                <button class="template-btn" data-language="python">Python</button>
+                <button class="template-btn" data-language="java">Java</button>
+                <button class="template-btn" data-language="csharp">C#</button>
               </div>
             </div>
           </div>
 
           <div class="editor-container">
-            <div class="editor-header">
-              <h3>Seu Código</h3>
-              <div class="editor-actions">
-                <select id="linguagem-select">
+            <div class="code-header">
+              <div class="window-controls">
+                <div class="control red"></div>
+                <div class="control yellow"></div>
+                <div class="control green"></div>
+              </div>
+              <div class="language-selector">
+                <select id="code-language">
                   <option value="javascript">JavaScript</option>
                   <option value="python">Python</option>
+                  <option value="java">Java</option>
+                  <option value="csharp">C#</option>
                 </select>
-                <button id="btn-limpar"><i class="fas fa-trash"></i> Limpar</button>
-                <button id="btn-executar"><i class="fas fa-play"></i> Executar</button>
+              </div>
+              <div class="code-actions">
+                <button id="btn-limpar" class="icon-btn" title="Limpar código"><i class="fas fa-trash"></i></button>
+                <button id="btn-executar" class="icon-btn" title="Executar código"><i class="fas fa-play"></i></button>
               </div>
             </div>
-            <div id="editor" class="editor"></div>
+            <div class="code-content">
+              <pre><code id="code-example" class="language-javascript line-numbers"></code></pre>
+            </div>
           </div>
 
           <div class="io-container">
@@ -93,8 +107,13 @@
     <p>© 2025 Tech-Learn UNIMAR | Desenvolvido com ❤️ para programadores</p>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pyodide@0.23.4/pyodide.js"></script>
-  <script src="/scripts/desafios.js"></script>
+  <!-- Scripts necessários -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-java.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-csharp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+  <script src="../scripts/desafios.js"></script>
 </body>
 </html>
