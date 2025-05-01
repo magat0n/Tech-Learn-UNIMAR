@@ -206,6 +206,19 @@ print(f"{distancia:.4f}")`
     }
 };
 
+// Elementos da interface
+const tituloEl = document.getElementById("titulo-desafio");
+const descEl = document.getElementById("descricao-desafio");
+const exemplosEl = document.getElementById("exemplos-desafio");
+const inputEl = document.getElementById("input");
+const saidaEl = document.getElementById("saida");
+const btnExec = document.getElementById("btn-executar");
+const btnLimpar = document.getElementById("btn-limpar");
+const nivelDificuldadeEl = document.getElementById("nivel-dificuldade");
+const pontosDesafioEl = document.getElementById("pontos-desafio");
+const listaDesafiosEl = document.getElementById("lista-desafios");
+const linguagemSelect = document.getElementById("linguagem-select");
+
 // Inicializa o editor Monaco
 require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' }});
 require(['vs/editor/editor.main'], function() {
@@ -223,6 +236,10 @@ require(['vs/editor/editor.main'], function() {
         cursorStyle: 'line',
         automaticLayout: true
     });
+    
+    // Carrega o primeiro desafio após a inicialização do editor
+    carregarListaDesafios();
+    carregarDesafio();
 });
 
 // Inicializa o Pyodide
@@ -231,19 +248,6 @@ async function initPyodide() {
         indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
     });
 }
-
-// Elementos da interface
-const tituloEl = document.getElementById("titulo-desafio");
-const descEl = document.getElementById("descricao-desafio");
-const exemplosEl = document.getElementById("exemplos-desafio");
-const inputEl = document.getElementById("input");
-const saidaEl = document.getElementById("saida");
-const btnExec = document.getElementById("btn-executar");
-const btnLimpar = document.getElementById("btn-limpar");
-const nivelDificuldadeEl = document.getElementById("nivel-dificuldade");
-const pontosDesafioEl = document.getElementById("pontos-desafio");
-const listaDesafiosEl = document.getElementById("lista-desafios");
-const linguagemSelect = document.getElementById("linguagem-select");
 
 // Carrega a lista de desafios na sidebar
 function carregarListaDesafios() {
@@ -411,5 +415,4 @@ btnExec.addEventListener("click", async () => {
 window.onload = async () => {
     await initPyodide();
     carregarListaDesafios();
-    carregarDesafio();
 };
