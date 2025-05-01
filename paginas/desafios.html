@@ -5,37 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Desafios de Código | Tech-Learn</title>
   <link rel="stylesheet" href="../styles/desafios.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 <body>
-  <!-- Include seu header/nav comum -->
-  <header>
+  <header class="header">
+    <div class="logo">
+      <h1>Tech-Learn</h1>
+    </div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="cursos.html">Cursos</a>
-      <a href="desafios.html" class="active">Desafios</a>
-      <!-- outros links -->
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="cursos.html"><i class="fas fa-graduation-cap"></i> Cursos</a>
+      <a href="desafios.html" class="active"><i class="fas fa-code"></i> Desafios</a>
+      <a href="perfil.html"><i class="fas fa-user"></i> Perfil</a>
     </nav>
   </header>
 
   <main class="container">
-    <h1>Desafios de Código</h1>
-    <div id="desafio-container">
-      <h2 id="titulo-desafio"></h2>
-      <p id="descricao-desafio"></p>
+    <div class="sidebar">
+      <h3>Desafios</h3>
+      <div id="lista-desafios" class="lista-desafios">
+        <!-- Desafios serão inseridos aqui via JavaScript -->
+      </div>
+    </div>
 
-      <textarea id="codigo" rows="10" placeholder="Escreva seu código aqui..."></textarea>
-      <br />
-      <button id="btn-executar">Executar Código</button>
+    <div class="content">
+      <div id="desafio-container">
+        <div class="desafio-header">
+          <h2 id="titulo-desafio"></h2>
+          <div class="dificuldade">
+            <span id="nivel-dificuldade"></span>
+            <span id="pontos-desafio"></span>
+          </div>
+        </div>
+        
+        <div class="desafio-content">
+          <div class="descricao-container">
+            <h3>Descrição</h3>
+            <div id="descricao-desafio" class="descricao"></div>
+            
+            <div class="exemplos">
+              <h3>Exemplos</h3>
+              <div id="exemplos-desafio"></div>
+            </div>
 
-      <pre id="saida"></pre>
+            <div class="templates">
+              <h3>Templates</h3>
+              <div class="template-buttons">
+                <button id="btn-template-js" class="template-btn">JavaScript</button>
+                <button id="btn-template-py" class="template-btn">Python</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="editor-container">
+            <div class="editor-header">
+              <h3>Seu Código</h3>
+              <div class="editor-actions">
+                <select id="linguagem-select">
+                  <option value="javascript">JavaScript</option>
+                  <option value="python">Python</option>
+                </select>
+                <button id="btn-limpar"><i class="fas fa-trash"></i> Limpar</button>
+                <button id="btn-executar"><i class="fas fa-play"></i> Executar</button>
+              </div>
+            </div>
+            <div id="editor" class="editor"></div>
+          </div>
+
+          <div class="io-container">
+            <div class="input-container">
+              <h3>Entrada</h3>
+              <textarea id="input" placeholder="Digite a entrada do problema..."></textarea>
+            </div>
+            <div class="output-container">
+              <h3>Saída</h3>
+              <pre id="saida"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
-  <!-- Include seu footer comum -->
   <footer>
-    <p>© 2025 Tech-Learn UNIMAR</p>
+    <p>© 2025 Tech-Learn UNIMAR | Desenvolvido com ❤️ para programadores</p>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pyodide@0.23.4/pyodide.js"></script>
   <script src="/scripts/desafios.js"></script>
 </body>
 </html>

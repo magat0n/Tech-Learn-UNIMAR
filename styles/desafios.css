@@ -1,29 +1,332 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+    --warning-color: #f1c40f;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --border-color: #ddd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f4f4f4;
-  }
-  
-  #desafio-container {
-    background: #fff;
-    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.header {
+    background: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+nav a:hover, nav a.active {
+    background: var(--primary-color);
+}
+
+nav a i {
+    margin-right: 0.5rem;
+}
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 120px);
+}
+
+.sidebar {
+    width: 250px;
+    background: white;
+    padding: 1rem;
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+}
+
+.lista-desafios {
+    margin-top: 1rem;
+}
+
+.desafio-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.desafio-item:hover {
+    background: var(--background-color);
+}
+
+.desafio-item.completo {
+    background: var(--success-color);
+    color: white;
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+#desafio-container {
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px #ccc;
-    max-width: 800px;
-    margin: auto;
-  }
-  
-  textarea {
-    width: 100%;
-    font-family: monospace;
-    font-size: 1rem;
-  }
-  
-  pre {
-    background: #222;
-    color: #0f0;
-    padding: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.desafio-header {
+    background: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dificuldade {
+    display: flex;
+    gap: 1rem;
+}
+
+.dificuldade span {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.desafio-content {
+    padding: 2rem;
+}
+
+.descricao-container {
+    margin-bottom: 2rem;
+}
+
+.descricao {
+    background: #f8f9fa;
+    padding: 1rem;
     border-radius: 5px;
-    margin-top: 10px;
+    border-left: 4px solid var(--primary-color);
+    margin: 1rem 0;
+}
+
+.exemplos {
+    margin-top: 2rem;
+}
+
+.exemplo {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.exemplo p {
+    margin: 0.5rem 0;
+}
+
+.exemplo strong {
+    color: var(--primary-color);
+}
+
+.exemplo pre {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.editor-container {
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.editor-header {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.editor-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.editor-actions button:hover {
+    opacity: 0.9;
+}
+
+#btn-limpar {
+    background: var(--error-color);
+    color: white;
+}
+
+#btn-executar {
+    background: var(--success-color);
+    color: white;
+}
+
+.editor {
+    height: 400px;
+    border: none;
+}
+
+.io-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.input-container, .output-container {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.input-container h3, .output-container h3 {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 0;
+}
+
+#input {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border: none;
+    resize: vertical;
+    font-family: monospace;
+}
+
+#saida {
+    height: 150px;
+    padding: 1rem;
+    background: #2c3e50;
+    color: #ecf0f1;
+    margin: 0;
+    overflow-y: auto;
+}
+
+footer {
+    background: var(--secondary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .io-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.editor-actions select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: white;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.editor-actions select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.editor-actions select option {
+    padding: 0.5rem;
+}
+
+.templates {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.template-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.template-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: white;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.template-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
   
