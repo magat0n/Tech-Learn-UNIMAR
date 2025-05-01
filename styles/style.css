@@ -430,7 +430,7 @@ img {
 }
 
 .btn-primary {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     color: var(--primary);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
@@ -448,7 +448,8 @@ img {
 }
 
 .btn-outline:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--primary-dark);
+    color: white;
     border-color: white;
     transform: translateY(-3px);
 }
