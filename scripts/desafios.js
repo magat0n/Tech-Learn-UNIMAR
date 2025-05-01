@@ -17,7 +17,11 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100
+        pontos: 100,
+        validacao: (saida, input) => {
+            const [a, b] = input.split(' ').map(Number);
+            return saida.trim() === String(a + b);
+        }
     },
     {
         id: 2,
@@ -36,7 +40,12 @@ const desafios = [
             }
         ],
         dificuldade: "Iniciante",
-        pontos: 100
+        pontos: 100,
+        validacao: (saida, input) => {
+            const [a, b] = input.split(' ').map(Number);
+            const media = ((a * 3.5) + (b * 7.5)) / 11;
+            return Math.abs(parseFloat(saida) - media) < 0.00001;
+        }
     },
     {
         id: 3,
@@ -225,11 +234,8 @@ function carregarDesafio() {
 
 // Carrega o template de código
 function carregarTemplateDesafio(linguagem) {
-    elementos.codeExample.textContent = codeTemplates[linguagem];
-    elementos.codeExample.className = `language-${linguagem} line-numbers`;
-    if (window.Prism) {
-        Prism.highlightElement(elementos.codeExample);
-    }
+    elementos.codeExample.value = codeTemplates[linguagem];
+    elementos.codeExample.className = `language-${linguagem}`;
 }
 
 // Inicializa o Pyodide
@@ -261,7 +267,7 @@ document.querySelectorAll('.template-btn').forEach(button => {
 
 // Executa o código
 elementos.btnExec.addEventListener('click', async () => {
-    const codigo = elementos.codeExample.textContent;
+    const codigo = elementos.codeExample.value;
     const input = elementos.input.value;
     const linguagem = elementos.languageSelect.value;
     
@@ -281,6 +287,18 @@ elementos.btnExec.addEventListener('click', async () => {
     }
 
     elementos.saida.innerText = resultado.saida;
+
+    // Validação do desafio
+    const desafioAtual = desafios[indice];
+    if (desafioAtual.validacao && desafioAtual.validacao(resultado.saida, input)) {
+        desafiosCompletos.add(desafioAtual.id);
+        alert("✅ Parabéns! Desafio concluído!");
+        carregarListaDesafios();
+        indice = (indice + 1) % desafios.length;
+        carregarDesafio();
+    } else {
+        alert("⚠️ Tente novamente. A saída não corresponde ao esperado.");
+    }
 });
 
 // Executa código JavaScript

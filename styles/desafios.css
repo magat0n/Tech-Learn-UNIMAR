@@ -311,6 +311,25 @@ nav a i {
     tab-size: 4;
 }
 
+.code-content textarea {
+    width: 100%;
+    height: 300px;
+    background: #282c34;
+    color: #fff;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 1rem;
+    border: none;
+    resize: vertical;
+    outline: none;
+    tab-size: 4;
+}
+
+.code-content textarea:focus {
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* Estilização da barra de rolagem */
 .code-content::-webkit-scrollbar {
     width: 8px;
@@ -352,21 +371,24 @@ nav a i {
     font-size: 1rem;
 }
 
-#input {
+.input-container textarea {
     width: 100%;
     height: 150px;
-    padding: 1rem;
-    border: none;
-    resize: vertical;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
     background: #f8fafc;
+    color: var(--text-primary);
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    resize: vertical;
 }
 
-#input:focus {
+.input-container textarea:focus {
     outline: none;
-    background: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(36, 123, 160, 0.1);
 }
 
 #saida {
