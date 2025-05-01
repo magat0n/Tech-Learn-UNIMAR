@@ -1540,7 +1540,7 @@ img {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: var(--primary-color);
+    background: #007bff;
     color: white;
     border: none;
     padding: 12px 20px;
