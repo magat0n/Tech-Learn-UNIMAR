@@ -142,30 +142,6 @@ def resolver_desafio(entrada):
 
 # Exemplo de uso
 print(resolver_desafio("teste"))`,
-    java: `// Seu código Java aqui
-public class Solucao {
-    public static String resolverDesafio(String entrada) {
-        // Implemente sua solução
-        return entrada;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(resolverDesafio("teste"));
-    }
-}`,
-    csharp: `// Seu código C# aqui
-using System;
-
-public class Solucao {
-    public static string ResolverDesafio(string entrada) {
-        // Implemente sua solução
-        return entrada;
-    }
-
-    public static void Main() {
-        Console.WriteLine(ResolverDesafio("teste"));
-    }
-}`
 };
 
 // Variáveis globais
