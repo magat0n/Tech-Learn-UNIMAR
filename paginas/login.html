@@ -15,27 +15,30 @@
         <div class="login-card">
             <div class="login-header">
                 <a href="../index.html" class="logo">
-                    <div class="logo-icon"><img src="../images/logo-search-grid-2x (1).png" alt=""></div>
+                    <div class="logo-icon"><img src="../images/logo-search-grid-2x (1).png" alt="Logo TechLearn"></div>
                     <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
                 </a>
                 <h1>Bem-vindo de volta!</h1>
                 <p>Entre para continuar sua jornada de aprendizado</p>
             </div>
 
+            <!-- Formulário de Login -->
             <form id="loginForm" class="login-form">
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                    <input type="email" id="email" name="email" required placeholder="Digite seu e-mail">
+                    <small class="error-message" id="emailError"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Senha</label>
                     <div class="password-input">
-                        <input type="password" id="password" name="password" required placeholder="Sua senha">
+                        <input type="password" id="password" name="password" required placeholder="Digite sua senha">
                         <button type="button" class="toggle-password" onclick="togglePassword()">
                             <span class="eye-icon">👁️</span>
                         </button>
                     </div>
+                    <small class="error-message" id="passwordError"></small>
                 </div>
 
                 <div class="form-options">

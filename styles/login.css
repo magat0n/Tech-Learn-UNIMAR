@@ -2,7 +2,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
     padding: var(--spacing-md);
 }
@@ -14,6 +14,7 @@
     width: 100%;
     max-width: 480px;
     padding: var(--spacing-xl);
+    animation: fadeIn 0.5s ease-out;
 }
 
 .login-header {
@@ -64,6 +65,14 @@
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.1);
+}
+
+.form-group input:invalid {
+    border-color: var(--error);
+}
+
+.form-group input:invalid + .error-message {
+    display: block;
 }
 
 .password-input {
@@ -166,6 +175,24 @@
     gap: var(--spacing-md);
 }
 
+.social-buttons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.social-buttons button:hover {
+    background: var(--light);
+    border-color: var(--primary);
+}
+
 .btn-social {
     display: flex;
     align-items: center;
@@ -206,6 +233,13 @@
     color: var(--primary-dark);
 }
 
+.error-message {
+    color: var(--error);
+    font-size: 0.8rem;
+    margin-top: var(--spacing-xs);
+    display: none;
+}
+
 /* Animações */
 @keyframes fadeIn {
     from {
@@ -218,10 +252,6 @@
     }
 }
 
-.login-card {
-    animation: fadeIn 0.5s ease-out;
-}
-
 /* Responsividade */
 @media (max-width: 480px) {
     .login-card {
@@ -231,4 +261,4 @@
     .social-buttons {
         grid-template-columns: 1fr;
     }
-} 
+}
