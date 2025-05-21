@@ -70,11 +70,10 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(255, 255, 255, 0.98);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+    color: white;
     padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -102,9 +101,9 @@ img {
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: var(--dark);
+    color: white;
 }
 
 .logo-text .primary-text {
@@ -119,7 +118,7 @@ img {
 
 .main-nav a {
     font-weight: 500;
-    color: var(--text-primary);
+    color: white;
     position: relative;
     padding: 0.5rem 0;
 }
@@ -140,7 +139,7 @@ img {
 }
 
 .main-nav a:hover {
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 
@@ -295,4 +294,56 @@ img {
 
 header {
     background-color: blue;
+}
+
+/* Footer Styles */
+.footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 2rem 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-links h3, .footer-contact h3 {
+    color: var(--primary-light);
+    margin-bottom: 1rem;
+}
+
+.footer-links ul, .footer-contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links a {
+    color: var(--light);
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--secondary);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--light);
+}
+
+.footer-legal a {
+    color: var(--light);
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.footer-legal a:hover {
+    color: var(--secondary);
 }

@@ -12,9 +12,12 @@
     <header class="header">
         <div class="container header-container">
             <div class="logo">
-                <div class="logo-icon" aria-label="Logo TechLearn"><img src="../images/logo-search-grid-2x (1).png" alt=""></div>
+                <div class="logo-icon" aria-label="Logo TechLearn">
+                    <img src="../images/logo-search-grid-2x (1).png" alt="Logo TechLearn">
+                </div>
                 <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
             </div>
+
             <nav class="main-nav">
                 <ul>
                     <li><a href="../index.html">Início</a></li>
@@ -33,11 +36,23 @@
                 <h1>Relate um Problema Técnico</h1>
                 <p>Descreva o problema que você está enfrentando para que possamos ajudar o mais rápido possível.</p>
                 <form id="report-form">
+                    <label for="category">Categoria do Problema:</label>
+                    <select id="category">
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        <option value="login">Problemas de Login</option>
+                        <option value="performance">Desempenho do Sistema</option>
+                        <option value="interface">Interface do Usuário</option>
+                        <option value="outro">Outro</option>
+                    </select>
+
                     <label for="issue">Descrição do Problema:</label>
                     <textarea id="issue" placeholder="Descreva o problema que você está enfrentando"></textarea>
                     
                     <label for="screenshot">Anexar Captura de Tela:</label>
                     <input type="file" id="screenshot" accept="image/*">
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
                     
                     <button type="button" class="btn btn-primary" onclick="submitReport()">Enviar Relato</button>
                 </form>
@@ -48,7 +63,51 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 TechLearn. Todos os direitos reservados.</p>
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo footer-logo">
+                        <div class="logo-icon small" aria-label="Logo TechLearn">TL</div>
+                        <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+                    </div>
+                    <p>Transformando aprendizes em profissionais através de experiências práticas e desafios reais.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="../index.html#courses">Cursos</a></li>
+                        <li><a href="challenges.html">Desafios</a></li>
+                        <li><a href="../index.html#leaderboard">Ranking</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="#">Documentação</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Comunidade</a></li>
+                        <li><a href="tecnicos.html">Central de Ajuda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>00001109778594sp@al.educacao.sp.gov.br</li>
+                        <li>+55 (14) 99895-2975</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechLearn. Todos os direitos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Serviço</a>
+                </div>
+            </div>
         </div>
     </footer>
 

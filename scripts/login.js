@@ -112,7 +112,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
 
-    loginForm.addEventListener('submit', validateLoginForm);
+    loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+
+        let isValid = true;
+
+        // Validação do e-mail
+        if (!email.value.includes('@')) {
+            emailError.textContent = 'Por favor, insira um e-mail válido.';
+            emailError.style.display = 'block';
+            isValid = false;
+        } else {
+            emailError.style.display = 'none';
+        }
+
+        // Validação da senha
+        if (password.value.length < 6) {
+            passwordError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+            passwordError.style.display = 'block';
+            isValid = false;
+        } else {
+            passwordError.style.display = 'none';
+        }
+
+        if (isValid) {
+            alert('Login realizado com sucesso!');
+            // Redirecionar para a página inicial
+            window.location.href = '../index.html';
+        }
+    });
+
     registerForm.addEventListener('submit', validateRegisterForm);
 
     // Preenche o email se estiver salvo
@@ -125,4 +159,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adiciona event listeners para os botões de login social
     document.querySelector('.btn-social.google').addEventListener('click', () => socialLogin('Google'));
     document.querySelector('.btn-social.github').addEventListener('click', () => socialLogin('GitHub'));
-}); 
+});
