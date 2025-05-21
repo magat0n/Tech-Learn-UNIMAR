@@ -286,9 +286,9 @@ img {
 
 /* Hero Section - Design melhorado */
 .hero {
-    background: linear-gradient(145deg, var(--primary), var(--secondary));
+    background: linear-gradient(118deg, #465EB5 0%, #364070 50%, #2B2C41 100%);
     color: white;
-    padding: var(--spacing-2xl) 0;
+    padding: 50px;
     position: relative;
     overflow: hidden;
 }
@@ -1693,7 +1693,7 @@ img {
         bottom: 80px;
         right: 20px;
     }
-
+    
     .chat-toggle {
         padding: 10px 15px;
     }
