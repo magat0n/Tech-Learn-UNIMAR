@@ -106,7 +106,6 @@ img {
     border-radius: 12px;
     font-size: 1rem;
     font-weight: bold;
-    box-shadow: 0 4px 12px rgba(36, 123, 160, 0.3);
     animation: pulse 2s ease-in-out infinite;
 }
 
@@ -122,7 +121,7 @@ img {
 }
 
 .primary-text {
-    color: var(--primary);
+    color: #1366CB;
     font-weight: 700;
 }
 
@@ -133,7 +132,12 @@ img {
 
 .main-nav {
     display: none;
+    color: #1366CB;
 }
+.main-nav ul {
+    color: #1366CB;
+}   
+
 
 @media (min-width: 768px) {
     .main-nav {
