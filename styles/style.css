@@ -153,7 +153,12 @@ img:hover {
 
 .main-nav {
     display: none;
+    color: #1366CB;
 }
+.main-nav ul {
+    color: #1366CB;
+}   
+
 
 @media (min-width: 768px) {
     .main-nav {
@@ -168,7 +173,7 @@ img:hover {
     .main-nav a {
         font-size: 1rem;
         font-weight: 500;
-        color: var(--text-secondary);
+        color: #1366CB;
         transition: color 0.2s ease, transform 0.2s ease;
         position: relative;
     }
@@ -714,12 +719,13 @@ img:hover {
     overflow: hidden;
 }
 
+
 .courses:before {
     content: '';
     position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(36, 123, 160, 0.05) 0%, rgba(0, 100, 148, 0) 70%);
+    background: #2B2C41;
     top: -300px;
     right: -300px;
     border-radius: 50%;
@@ -1683,7 +1689,7 @@ img:hover {
         bottom: 80px;
         right: 20px;
     }
-
+    
     .chat-toggle {
         padding: 10px 15px;
     }
