@@ -760,10 +760,8 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 4rem;
-    height: 4rem;
-    background: linear-gradient(135deg, rgba(36, 123, 160, 0.1), rgba(0, 100, 148, 0.1));
-    border-radius: 20px;
+    width: 5rem;
+    height: 5rem;
     transition: transform 0.3s ease;
 }
 
