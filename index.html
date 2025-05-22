@@ -30,13 +30,6 @@
           <li><a href="#leaderboard">Ranking</a></li>
         </ul>
       </nav>
-
-      <div class="user-menu">
-        <div class="level-badge">Nível 5</div>
-        <div class="xp-badge">2.450 XP</div>
-        <div class="avatar">JS</div>
-        <button id="menuToggle" class="menu-toggle">☰</button>
-      </div>
     </div>
 
     <div id="mobileMenu" class="mobile-menu">
@@ -49,11 +42,6 @@
         <!-- Changed the login link below -->
         <li><a href="paginas/login.html" class="btn btn-primary mobile-menu-login-btn"><span>🔑</span> Entrar</a></li>
       </ul>
-      <!-- Removed the separate button div -->
-      <div class="mobile-user-info"> <!-- This should ideally be hidden if not logged in -->
-        <div class="level-badge">Nível 5</div>
-        <div class="xp-badge">2.450 XP</div>
-      </div>
     </div>
     </div>
   </header>
@@ -137,23 +125,24 @@ bemVindo();</code></pre>
 
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon"><img src="images/pc.png" alt="Computer"></div></div>
-          <h3>Aprendizado Interativo</h3>
-          <p>Aprenda fazendo com nosso editor de código interativo e sistema de feedback instantâneo.</p>
+          <div class="feature-icon"><img src="images/pc.png" alt="Computer"></div>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon"><img src="images/image 3.png" alt="Trofeu"></div>
-          <h3>Desafios de Habilidades</h3>
-          <p>Teste seu conhecimento com desafios de código e ganhe XP para subir de nível.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon"><img src="images/image 2.png" alt="Community"></div>
-          <h3>Suporte da Comunidade</h3>
-          <p>Junte-se à nossa comunidade de estudantes e obtenha ajuda sempre que precisar.</p>
-        </div>
+        <h3>Aprendizado Interativo</h3>
+        <p>Aprenda fazendo com nosso editor de código interativo e sistema de feedback instantâneo.</p>
       </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><img src="images/image 3.png" alt="Trofeu"></div>
+        <h3>Desafios de Habilidades</h3>
+        <p>Teste seu conhecimento com desafios de código e ganhe XP para subir de nível.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><img src="images/image 2.png" alt="Community"></div>
+        <h3>Suporte da Comunidade</h3>
+        <p>Junte-se à nossa comunidade de estudantes e obtenha ajuda sempre que precisar.</p>
+      </div>
+    </div>
     </div>
   </section>
 
@@ -364,7 +353,12 @@ bemVindo();</code></pre>
           <a href="#">Termos de Serviço</a>
         </div>
       </div>
-    </div>
-  </footer>
+      <!-- Chat Flutuante -->
+      <div class="floating-chat">
+        <a href="paginas/suporte.html" class="chat-toggle" id="chatToggle">
+          <span class="chat-icon">💬</span>
+          <span class="chat-label">Suporte</span>
+        </a>
 
- 
+      </div>
+  </footer>
