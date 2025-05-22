@@ -828,7 +828,8 @@ img {
     font-size: 2rem;
     margin-bottom: 0.3rem;
     position: relative;
-    color: var(--text-primary);
+    color:  #1366CB;
+    ;
 }
 
 .section-header-with-button p {
