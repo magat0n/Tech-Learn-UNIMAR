@@ -1,37 +1,31 @@
 :root {
-    /* Cores principais */
-    --primary-dark: #13293D;
-    --primary-blue: #1366CB;
-    --secondary-blue: #247BA0;
-    --accent-blue: #006494;
-    --background-light: #E8F1F2;
-    --text-primary: #13293D;
-    --text-secondary: #1366CB;
-    --text-white: #FFFFFF;
-    --border-color: #E2E8F0;
-    
-    /* Sombras */
-    --shadow-sm: 0px 4px 6px rgba(0, 0, 0, 0.10);
-    --shadow-md: 0px 8px 20px rgba(36, 123, 160, 0.25);
-    --shadow-lg: 0px 20px 40px rgba(0, 0, 0, 0.30);
-    
-    /* Gradientes */
-    --gradient-primary: linear-gradient(166deg, #465EB5 0%, #364070 50%, #2B2C41 100%);
-    --gradient-button: linear-gradient(165deg, #1366CB 0%, #13293D 100%);
-    --gradient-feature: linear-gradient(135deg, rgba(36, 123, 160, 0.10) 0%, rgba(0, 100, 148, 0.10) 100%);
-    
+    /* Cores principais - Atualizadas para TechLearn */
+    --primary: #247ba0ff;
+    --primary-light: #1b98e0ff;
+    --primary-dark: #13293dff;
+    --secondary: #006494ff;
+    --accent: #13293dff;
+    --success: #10b981;
+    --error: #ef4444;
+    --dark: #13293dff;
+    --light: #E8F1F2ff;
+    --border: #e2e8f0;
+    --text-primary: #13293dff;
+    --text-secondary: #006494ff;
+    --text-light: #247ba0ff;
+
     /* Espaçamento */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-    --spacing-2xl: 4rem;
-    
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
     /* Raio de borda */
-    --radius-sm: 0.5rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
     --radius-full: 9999px;
 }
 
@@ -43,21 +37,20 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--text-primary);
-    background-color: var(--background-light);
+    background-color: var(--light);
     line-height: 1.6;
 }
 
 a {
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
+    transition: color 0.2s, transform 0.2s;
 }
 
 a:hover {
-    color: var(--primary-blue);
-    transform: translateY(-2px);
+    color: var(--primary);
 }
 
 ul {
@@ -72,43 +65,30 @@ img {
     transition: transform 0.3s ease;
 }
 
-img:hover {
-    transform: scale(1.05);
-}
-
 /* Container */
 .container {
     width: 100%;
-    max-width: 1360px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 0 var(--spacing-lg);
 }
 
-@media (min-width: 1920px) {
-    .container {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
-/* Header */
+/* Header - Design moderno */
 .header {
     position: sticky;
     top: 0;
     z-index: 100;
     background-color: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border);
     backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 5rem;
-    padding: 0 var(--spacing-lg);
+    height: 4.5rem;
 }
 
 .logo {
@@ -121,29 +101,28 @@ img:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    background: var(--gradient-button);
-    border-radius: var(--radius-md);
-    font-size: 1.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
     font-weight: bold;
-    color: var(--text-white);
-    box-shadow: var(--shadow-md);
-    transition: transform 0.3s ease;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-.logo-icon:hover {
-    transform: scale(1.05);
+.logo-icon.small {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.8rem;
 }
 
 .logo-text {
-    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-primary);
+    font-size: 1.3rem;
 }
 
 .primary-text {
-    color: var(--primary-blue);
+    color: #1366CB;
+    font-weight: 700;
 }
 
 .accent-text {
@@ -179,12 +158,12 @@ img:hover {
     }
 
     .main-nav a:hover {
-        color: var(--primary-blue);
+        color: var(--primary);
         transform: translateY(-2px);
     }
 
     .main-nav a.active {
-        color: var(--primary-blue);
+        color: var(--primary);
     }
 
     .main-nav a.active:after {
@@ -194,7 +173,7 @@ img:hover {
         left: 0;
         width: 100%;
         height: 3px;
-        background-color: var(--primary-blue);
+        background-color: var(--primary);
         border-radius: var(--radius-full);
     }
 }
@@ -209,7 +188,7 @@ img:hover {
     display: none;
     padding: var(--spacing-xs) var(--spacing-sm);
     background-color: rgba(36, 123, 160, 0.15);
-    color: var(--primary-blue);
+    color: var(--primary);
     border-radius: var(--radius-md);
     font-size: 0.75rem;
     font-weight: 600;
@@ -219,7 +198,7 @@ img:hover {
     display: none;
     padding: var(--spacing-xs) var(--spacing-sm);
     background-color: transparent;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     font-size: 0.75rem;
     color: var(--text-secondary);
@@ -246,7 +225,7 @@ img:hover {
     justify-content: center;
     width: 2.3rem;
     height: 2.3rem;
-    background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
     color: white;
     border-radius: 50%;
     font-size: 0.8rem;
@@ -273,7 +252,7 @@ img:hover {
     display: none;
     padding: var(--spacing-md) var(--spacing-lg);
     background-color: white;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border);
 }
 
 .mobile-menu.active {
@@ -298,7 +277,7 @@ img:hover {
 }
 
 .mobile-menu a:hover {
-    color: var(--primary-blue);
+    color: var(--primary);
 }
 
 .mobile-user-info {
@@ -306,14 +285,15 @@ img:hover {
     gap: var(--spacing-md);
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border);
 }
 
 /* Hero Section - Design melhorado */
 .hero {
+    background: linear-gradient(118deg, #465EB5 0%, #364070 50%, #2B2C41 100%);
+    color: white;
+    padding: 50px;
     position: relative;
-    background: var(--gradient-primary);
-    padding: 120px 0;
     overflow: hidden;
 }
 
@@ -324,8 +304,10 @@ img:hover {
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255, 0.05);
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(255, 255, 255, 0.05)" d="M45.3,-58.6C58.4,-48.8,68.5,-34.5,74.3,-18C80.1,-1.6,81.6,17,73.7,29.3C65.9,41.6,48.8,47.6,32.8,56.1C16.8,64.6,2,75.6,-12.4,74.8C-26.9,74,-41.1,61.5,-51.5,47.3C-62,33,-68.8,17,-69.1,0.2C-69.3,-16.7,-63.1,-33.4,-51.5,-42.9C-39.9,-52.4,-23,-54.7,-6.7,-47.3C9.5,-39.9,32.2,-68.4,45.3,-58.6Z" transform="translate(100 100)" /></svg>') no-repeat center center;
+    background-size: cover;
     opacity: 0.4;
+    z-index: 0;
 }
 
 .hero-container {
@@ -343,74 +325,150 @@ img:hover {
 }
 
 .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 592px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: flex-start;
 }
 
 .badge {
     display: inline-block;
-    padding: 5px 16px;
-    background: rgba(255, 255, 255, 0.20);
-    color: var(--text-white);
-    font-size: 13.6px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
     font-weight: 500;
-    border-radius: 9999px;
-    backdrop-filter: blur(2px);
-    margin-bottom: 16px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hero h1 {
-    color: var(--text-white);
-    font-size: 51.2px;
+    font-size: 2.5rem;
+    line-height: 1.2;
     font-weight: 700;
-    line-height: 61.44px;
-    margin-bottom: 16px;
+    animation: fade-up 0.8s ease-out;
 }
 
-.hero h1 .accent-text {
-    color: var(--primary-dark);
+@media (min-width: 768px) {
+    .hero h1 {
+        font-size: 3.2rem;
+    }
 }
 
 .hero p {
-    color: rgba(255, 255, 255, 0.90);
-    font-size: 18.4px;
-    line-height: 29.44px;
-    margin-bottom: 32px;
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    animation: fade-up 0.8s ease-out 0.2s forwards;
+    opacity: 0;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+    margin-top: var(--spacing-md);
+    animation: fade-up 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+@media (min-width: 640px) {
+    .hero-buttons {
+        flex-direction: row;
+        width: auto;
+    }
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 18px 32px;
-    font-size: 16px;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-lg);
     font-weight: 600;
-    border-radius: 12px;
     transition: all 0.3s ease;
-    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(0);
+    opacity: 0;
+    border-radius: inherit;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.btn:active::after {
+    transform: scale(2);
+    opacity: 1;
+    transition: 0s;
+}
+
+.btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.875rem;
+    border-radius: var(--radius-md);
+}
+
+.btn-lg {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: 1.125rem;
 }
 
 .btn-primary {
-    background: var(--text-white);
-    color: var(--primary-blue);
-    box-shadow: var(--shadow-sm);
+    background-color: rgb(255, 255, 255);
+    color: var(--primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .btn-outline {
-    border: 1px solid rgba(255, 255, 255, 0.30);
-    color: var(--text-white);
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-dark);
+    color: white;
+    border-color: white;
+    transform: translateY(-3px);
+}
+
+.hero .btn-outline {
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .arrow {
-    margin-left: 8px;
-    font-weight: 700;
+    margin-left: var(--spacing-xs);
+    transition: transform 0.3s ease;
+}
+
+.btn:hover .arrow {
+    transform: translateX(5px);
 }
 
 .hero-stats {
@@ -435,7 +493,7 @@ img:hover {
 .code-editor {
     width: 100%;
     max-width: 500px;
-    background-color: var(--primary-dark);
+    background-color: var(--dark);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -449,7 +507,7 @@ img:hover {
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(135deg, var(--accent-blue), var(--secondary-blue));
+    background: linear-gradient(135deg, var(--accent), var(--secondary));
     z-index: -1;
     border-radius: calc(var(--radius-lg) + 5px);
     opacity: 0.7;
@@ -546,7 +604,7 @@ img:hover {
     left: 0;
     width: 100%;
     height: 2px;
-    background: var(--accent-blue);
+    background: var(--accent);
     transform-origin: center;
     animation: tab-indicator 0.3s ease-out forwards;
 }
@@ -622,7 +680,7 @@ img:hover {
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--primary-blue);
+    background: var(--primary);
     margin: 15px auto 0;
     border-radius: var(--radius-full);
 }
@@ -650,7 +708,7 @@ img:hover {
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
     background-color: white;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -689,7 +747,7 @@ img:hover {
     justify-content: center;
     width: 4rem;
     height: 4rem;
-    background: url(images/pc.png) lightgray 50% / cover no-repeat;
+    background: linear-gradient(135deg, rgba(36, 123, 160, 0.1), rgba(0, 100, 148, 0.1));
     border-radius: 20px;
     transition: transform 0.3s ease;
 }
@@ -711,16 +769,17 @@ img:hover {
     font-size: 0.95rem;
 }
 
-/* Courses Section */
+/* Courses Section - Design significativamente melhorado */
 .courses {
     padding: var(--spacing-2xl) 0;
-    background-color: var(--background-light);
+    background: #2B2C41;
     position: relative;
     overflow: hidden;
 }
 
 
 .courses:before {
+    content: '';
     position: absolute;
     width: 600px;
     height: 600px;
@@ -739,63 +798,55 @@ img:hover {
     gap: var(--spacing-lg);
 }
 
-.section-header-with-button p {
-    color: var(--primary-blue);
-    font-size: 1.1rem;
-    font-weight: 400;
-    line-height: 1.6;
-    max-width: 600px;
+@media (min-width: 768px) {
+    .section-header-with-button {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 .section-header-with-button h2 {
-    color: var(--primary-blue);
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: var(--spacing-sm);
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+    position: relative;
+    color: var(--text-primary);
+}
+
+.section-header-with-button p {
+    color: var(--text-secondary);
 }
 
 .section-header-with-button .btn-outline {
-    color: var(--primary-blue);
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    border: 2px solid var(--primary-blue);
-    border-radius: var(--radius-md);
+    border-color: var(--primary);
+    color: var(--primary);
     background-color: transparent;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
 }
 
 .section-header-with-button .btn-outline:hover {
-    background-color: var(--primary-blue);
-    color: var(--text-white);
-    transform: translateY(-2px);
+    background-color: rgba(36, 123, 160, 0.05);
+    color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(36, 123, 160, 0.15);
 }
 
 .courses-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 32px;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
 }
 
 .course-card {
-    max-width: 350px;
-    margin: 0 auto;
-    background: var(--text-white);
+    background: white;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .course-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .course-image {
@@ -808,7 +859,7 @@ img:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
 }
 
 .course-card:hover .course-image img {
@@ -823,14 +874,13 @@ img:hover {
     gap: var(--spacing-xs);
 }
 
-.course-category {
-    color: var(--text-white);
-    font-size: 0.875rem;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    background: rgba(0, 0, 0, 0.6);
+.new-badge {
+    background: var(--primary);
+    color: white;
+    padding: 4px 8px;
     border-radius: var(--radius-sm);
-    backdrop-filter: blur(4px);
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 .course-content {
@@ -844,34 +894,29 @@ img:hover {
     margin-bottom: var(--spacing-sm);
 }
 
-.course-category-text {
-    color: var(--secondary-blue);
+.course-category {
+    color: var(--primary);
     font-size: 0.875rem;
     font-weight: 500;
 }
 
 .course-rating {
-    color: #F59E0B;
+    color: #f59e0b;
     font-size: 0.875rem;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
 }
 
 .course-content h3 {
-    color: var(--primary-dark);
     font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1.4;
     margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
 }
 
 .course-content p {
     color: var(--text-secondary);
     font-size: 0.875rem;
-    line-height: 1.6;
     margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
 }
 
 .course-stats {
@@ -880,7 +925,7 @@ img:hover {
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-lg);
     padding-top: var(--spacing-sm);
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border);
 }
 
 .stat {
@@ -888,14 +933,13 @@ img:hover {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    color: var(--secondary-blue);
     font-size: 0.75rem;
+    color: var(--text-secondary);
 }
 
 .detail-icon {
-    color: var(--secondary-blue);
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+    margin-bottom: 4px;
 }
 
 .course-footer {
@@ -903,11 +947,11 @@ img:hover {
     justify-content: space-between;
     align-items: center;
     padding-top: var(--spacing-sm);
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border);
 }
 
 .level-tag {
-    padding: 0.5rem 1rem;
+    padding: 4px 8px;
     border-radius: var(--radius-sm);
     font-size: 0.75rem;
     font-weight: 600;
@@ -920,60 +964,27 @@ img:hover {
 
 .level-tag.intermediário {
     background: #fef9c3;
-    color: #854D0E;
+    color: #854d0e;
 }
 
 .level-tag.avançado {
     background: #fee2e2;
-    color: #991B1B;
+    color: #991b1b;
 }
 
 .btn-sm {
-    padding: 0.75rem 1.5rem;
+    padding: 6px 12px;
     font-size: 0.875rem;
-    font-weight: 600;
     border-radius: var(--radius-md);
-    background: var(--gradient-button);
-    color: var(--text-white);
+    background: var(--primary);
+    color: white;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .btn-sm:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-@media (min-width: 768px) {
-    .section-header-with-button {
-        flex-direction: row;
-        align-items: center;
-    }
-}
-
-@media (max-width: 1400px) {
-    .container {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-    .courses-grid {
-        gap: 24px;
-    }
-}
-
-@media (max-width: 900px) {
-    .container {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-    .courses-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    .course-card {
-        max-width: 100%;
-    }
+    background: var(--primary-dark);
 }
 
 /* Challenges Section - Design moderno */
@@ -1000,10 +1011,10 @@ img:hover {
     flex-direction: column;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
-    background-color: var(--background-light);
+    background-color: var(--light);
     padding: var(--spacing-md);
     border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
 }
 
 @media (min-width: 768px) {
@@ -1034,7 +1045,7 @@ img:hover {
 
 .filter-btn {
     background: none;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     border-radius: var(--radius-full);
     padding: 6px 12px;
     font-size: 0.8rem;
@@ -1044,14 +1055,14 @@ img:hover {
 }
 
 .filter-btn:hover {
-    border-color: var(--primary-blue);
-    color: var(--primary-blue);
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 .filter-btn.active {
-    background-color: var(--primary-blue);
+    background-color: var(--primary);
     color: white;
-    border-color: var(--primary-blue);
+    border-color: var(--primary);
 }
 
 .challenges-grid {
@@ -1077,7 +1088,7 @@ img:hover {
     background-color: white;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -1094,7 +1105,7 @@ img:hover {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-md);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border);
 }
 
 .challenge-badges {
@@ -1108,13 +1119,13 @@ img:hover {
     font-size: 0.7rem;
     font-weight: 600;
     background-color: rgba(36, 123, 160, 0.1);
-    color: var(--primary-blue);
+    color: var(--primary);
 }
 
 .challenge-xp {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--accent-blue);
+    color: var(--accent);
     background-color: rgba(19, 41, 61, 0.05);
     padding: 4px 8px;
     border-radius: var(--radius-sm);
@@ -1129,7 +1140,7 @@ img:hover {
 }
 
 .challenge-card:hover h3 {
-    color: var(--primary-blue);
+    color: var(--primary);
 }
 
 .challenge-card p {
@@ -1145,7 +1156,7 @@ img:hover {
     gap: var(--spacing-xs);
     margin: 0 var(--spacing-md) var(--spacing-md);
     padding-top: var(--spacing-sm);
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border);
 }
 
 .detail {
@@ -1166,7 +1177,7 @@ img:hover {
     justify-content: flex-end;
     padding: var(--spacing-md);
     margin-top: auto;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border);
 }
 
 .challenges-pagination {
@@ -1184,7 +1195,7 @@ img:hover {
     height: 2.5rem;
     border-radius: var(--radius-md);
     background-color: white;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     color: var(--text-secondary);
     font-size: 0.9rem;
     cursor: pointer;
@@ -1192,14 +1203,14 @@ img:hover {
 }
 
 .pagination-btn:hover {
-    border-color: var(--primary-blue);
-    color: var(--primary-blue);
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 .pagination-btn.active {
-    background-color: var(--primary-blue);
+    background-color: var(--primary);
     color: white;
-    border-color: var(--primary-blue);
+    border-color: var(--primary);
 }
 
 .pagination-btn.next {
@@ -1246,7 +1257,7 @@ img:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-md);
@@ -1270,7 +1281,7 @@ img:hover {
 }
 
 .cta .btn-primary {
-    background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
     border: none;
     padding: var(--spacing-md) var(--spacing-xl);
@@ -1290,14 +1301,14 @@ img:hover {
 }
 
 .cta-small a {
-    color: var(--primary-blue);
+    color: var(--primary);
     text-decoration: underline;
     font-weight: 500;
 }
 
 /* Footer - Design melhorado */
 .footer {
-    background-color: var(--primary-dark);
+    background-color: var(--dark);
     color: white;
     padding: var(--spacing-2xl) 0;
 }
@@ -1341,7 +1352,7 @@ img:hover {
     left: 0;
     width: 30px;
     height: 2px;
-    background-color: var(--primary-blue);
+    background-color: var(--primary);
 }
 
 .footer-links ul,
@@ -1366,7 +1377,7 @@ img:hover {
     opacity: 0;
     transform: translateX(-5px);
     transition: all 0.2s ease;
-    color: var(--accent-blue);
+    color: var(--accent);
 }
 
 .footer-links a:hover {
@@ -1506,7 +1517,6 @@ img:hover {
         opacity: 0;
     }
 }
-
 .button-suporte {
     display: inline-block;
     padding: 10px 20px;
@@ -1580,7 +1590,7 @@ img:hover {
 }
 
 .chat-header {
-    background: var(--primary-blue);
+    background: var(--primary-color);
     color: white;
     padding: 15px 20px;
     display: flex;
@@ -1625,7 +1635,7 @@ img:hover {
 }
 
 .message.user {
-    background: var(--primary-blue);
+    background: var(--primary-color);
     color: white;
     align-self: flex-end;
 }
@@ -1646,7 +1656,7 @@ img:hover {
 }
 
 .chat-input button {
-    background: var(--primary-blue);
+    background: var(--primary-color);
     color: white;
     border: none;
     padding: 10px 20px;
