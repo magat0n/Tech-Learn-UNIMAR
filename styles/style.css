@@ -134,9 +134,10 @@ img {
     display: none;
     color: #1366CB;
 }
+
 .main-nav ul {
     color: #1366CB;
-}   
+}
 
 
 @media (min-width: 768px) {
@@ -213,6 +214,7 @@ img {
 }
 
 @media (min-width: 768px) {
+
     .level-badge,
     .xp-badge {
         display: flex;
@@ -628,7 +630,8 @@ img {
     white-space: pre-wrap;
 }
 
-/* Features Section - Design melhorado */
+
+/* Seção de features - padding espaçado e fundo branco */
 .features {
     padding: var(--spacing-2xl) 0;
     background-color: white;
@@ -636,6 +639,7 @@ img {
     overflow: hidden;
 }
 
+/* Círculo decorativo no canto superior direito */
 .features::before {
     content: '';
     position: absolute;
@@ -648,6 +652,7 @@ img {
     z-index: 0;
 }
 
+/* Círculo decorativo no canto inferior esquerdo */
 .features::after {
     content: '';
     position: absolute;
@@ -660,6 +665,7 @@ img {
     z-index: 0;
 }
 
+/* Cabeçalho da seção, centralizado */
 .section-header {
     text-align: center;
     max-width: 700px;
@@ -668,6 +674,7 @@ img {
     z-index: 1;
 }
 
+/* Estilo do título */
 .section-header h2 {
     font-size: 2rem;
     margin-bottom: var(--spacing-sm);
@@ -675,6 +682,7 @@ img {
     display: inline-block;
 }
 
+/* Barrinha abaixo do título */
 .section-header h2:after {
     content: '';
     display: block;
@@ -685,11 +693,13 @@ img {
     border-radius: var(--radius-full);
 }
 
+/* Descrição do título */
 .section-header p {
     color: var(--text-secondary);
     font-size: 1.1rem;
 }
 
+/* Grid responsivo para os cards */
 .features-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -698,12 +708,14 @@ img {
     z-index: 1;
 }
 
+/* A partir de 768px, colocar 3 colunas */
 @media (min-width: 768px) {
     .features-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
+/* Estilização do card de feature */
 .feature-card {
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
@@ -717,6 +729,7 @@ img {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
 }
 
+/* Gradiente de fundo aparece no hover */
 .feature-card:before {
     content: '';
     position: absolute;
@@ -730,6 +743,7 @@ img {
     transition: opacity 0.3s ease;
 }
 
+/* Efeito de elevação no hover */
 .feature-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
@@ -739,6 +753,7 @@ img {
     opacity: 1;
 }
 
+/* Estilo do ícone do card */
 .feature-icon {
     font-size: 1.8rem;
     margin-bottom: var(--spacing-md);
@@ -752,10 +767,12 @@ img {
     transition: transform 0.3s ease;
 }
 
+/* Aumenta o ícone no hover */
 .feature-card:hover .feature-icon {
     transform: scale(1.1);
 }
 
+/* Título do card */
 .feature-card h3 {
     font-size: 1.25rem;
     margin-bottom: var(--spacing-sm);
@@ -764,10 +781,12 @@ img {
     font-weight: 600;
 }
 
+/* Texto do card */
 .feature-card p {
     color: var(--text-secondary);
     font-size: 0.95rem;
 }
+
 
 /* Courses Section - Design significativamente melhorado */
 .courses {
@@ -1458,6 +1477,7 @@ img {
 }
 
 @keyframes bounce {
+
     0%,
     100% {
         transform: translateY(0);
@@ -1517,22 +1537,25 @@ img {
         opacity: 0;
     }
 }
+
 .button-suporte {
     display: inline-block;
     padding: 10px 20px;
     text-align: c;
     text-decoration: none;
     color: white;
-    background-color: #007bff; /* Cor azul padrão */
+    background-color: #007bff;
+    /* Cor azul padrão */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-  }
+}
 
-  .button-suporte:hover {
-    background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
-  }
+.button-suporte:hover {
+    background-color: #0056b3;
+    /* Cor azul mais escura ao passar o mouse */
+}
 
 /* Chat Flutuante */
 .floating-chat {
@@ -1675,6 +1698,7 @@ img {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1698,7 +1722,7 @@ img {
         bottom: 80px;
         right: 20px;
     }
-    
+
     .chat-toggle {
         padding: 10px 15px;
     }
