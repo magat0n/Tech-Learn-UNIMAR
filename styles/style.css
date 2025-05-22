@@ -1036,22 +1036,20 @@ img {
     position: relative;
     z-index: 1;
 }
-
-.cta-icon {
-    font-size: 2rem;
-    width: 4.5rem;
-    height: 4.5rem;
+/* Seção de jornada */
+.cta-icon {            /* Logo */
+    width: 7vw;
+    height: 6vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-md);
-    box-shadow: 0 15px 35px rgba(36, 123, 160, 0.3);
-    animation: bounce 2s ease-in-out infinite;
 }
-
+.cta-icon img{        /* Logo img */
+    width: 10vw;
+    height: 7vw;
+}
 .cta h2 {
     font-size: 2rem;
     margin-bottom: var(--spacing-sm);
