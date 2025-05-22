@@ -773,13 +773,12 @@ img {
 .courses {
     padding: var(--spacing-2xl) 0;
     background: #2B2C41;
-    position: relative;
+    position: relative; 
     overflow: hidden;
 }
 
 
 .courses:before {
-    content: '';
     position: absolute;
     width: 600px;
     height: 600px;
