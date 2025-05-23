@@ -26,6 +26,7 @@
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     --radius-full: 9999px;
+    --shadow: 0 8px 32px rgba(36, 123, 160, 0.10);
 }
 
 * {
@@ -43,31 +44,31 @@ a {
 
 body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: var(--primary);
+    background: linear-gradient(118deg, #465EB5 0%, #364070 50%, #2B2C41 100%);
     color: var(--text-primary);
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 .header {
-    background-color: rgba(255, 255, 255, 0.95);
-    color: white;
-    padding: 1rem;
+    background: rgba(255,255,255,0.95);
+    color: var(--primary-dark);
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
 }
 
 
 .logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 0.7rem;
 }
 .logo-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 12px;
@@ -77,14 +78,14 @@ body {
 
 
 .logo img {
-    height: 40px;
+    height: 44px;
     width: auto;
     border-radius: 10px;
 }
 .logo-text {
     font-weight: 700;
     font-size: 1.3rem;
-    color: #21252b;
+    color: var(--text-primary);
 }
 
 .primary-text {
@@ -98,31 +99,34 @@ body {
 }
 
 .main-nav {
-    display: none;
+    display: flex;
+    gap: 1.5rem;
     color: #1366CB;
+    align-items: center;
 }
 
-.main-nav ul {
-    color: #1366CB;
-}
-
-
-nav a {
-    color: white;
+.main-nav a {
+    color: var(--primary-dark);
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    padding: 0.5rem 1.2rem;
+    margin: 0 0.2rem;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    position: relative;
+    background: none;
+    display: flex;
+    align-items: center;
 }
 
-nav a:hover,
-nav a.active {
+.main-nav a.active,
+.main-nav a:hover {
     background: var(--primary);
+    color: #fff;
     transform: translateY(-2px);
 }
 
-nav a i {
+.main-nav a i {
     margin-right: 0.5rem;
 }
 
@@ -131,28 +135,30 @@ nav a i {
     min-height: calc(100vh - 120px);
     padding: 2rem;
     gap: 2rem;
+    justify-content: center;
 }
 
 .sidebar {
-    width: 300px;
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    background: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
     height: fit-content;
+    border: 1px solid var(--border);
 }
 
 .sidebar h3 {
     color: var(--primary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .lista-desafios {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.7rem;
 }
 
 .desafio-item {
@@ -161,11 +167,14 @@ nav a i {
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid var(--border);
+    background: #f8fafc;
+    font-weight: 500;
 }
 
 .desafio-item:hover {
-    background: var(--light);
-    transform: translateX(5px);
+    background: var(--primary-light);
+    color: #fff;
+    transform: translateX(5px) scale(1.03);
     border-color: var(--primary);
 }
 
@@ -177,22 +186,31 @@ nav a i {
 
 .content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 #desafio-container {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
     overflow: hidden;
+    border: 1px solid var(--border);
 }
 
 .desafio-header {
-    background: var(--dark);
-    color: white;
-    padding: 1.5rem;
+    background: var(--primary);
+    color: #fff;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.desafio-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .dificuldade {
@@ -201,10 +219,12 @@ nav a i {
 }
 
 .dificuldade span {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    background: var(--primary);
+    padding: 0.5rem 1.2rem;
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    background: var(--primary-light);
+    color: #fff;
+    font-weight: 600;
 }
 
 .desafio-content {
@@ -221,6 +241,7 @@ nav a i {
     border-radius: 8px;
     border-left: 4px solid var(--primary);
     margin: 1rem 0;
+    font-size: 1.05rem;
 }
 
 .exemplos {
@@ -259,6 +280,7 @@ nav a i {
     border-radius: 8px;
     overflow: hidden;
     background: var(--dark);
+    box-shadow: 0 4px 16px rgba(36, 123, 160, 0.10);
 }
 
 .code-header {
@@ -331,22 +353,23 @@ nav a i {
 }
 
 .icon-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--primary-light);
     border: none;
     color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.2s, transform 0.2s;
+    font-size: 1.1rem;
 }
 
 .icon-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    background: var(--primary);
+    transform: translateY(-2px) scale(1.08);
 }
 
 .code-content {
@@ -410,21 +433,22 @@ nav a i {
 .io-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
 .input-container,
 .output-container {
-    background: white;
+    background: #fff;
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(36, 123, 160, 0.07);
 }
 
 .input-container h3,
 .output-container h3 {
-    background: var(--dark);
+    background: var(--primary);
     color: white;
     padding: 0.75rem 1rem;
     margin: 0;
@@ -472,6 +496,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 8px rgba(36, 123, 160, 0.07);
 }
 
 .editor-actions select {
@@ -506,34 +531,34 @@ footer {
 }
 
 .template-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.2rem;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    background: white;
-    color: var(--text-primary);
+    border-radius: var(--radius-full);
+    background: var(--primary-light);
+    color: #fff;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .template-btn:hover {
     background: var(--primary);
-    color: white;
+    color: #fff;
     border-color: var(--primary);
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.07);
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .container {
         flex-direction: column;
         padding: 1rem;
     }
-
     .sidebar {
         width: 100%;
+        margin-bottom: 1.5rem;
     }
-
     .io-container {
         grid-template-columns: 1fr;
     }
