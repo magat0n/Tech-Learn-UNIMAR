@@ -12,6 +12,20 @@
     --text-primary: #13293dff;
     --text-secondary: #006494ff;
     --text-light: #247ba0ff;
+
+    /* Espaçamento */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    /* Raio de borda */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-full: 9999px;
 }
 
 * {
@@ -20,28 +34,47 @@
     box-sizing: border-box;
 }
 
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s, transform 0.2s;
+}
+
 body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: var(--light);
+    background: var(--primary);
     color: var(--text-primary);
     line-height: 1.6;
 }
 
 .header {
-    background: var(--dark);
+    background-color: rgba(255, 255, 255, 0.95);
     color: white;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--spacing-sm);
 }
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 
 .logo img {
     height: 40px;
@@ -51,12 +84,28 @@ body {
 .logo-text {
     font-weight: 700;
     font-size: 1.3rem;
+    color: #21252b;
 }
 
 .primary-text {
-    color: var(--primary);
+    color: #1366CB;
     font-weight: 700;
 }
+
+.accent-text {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.main-nav {
+    display: none;
+    color: #1366CB;
+}
+
+.main-nav ul {
+    color: #1366CB;
+}
+
 
 nav a {
     color: white;
@@ -67,7 +116,8 @@ nav a {
     transition: all 0.3s ease;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
     background: var(--primary);
     transform: translateY(-2px);
 }
@@ -88,7 +138,7 @@ nav a i {
     background: white;
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: fit-content;
 }
 
@@ -107,7 +157,7 @@ nav a i {
 
 .desafio-item {
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: var(--radius-lg);
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid var(--border);
@@ -132,7 +182,7 @@ nav a i {
 #desafio-container {
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -237,9 +287,17 @@ nav a i {
     transform: scale(1.1);
 }
 
-.control.red { background: #ff5f56; }
-.control.yellow { background: #ffbd2e; }
-.control.green { background: #27c93f; }
+.control.red {
+    background: #ff5f56;
+}
+
+.control.yellow {
+    background: #ffbd2e;
+}
+
+.control.green {
+    background: #27c93f;
+}
 
 .language-selector select {
     background: rgba(255, 255, 255, 0.1);
@@ -356,14 +414,16 @@ nav a i {
     margin-top: 1.5rem;
 }
 
-.input-container, .output-container {
+.input-container,
+.output-container {
     background: white;
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
 }
 
-.input-container h3, .output-container h3 {
+.input-container h3,
+.output-container h3 {
     background: var(--dark);
     color: white;
     padding: 0.75rem 1rem;
@@ -469,13 +529,12 @@ footer {
         flex-direction: column;
         padding: 1rem;
     }
-    
+
     .sidebar {
         width: 100%;
     }
-    
+
     .io-container {
         grid-template-columns: 1fr;
     }
 }
-  
