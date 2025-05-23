@@ -835,22 +835,97 @@ img {
 }
 
 .section-header-with-button .btn-outline {
-    border-color: var(--primary);
+    border: 2px solid var(--primary);
     color: var(--primary);
     background-color: transparent;
+    padding: 12px 24px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+}
+
+.section-header-with-button .btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
 }
 
 .section-header-with-button .btn-outline:hover {
-    background-color: rgba(36, 123, 160, 0.05);
-    color: var(--primary-dark);
+    color: white;
+    border-color: transparent;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(36, 123, 160, 0.15);
+    box-shadow: 0 8px 20px rgba(36, 123, 160, 0.25);
+}
+
+.section-header-with-button .btn-outline:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.section-header-with-button .btn-outline .arrow {
+    transition: transform 0.3s ease;
+    font-size: 1.2em;
+}
+
+.section-header-with-button .btn-outline:hover .arrow {
+    transform: translateX(5px);
+}
+
+.section-header-with-button .btn-outline:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(36, 123, 160, 0.2);
+}
+
+/* Efeito de brilho no hover */
+.section-header-with-button .btn-outline::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.section-header-with-button .btn-outline:hover::after {
+    opacity: 1;
+    animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
 }
 
 .courses-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
     margin-top: var(--spacing-xl);
 }
 
@@ -860,6 +935,7 @@ img {
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
 }
 
 .course-card:hover {
@@ -1494,5 +1570,142 @@ img {
 
     .chat-label {
         display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.more-courses-message {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    margin: var(--spacing-2xl) auto;
+    border-radius: var(--radius-lg);
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.more-courses-message::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.more-courses-message p {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.more-courses-message p::before {
+    content: '🚀';
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Melhorando as bolhas decorativas */
+.blur-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.circle-top-right {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    right: -200px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    animation: float-circle 8s ease-in-out infinite;
+}
+
+.circle-bottom-left {
+    width: 500px;
+    height: 500px;
+    bottom: -250px;
+    left: -250px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    animation: float-circle 12s ease-in-out infinite reverse;
+}
+
+@keyframes float-circle {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(30px, 30px) scale(1.1);
+    }
+}
+
+/* Adicionando mais bolhas decorativas */
+.circle-center {
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    animation: pulse-circle 6s ease-in-out infinite;
+}
+
+@keyframes pulse-circle {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.2;
     }
 }
