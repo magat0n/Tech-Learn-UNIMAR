@@ -1,18 +1,23 @@
+/*
+  =============================
+  VARIÁVEIS E RESET GLOBAL
+  =============================
+*/
 :root {
     /* Cores principais - Atualizadas para TechLearn */
-    --primary: #247ba0ff;
-    --primary-light: #1b98e0ff;
-    --primary-dark: #13293dff;
-    --secondary: #006494ff;
-    --accent: #13293dff;
-    --success: #10b981;
-    --error: #ef4444;
-    --dark: #13293dff;
-    --light: #E8F1F2ff;
-    --border: #e2e8f0;
-    --text-primary: #13293dff;
-    --text-secondary: #006494ff;
-    --text-light: #247ba0ff;
+    --primary: #247ba0ff; /* Azul principal */
+    --primary-light: #1b98e0ff; /* Azul claro */
+    --primary-dark: #13293dff; /* Azul escuro */
+    --secondary: #006494ff; /* Azul secundário */
+    --accent: #13293dff; /* Cor de destaque */
+    --success: #10b981; /* Verde sucesso */
+    --error: #ef4444; /* Vermelho erro */
+    --dark: #13293dff; /* Fundo escuro */
+    --light: #E8F1F2ff; /* Fundo claro */
+    --border: #e2e8f0; /* Cor de borda */
+    --text-primary: #13293dff; /* Texto principal */
+    --text-secondary: #006494ff; /* Texto secundário */
+    --text-light: #247ba0ff; /* Texto claro */
 
     /* Espaçamento */
     --spacing-xs: 0.25rem;
@@ -29,18 +34,24 @@
     --radius-full: 9999px;
 }
 
-/* Reset e estilos base */
+/* Reset de margens, paddings e box-sizing para todos os elementos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/*
+  =============================
+  ESTILO BASE DO BODY E ELEMENTOS GERAIS
+  =============================
+*/
 body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--text-primary);
     background-color: var(--light);
     line-height: 1.6;
+    background: #dbeef6; /* Fundo azul claro para toda a página */
 }
 
 a {
@@ -65,7 +76,11 @@ img {
     transition: transform 0.3s ease;
 }
 
-/* Container */
+/*
+  =============================
+  CONTAINER PADRÃO
+  =============================
+*/
 .container {
     width: 100%;
     max-width: 1280px;
@@ -73,7 +88,11 @@ img {
     padding: 0 var(--spacing-lg);
 }
 
-/* Header - Design moderno */
+/*
+  =============================
+  HEADER E NAVEGAÇÃO
+  =============================
+*/
 .header {
     position: sticky;
     top: 0;
@@ -139,7 +158,11 @@ img {
     color: #1366CB;
 }
 
-
+/*
+  =============================
+  NAVEGAÇÃO DESKTOP
+  =============================
+*/
 @media (min-width: 768px) {
     .main-nav {
         display: block;
@@ -1083,34 +1106,85 @@ img {
 
 /* CTA Section - Design melhorado */
 .cta {
-    padding: var(--spacing-2xl) 0;
-    background: linear-gradient(145deg, rgba(36, 123, 160, 0.08), rgba(0, 100, 148, 0.12));
-    position: relative;
-    overflow: hidden;
+    background: #dbeef6; /* tom azul claro, igual ao da imagem */
+    padding: 60px 0;
 }
 
-.cta:before {
-    content: '';
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(19, 41, 61, 0.15) 0%, rgba(19, 41, 61, 0) 70%);
-    bottom: -200px;
-    left: -200px;
-    border-radius: 50%;
-}
-
+/* Layout flexível para logo e nome TechLearn lado a lado */
 .cta-content {
+    background: transparent;
+    border: none;
+    border-radius: 0;
     max-width: 600px;
     margin: 0 auto;
-    text-align: center;
+    padding: 0;
+    box-shadow: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-md);
-    position: relative;
-    z-index: 1;
 }
+
+.cta-header-flex {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+/* Logo maior e alinhada */
+.cta-logo {
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-logo img {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+}
+
+/* Nome TechLearn estilizado igual ao header */
+.cta-techlearn {
+    font-size: 2.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cta-techlearn .primary-text {
+    color: #1366CB;
+    font-weight: 700;
+}
+
+.cta-content h2 {
+    color: #13293d;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 18px 0;
+    text-align: center;
+}
+
+.cta-content p {
+    color: #247ba0;
+    font-size: 1rem;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.cta .btn-primary {
+    margin-bottom: 18px;
+}
+
+.cta-small {
+    color: #13293d;
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
 /* Seção de jornada */
 .cta-icon {            /* Logo */
     width: 7vw;
