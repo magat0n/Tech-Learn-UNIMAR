@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conta e Perfil - TechLearn</title>
-    <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/conta.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -207,6 +206,30 @@
                             <div class="password-strength">
                                 <div class="strength-bar"></div>
                                 <span class="strength-text">Força da senha</span>
+                            </div>
+                            <div class="password-requirements">
+                                <ul>
+                                    <li data-requirement="length">
+                                        <i class="fas fa-times"></i>
+                                        Pelo menos 8 caracteres
+                                    </li>
+                                    <li data-requirement="uppercase">
+                                        <i class="fas fa-times"></i>
+                                        Pelo menos uma letra maiúscula
+                                    </li>
+                                    <li data-requirement="lowercase">
+                                        <i class="fas fa-times"></i>
+                                        Pelo menos uma letra minúscula
+                                    </li>
+                                    <li data-requirement="number">
+                                        <i class="fas fa-times"></i>
+                                        Pelo menos um número
+                                    </li>
+                                    <li data-requirement="special">
+                                        <i class="fas fa-times"></i>
+                                        Pelo menos um caractere especial
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
