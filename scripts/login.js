@@ -118,7 +118,7 @@ async function validateRegisterForm(event) {
 
         if (response.ok) {
             alert('Cadastro realizado com sucesso!');
-            showLoginForm();
+            showLoginForm('conta.html');
         } else {
             showError('registerUsernameError', data.error || 'Erro ao realizar cadastro');
         }
@@ -162,8 +162,8 @@ async function validateLoginForm(event) {
                 localStorage.removeItem('rememberedUsername');
             }
 
-            // Redirecionar para a página inicial
-            window.location.href = '../index.html';
+            // Redirecionar para a página de perfil
+            window.location.href = 'conta.html';
         } else {
             showError('usernameError', data.error || 'Erro ao fazer login');
         }
