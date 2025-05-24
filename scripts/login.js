@@ -1,3 +1,6 @@
+// Configuração da API
+const API_URL = 'http://localhost:5000/api';
+
 // Funções para alternar a visibilidade da senha
 function togglePassword() {
     const passwordInput = document.getElementById('password');
@@ -30,80 +33,148 @@ function showLoginForm() {
     document.getElementById('loginForm').style.display = 'block';
 }
 
+// Função para mostrar mensagens de erro
+function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+}
+
+// Função para limpar mensagens de erro
+function clearErrors() {
+    const errorElements = document.getElementsByClassName('error-message');
+    Array.from(errorElements).forEach(element => {
+        element.style.display = 'none';
+        element.textContent = '';
+    });
+}
+
 // Função para validar o formulário de registro
-function validateRegisterForm(event) {
+async function validateRegisterForm(event) {
     event.preventDefault();
+    clearErrors();
     
-    const name = document.getElementById('name').value;
+    const username = document.getElementById('registerUsername').value;
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
     // Validações básicas
     if (password !== confirmPassword) {
-        alert('As senhas não coincidem!');
+        showError('confirmPasswordError', 'As senhas não coincidem!');
         return;
     }
 
     if (password.length < 6) {
-        alert('A senha deve ter pelo menos 6 caracteres!');
+        showError('registerPasswordError', 'A senha deve ter pelo menos 6 caracteres!');
         return;
     }
 
-    // Aqui você pode adicionar mais validações conforme necessário
+    try {
+        // Verificar se o usuário já existe
+        const usernameCheck = await fetch(`${API_URL}/check-username`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username }),
+        });
+        const usernameData = await usernameCheck.json();
+        
+        if (usernameData.exists) {
+            showError('registerUsernameError', 'Este nome de usuário já está em uso!');
+            return;
+        }
 
-    // Simula o registro do usuário
-    const user = {
-        name,
-        email,
-        password,
-        level: 1,
-        xp: 0,
-        courses: []
-    };
+        // Verificar se o email já existe
+        const emailCheck = await fetch(`${API_URL}/check-email`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+        const emailData = await emailCheck.json();
+        
+        if (emailData.exists) {
+            showError('registerEmailError', 'Este email já está cadastrado!');
+            return;
+        }
 
-    // Salva o usuário no localStorage (em um ambiente real, isso seria feito no servidor)
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    
-    // Redireciona para a página inicial
-    window.location.href = '../index.html';
+        // Registrar o usuário
+        const response = await fetch(`${API_URL}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Cadastro realizado com sucesso!');
+            showLoginForm('conta.html');
+        } else {
+            showError('registerUsernameError', data.error || 'Erro ao realizar cadastro');
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao conectar com o servidor');
+    }
 }
 
 // Função para validar o formulário de login
-function validateLoginForm(event) {
+async function validateLoginForm(event) {
     event.preventDefault();
+    clearErrors();
     
-    const email = document.getElementById('email').value;
+    const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const remember = document.getElementById('remember').checked;
 
-    // Em um ambiente real, isso seria uma chamada à API
-    // Por enquanto, vamos simular um login básico
-    const user = {
-        name: 'Usuário Teste',
-        email,
-        level: 5,
-        xp: 2450,
-        courses: []
-    };
+    try {
+        const response = await fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username,
+                password,
+            }),
+        });
 
-    // Salva o usuário no localStorage
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    
-    // Se "lembrar de mim" estiver marcado, salva o email
-    if (remember) {
-        localStorage.setItem('rememberedEmail', email);
-    } else {
-        localStorage.removeItem('rememberedEmail');
+        const data = await response.json();
+
+        if (response.ok) {
+            // Salvar dados do usuário
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            
+            // Se "lembrar de mim" estiver marcado, salva o username
+            if (remember) {
+                localStorage.setItem('rememberedUsername', username);
+            } else {
+                localStorage.removeItem('rememberedUsername');
+            }
+
+            // Redirecionar para a página de perfil
+            window.location.href = 'conta.html';
+        } else {
+            showError('usernameError', data.error || 'Erro ao fazer login');
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao conectar com o servidor');
     }
-
-    // Redireciona para a página inicial
-    window.location.href = '../index.html';
 }
 
 // Função para login social
 function socialLogin(provider) {
-    // Em um ambiente real, isso abriria uma janela de autenticação do provedor
     alert(`Login com ${provider} será implementado em breve!`);
 }
 
@@ -112,47 +183,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
 
-    loginForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const email = document.getElementById('email');
-        const password = document.getElementById('password');
-        const emailError = document.getElementById('emailError');
-        const passwordError = document.getElementById('passwordError');
-
-        let isValid = true;
-
-        // Validação do e-mail
-        if (!email.value.includes('@')) {
-            emailError.textContent = 'Por favor, insira um e-mail válido.';
-            emailError.style.display = 'block';
-            isValid = false;
-        } else {
-            emailError.style.display = 'none';
-        }
-
-        // Validação da senha
-        if (password.value.length < 6) {
-            passwordError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
-            passwordError.style.display = 'block';
-            isValid = false;
-        } else {
-            passwordError.style.display = 'none';
-        }
-
-        if (isValid) {
-            alert('Login realizado com sucesso!');
-            // Redirecionar para a página inicial
-            window.location.href = '../index.html';
-        }
-    });
-
+    loginForm.addEventListener('submit', validateLoginForm);
     registerForm.addEventListener('submit', validateRegisterForm);
 
-    // Preenche o email se estiver salvo
-    const rememberedEmail = localStorage.getItem('rememberedEmail');
-    if (rememberedEmail) {
-        document.getElementById('email').value = rememberedEmail;
+    // Preenche o username se estiver salvo
+    const rememberedUsername = localStorage.getItem('rememberedUsername');
+    if (rememberedUsername) {
+        document.getElementById('username').value = rememberedUsername;
         document.getElementById('remember').checked = true;
     }
 
