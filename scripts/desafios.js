@@ -258,7 +258,7 @@ elementos.btnExec.addEventListener('click', async () => {
     }
 
     if (resultado.erro) {
-        elementos.saida.innerText = `Erro: ${resultado.erro}`;
+        elementos.saida.innerHTML = `<span style="color: var(--error);">${resultado.erro}</span>`;
         return;
     }
 
@@ -284,6 +284,14 @@ async function executarJavaScript(codigo, input) {
     console.log = (...args) => log.push(args.join(' '));
 
     try {
+        // Verifica se o código contém palavras-chave do Python
+        if (codigo.includes('def ') || codigo.includes('print(') || codigo.includes('import ')) {
+            return { 
+                saida: null, 
+                erro: "Erro: Parece que você está tentando executar código Python no editor JavaScript. Por favor, selecione Python como linguagem." 
+            };
+        }
+
         const codigoCompleto = `
             const input = \`${input.replace(/`/g, '\\`')}\`;
             ${codigo}
@@ -291,7 +299,10 @@ async function executarJavaScript(codigo, input) {
         eval(codigoCompleto);
         return { saida: log.join('\n'), erro: null };
     } catch (e) {
-        return { saida: null, erro: e.message };
+        return { 
+            saida: null, 
+            erro: `Erro de sintaxe: ${e.message}` 
+        };
     } finally {
         console.log = consoleBackup;
     }
@@ -300,6 +311,14 @@ async function executarJavaScript(codigo, input) {
 // Executa código Python
 async function executarPython(codigo, input) {
     try {
+        // Verifica se o código contém palavras-chave do JavaScript
+        if (codigo.includes('function ') || codigo.includes('console.log') || codigo.includes('const ') || codigo.includes('let ')) {
+            return { 
+                saida: null, 
+                erro: "Erro: Parece que você está tentando executar código JavaScript no editor Python. Por favor, selecione JavaScript como linguagem." 
+            };
+        }
+
         if (!pyodide) {
             pyodide = await loadPyodide();
         }
@@ -322,7 +341,10 @@ def input():
         return result
     return ""
 
-${codigo}
+try:
+    ${codigo}
+except Exception as e:
+    print(f"Erro: {str(e)}")
 
 sys.stdout = old_stdout
 print(new_stdout.getvalue())
@@ -332,7 +354,10 @@ print(new_stdout.getvalue())
         const output = pyodide.globals.get('new_stdout').getvalue();
         return { saida: output.trim(), erro: null };
     } catch (e) {
-        return { saida: null, erro: e.toString() };
+        return { 
+            saida: null, 
+            erro: `Erro ao executar o código Python: ${e.toString()}` 
+        };
     }
 }
 
