@@ -1,14 +1,3 @@
-// Configuração do MSAL
-const msalConfig = {
-    auth: {
-        clientId: "seu_client_id_aqui",
-        authority: "https://login.microsoftonline.com/seu_tenant_id_aqui",
-        redirectUri: "https://tech-learn-unimar.vercel.app/paginas/login.html",
-    }
-};
-
-const msalInstance = new msal.PublicClientApplication(msalConfig);
-
 // Configuração da API
 const API_URL = 'https://seu-app.railway.app/api';  // Substitua pela URL do seu backend no Railway
 
@@ -141,7 +130,15 @@ async function validateRegisterForm(event) {
 
 // Função para login social
 function socialLogin(provider) {
-    alert(`Login com ${provider} será implementado em breve!`);
+    if (provider === 'Google') {
+        google.accounts.id.initialize({
+            client_id: 'SEU_CLIENT_ID_GOOGLE', // Substitua pelo seu Client ID do Google
+            callback: handleGoogleSignIn
+        });
+        google.accounts.id.prompt();
+    } else {
+        alert(`Login com ${provider} será implementado em breve!`);
+    }
 }
 
 // Adiciona os event listeners

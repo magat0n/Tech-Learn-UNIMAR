@@ -5,8 +5,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime, timedelta
 import os
 import re
-import msal
 from dotenv import load_dotenv
+import jwt
+import psycopg2
 
 # Carrega variáveis de ambiente
 load_dotenv()
@@ -27,15 +28,13 @@ CORS(app, resources={
 })
 
 # Configuração do banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///techlearn.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.urandom(24)
+DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///techlearn.db')
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-# Configuração do Azure AD
-app.config['AZURE_CLIENT_ID'] = os.getenv('AZURE_CLIENT_ID')
-app.config['AZURE_CLIENT_SECRET'] = os.getenv('AZURE_CLIENT_SECRET')
-app.config['AZURE_TENANT_ID'] = os.getenv('AZURE_TENANT_ID')
-app.config['AZURE_AUTHORITY'] = f"https://login.microsoftonline.com/{app.config['AZURE_TENANT_ID']}"
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', os.urandom(24))
 
 db = SQLAlchemy(app)
 
@@ -45,7 +44,6 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=True)
-    azure_id = db.Column(db.String(100), unique=True, nullable=True)
     name = db.Column(db.String(100), nullable=True)
     picture = db.Column(db.String(200), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -194,52 +192,32 @@ def check_email():
     except Exception as e:
         return jsonify({'error': 'Erro ao verificar email'}), 500
 
-# Rota de autenticação com Azure AD
-@app.route('/api/auth/azure', methods=['POST'])
-def azure_auth():
+# Rota de autenticação com Google
+@app.route('/api/auth/google', methods=['POST'])
+def google_auth():
     try:
         data = request.get_json()
-        token = data.get('access_token')
+        credential = data.get('credential')
         
-        if not token:
-            return jsonify({'error': 'Token não fornecido'}), 400
+        if not credential:
+            return jsonify({'error': 'Credencial não fornecida'}), 400
 
-        # Configura o cliente MSAL
-        msal_app = msal.ConfidentialClientApplication(
-            app.config['AZURE_CLIENT_ID'],
-            authority=app.config['AZURE_AUTHORITY'],
-            client_credential=app.config['AZURE_CLIENT_SECRET']
-        )
-
-        # Obtém informações do usuário usando o token
-        result = msal_app.acquire_token_on_behalf_of(
-            user_assertion=token,
-            scopes=["User.Read"]
-        )
-
-        if "error" in result:
-            raise ValueError(result["error"])
-
+        # Decodifica o token JWT do Google
+        decoded = jwt.decode(credential, options={"verify_signature": False})
+        
         # Extrai informações do usuário
-        user_info = result.get('id_token_claims', {})
-        azure_id = user_info.get('oid')
-        email = user_info.get('preferred_username')
-        name = user_info.get('name', '')
-        picture = None  # Azure AD não fornece foto por padrão
+        email = decoded.get('email')
+        name = decoded.get('name', '')
+        picture = decoded.get('picture')
+        google_id = decoded.get('sub')
 
         # Verifica se o usuário já existe
-        user = User.query.filter_by(azure_id=azure_id).first()
+        user = User.query.filter_by(email=email).first()
         
         if not user:
-            # Verifica se o email já está em uso
-            existing_user = User.query.filter_by(email=email).first()
-            if existing_user:
-                return jsonify({'error': 'Email já cadastrado com outro método de login'}), 400
-            
             # Cria novo usuário
             user = User(
                 email=email,
-                azure_id=azure_id,
                 name=name,
                 picture=picture
             )
@@ -251,19 +229,17 @@ def azure_auth():
             'message': 'Login realizado com sucesso',
             'user': {
                 'id': user.id,
+                'username': user.username,
                 'email': user.email,
                 'name': user.name,
                 'picture': user.picture
             }
         }), 200
 
-    except ValueError as e:
-        return jsonify({'error': str(e)}), 401
     except Exception as e:
-        db.session.rollback()
-        return jsonify({'error': 'Erro ao autenticar com Azure AD'}), 500
+        return jsonify({'error': 'Erro ao autenticar com Google'}), 500
 
-# Rota de teste para verificar se o servidor está funcionando
+# Rota de verificação de saúde
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({'status': 'ok'}), 200
