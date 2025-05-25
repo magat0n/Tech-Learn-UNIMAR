@@ -5,23 +5,47 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime, timedelta
 import os
 import re
+from dotenv import load_dotenv
+import jwt
+import psycopg2
+
+# Carrega variáveis de ambiente
+load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+
+# Configuração do CORS
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "https://tech-learn-unimar.vercel.app",
+            "http://localhost:3000",
+            "http://localhost:5000"
+        ],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 # Configuração do banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///techlearn.db'
+DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///techlearn.db')
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', os.urandom(24))
 
 db = SQLAlchemy(app)
 
 # Modelo de Usuário
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    username = db.Column(db.String(80), unique=True, nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(128), nullable=True)
+    name = db.Column(db.String(100), nullable=True)
+    picture = db.Column(db.String(200), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def set_password(self, password):
@@ -112,10 +136,10 @@ def login():
     try:
         data = request.get_json()
         
-        if not all(k in data for k in ['username', 'password']):
+        if not all(k in data for k in ['email', 'password']):
             return jsonify({'error': 'Dados incompletos'}), 400
         
-        user = User.query.filter_by(username=data['username']).first()
+        user = User.query.filter_by(email=data['email']).first()
         
         if user and user.check_password(data['password']):
             return jsonify({
@@ -168,7 +192,54 @@ def check_email():
     except Exception as e:
         return jsonify({'error': 'Erro ao verificar email'}), 500
 
-# Rota de teste para verificar se o servidor está funcionando
+# Rota de autenticação com Google
+@app.route('/api/auth/google', methods=['POST'])
+def google_auth():
+    try:
+        data = request.get_json()
+        credential = data.get('credential')
+        
+        if not credential:
+            return jsonify({'error': 'Credencial não fornecida'}), 400
+
+        # Decodifica o token JWT do Google
+        decoded = jwt.decode(credential, options={"verify_signature": False})
+        
+        # Extrai informações do usuário
+        email = decoded.get('email')
+        name = decoded.get('name', '')
+        picture = decoded.get('picture')
+        google_id = decoded.get('sub')
+
+        # Verifica se o usuário já existe
+        user = User.query.filter_by(email=email).first()
+        
+        if not user:
+            # Cria novo usuário
+            user = User(
+                email=email,
+                name=name,
+                picture=picture
+            )
+            db.session.add(user)
+            db.session.commit()
+
+        # Retorna os dados do usuário
+        return jsonify({
+            'message': 'Login realizado com sucesso',
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'name': user.name,
+                'picture': user.picture
+            }
+        }), 200
+
+    except Exception as e:
+        return jsonify({'error': 'Erro ao autenticar com Google'}), 500
+
+# Rota de verificação de saúde
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({'status': 'ok'}), 200

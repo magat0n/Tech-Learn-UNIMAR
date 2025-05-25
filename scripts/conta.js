@@ -95,51 +95,41 @@ function updateSecurity() {
     const confirmPassword = document.getElementById('confirm-password').value;
     const twoFactor = document.getElementById('two-factor').checked;
 
-    if (newPassword && newPassword !== confirmPassword) {
-        showNotification('As senhas não coincidem!', 'error');
+    // Validações
+    if (!currentPassword) {
+        showNotification('Por favor, insira sua senha atual', 'error');
         return;
+    }
+
+    if (newPassword) {
+        if (newPassword !== confirmPassword) {
+            showNotification('As senhas não coincidem!', 'error');
+            return;
+        }
+
+        const passwordStrength = calculatePasswordStrength(newPassword);
+        if (passwordStrength.score < 50) {
+            showNotification('A senha é muito fraca. Por favor, escolha uma senha mais forte.', 'error');
+            return;
+        }
     }
 
     const securityData = {
         currentPassword,
-        newPassword,
+        newPassword: newPassword || undefined,
         twoFactor
     };
 
-    // Aqui você pode adicionar a lógica para enviar os dados para o servidor
+    // Simulação de envio para o servidor
     console.log('Dados de segurança:', securityData);
-    showNotification('Configurações de segurança atualizadas!', 'success');
+    showNotification('Configurações de segurança atualizadas com sucesso!', 'success');
 }
 
 function resetSecurity() {
     document.getElementById('security-form').reset();
+    updatePasswordStrength();
+    updatePasswordRequirements();
     showNotification('Formulário de segurança resetado', 'success');
-}
-
-// Funções auxiliares
-function changeAvatar() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    
-    input.onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            if (file.size > 5 * 1024 * 1024) { // 5MB
-                showNotification('A imagem deve ter no máximo 5MB', 'error');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                document.getElementById('user-avatar').src = event.target.result;
-                showNotification('Avatar atualizado com sucesso!', 'success');
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-    
-    input.click();
 }
 
 function initializePasswordStrength() {
@@ -148,13 +138,33 @@ function initializePasswordStrength() {
     const strengthText = document.querySelector('.strength-text');
 
     passwordInput.addEventListener('input', () => {
-        const password = passwordInput.value;
-        const strength = calculatePasswordStrength(password);
-        
-        strengthBar.style.width = `${strength.score}%`;
-        strengthBar.style.backgroundColor = strength.color;
-        strengthText.textContent = strength.message;
+        updatePasswordStrength();
+        updatePasswordRequirements();
     });
+}
+
+function updatePasswordStrength() {
+    const password = document.getElementById('new-password').value;
+    const strengthBar = document.querySelector('.strength-bar');
+    const strengthText = document.querySelector('.strength-text');
+    
+    const strength = calculatePasswordStrength(password);
+    
+    // Remove classes anteriores
+    strengthBar.classList.remove('weak', 'medium', 'strong', 'very-strong');
+    
+    // Adiciona a classe apropriada
+    if (strength.score >= 75) {
+        strengthBar.classList.add('very-strong');
+    } else if (strength.score >= 50) {
+        strengthBar.classList.add('strong');
+    } else if (strength.score >= 25) {
+        strengthBar.classList.add('medium');
+    } else {
+        strengthBar.classList.add('weak');
+    }
+    
+    strengthText.textContent = strength.message;
 }
 
 function calculatePasswordStrength(password) {
@@ -162,12 +172,25 @@ function calculatePasswordStrength(password) {
     let message = 'Muito fraca';
     let color = '#dc3545';
 
-    if (password.length >= 8) score += 25;
-    if (password.match(/[A-Z]/)) score += 25;
-    if (password.match(/[0-9]/)) score += 25;
-    if (password.match(/[^A-Za-z0-9]/)) score += 25;
+    if (!password) {
+        return { score: 0, message: 'Digite uma senha', color };
+    }
 
-    if (score >= 75) {
+    // Comprimento
+    if (password.length >= 8) score += 25;
+    if (password.length >= 12) score += 10;
+
+    // Complexidade
+    if (password.match(/[A-Z]/)) score += 15;
+    if (password.match(/[a-z]/)) score += 15;
+    if (password.match(/[0-9]/)) score += 15;
+    if (password.match(/[^A-Za-z0-9]/)) score += 20;
+
+    // Determina a força
+    if (score >= 85) {
+        message = 'Muito forte';
+        color = '#198754';
+    } else if (score >= 70) {
         message = 'Forte';
         color = '#28a745';
     } else if (score >= 50) {
@@ -180,6 +203,49 @@ function calculatePasswordStrength(password) {
 
     return { score, message, color };
 }
+
+function updatePasswordRequirements() {
+    const password = document.getElementById('new-password').value;
+    const requirements = document.querySelectorAll('.password-requirements li');
+
+    requirements.forEach(req => {
+        const isValid = checkRequirement(password, req.dataset.requirement);
+        req.classList.toggle('valid', isValid);
+        req.classList.toggle('invalid', !isValid);
+        
+        const icon = req.querySelector('i');
+        icon.className = isValid ? 'fas fa-check' : 'fas fa-times';
+    });
+}
+
+function checkRequirement(password, requirement) {
+    switch (requirement) {
+        case 'length':
+            return password.length >= 8;
+        case 'uppercase':
+            return /[A-Z]/.test(password);
+        case 'lowercase':
+            return /[a-z]/.test(password);
+        case 'number':
+            return /[0-9]/.test(password);
+        case 'special':
+            return /[^A-Za-z0-9]/.test(password);
+        default:
+            return false;
+    }
+}
+
+// Toggle de visibilidade da senha
+document.querySelectorAll('.toggle-password').forEach(button => {
+    button.addEventListener('click', function() {
+        const input = this.previousElementSibling;
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        
+        const icon = this.querySelector('i');
+        icon.className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+    });
+});
 
 function initializeCharCounter() {
     const bioTextarea = document.getElementById('bio');

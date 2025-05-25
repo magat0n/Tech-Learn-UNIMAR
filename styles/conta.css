@@ -1,5 +1,6 @@
+/* Variáveis globais */
 :root {
-    --primary-color: #007bff;
+    --primary-color: #1366CB;
     --secondary-color: #6c757d;
     --success-color: #28a745;
     --danger-color: #dc3545;
@@ -9,13 +10,23 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Reset de margens, paddings e box-sizing para todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos base */
 body {
     background-color: #f5f7fa;
     color: #333;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
+/* Header e Navegação */
 .main-header {
     background-color: white;
     box-shadow: 0 2px 10px var(--shadow-color);
@@ -39,13 +50,23 @@ body {
 }
 
 .header-bottom {
-    padding: 1rem 0;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(-45deg, rgba(19, 102, 203, 0.05), rgba(19, 102, 203, 0.02));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
 }
 
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .logo-icon {
@@ -60,8 +81,19 @@ body {
 }
 
 .logo-text {
-    font-size: 1.5rem;
     font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.primary-text {
+    color: #1366CB;
+    font-weight: 700;
+}
+
+/* Navegação Principal */
+.main-nav {
+    display: flex;
+    align-items: center;
 }
 
 .main-nav ul {
@@ -73,105 +105,274 @@ body {
 }
 
 .main-nav a {
-    color: var(--dark-color);
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
 }
 
-.main-nav a:hover {
-    color: var(--primary-color);
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
 }
 
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* Título do Header */
 .header-bottom h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
-    margin: 0 0 1rem 0;
-    font-size: 1.8rem;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* Navegação da Conta */
 .account-nav {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-btn {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: none;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border-color);
+    background: white;
     color: var(--secondary-color);
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 160px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.nav-btn:hover::before {
+    transform: translateX(100%);
 }
 
 .nav-btn:hover {
     background-color: var(--light-color);
     color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .nav-btn.active {
     background-color: var(--primary-color);
     color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(19, 102, 203, 0.2);
 }
 
+/* Container Principal */
 .container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 20px;
-}
-
-.section-header {
-    margin-bottom: 2rem;
-}
-
-.section-header h2 {
-    color: var(--dark-color);
-    margin: 0;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: calc(100vh - 200px);
 }
 
-.section-description {
-    color: var(--secondary-color);
-    margin: 0.5rem 0 0;
-}
-
+/* Seções */
 .profile-section,
 .account-section,
 .security-section {
     background-color: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px var(--shadow-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     display: none;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-section::before,
+.account-section::before,
+.security-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    opacity: 0.8;
 }
 
 .profile-section.active,
 .account-section.active,
 .security-section.active {
     display: block;
+    animation: slideInFromRight 0.5s ease-out;
 }
 
-.profile-header {
-    text-align: center;
+.profile-section:hover,
+.account-section:hover,
+.security-section:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho das Seções */
+.section-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.section-description {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+/* Formulários */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
     margin-bottom: 2rem;
 }
 
-.avatar-container {
+.form-group {
+    margin-bottom: 1.5rem;
     position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 0.95rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0.8;
+}
+
+.form-group:hover label {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.form-group label i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: var(--primary-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(19, 102, 203, 0.1);
+    outline: none;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Avatar */
+.profile-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.avatar-container {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem;
     border-radius: 50%;
     overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
     cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.avatar-container:hover {
+    transform: scale(1.05);
 }
 
 .avatar-container img {
@@ -187,7 +388,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -195,117 +396,83 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.avatar-overlay i {
-    color: white;
-    font-size: 2rem;
-}
-
 .avatar-container:hover .avatar-overlay {
     opacity: 1;
 }
 
-.avatar-container:hover img {
-    filter: blur(2px);
+.avatar-overlay i {
+    color: white;
+    font-size: 2rem;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
 }
 
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+.avatar-container:hover .avatar-overlay i {
+    transform: translateY(0);
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
+/* Botões de Ação */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
 }
 
-.form-group.full-width {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
+.btn {
+    padding: 0.875rem 1.75rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--dark-color);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 1rem;
+    gap: 10px;
     transition: all 0.3s ease;
-}
-
-.form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-    outline: none;
-}
-
-.char-counter {
-    display: block;
-    text-align: right;
-    font-size: 0.875rem;
-    color: var(--secondary-color);
-    margin-top: 0.25rem;
-}
-
-.password-input {
+    font-size: 1rem;
     position: relative;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--secondary-color);
-    cursor: pointer;
-    padding: 5px;
-}
-
-.password-strength {
-    margin-top: 0.5rem;
-}
-
-.strength-bar {
-    height: 4px;
-    background-color: var(--border-color);
-    border-radius: 2px;
     overflow: hidden;
 }
 
-.strength-bar::before {
+.btn::after {
     content: '';
-    display: block;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 0;
-    background-color: var(--danger-color);
-    transition: width 0.3s ease;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
 }
 
-.strength-text {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--secondary-color);
-    margin-top: 0.25rem;
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(19, 102, 203, 0.2);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    animation: float 2s ease-in-out infinite;
+}
+
+/* Toggle Switch */
 .toggle-switch {
     position: relative;
     display: inline-block;
@@ -343,112 +510,290 @@ body {
     border-radius: 50%;
 }
 
-.toggle-switch input:checked + label {
+.toggle-switch input:checked+label {
     background-color: var(--primary-color);
 }
 
-.toggle-switch input:checked + label:before {
+.toggle-switch input:checked+label:before {
     transform: translateX(26px);
 }
 
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
+.toggle-switch label:hover {
+    background-color: #f8f9fa;
 }
 
-.checkbox-label input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+.toggle-switch label:hover:before {
+    background-color: #f8f9fa;
 }
 
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.btn-secondary {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px var(--shadow-color);
-}
-
+/* Notificações */
 .notification {
     position: fixed;
     top: 20px;
     right: 20px;
     padding: 1rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 8px;
     color: white;
     font-weight: 500;
-    animation: slideIn 0.3s ease-out;
+    animation: notificationPulse 0.5s ease-out;
     z-index: 1000;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
 }
 
 .notification.success {
-    background-color: var(--success-color);
+    background: linear-gradient(135deg, var(--success-color), #059669);
 }
 
 .notification.error {
-    background-color: var(--danger-color);
+    background: linear-gradient(135deg, var(--danger-color), #dc2626);
 }
 
-@keyframes slideIn {
+/* Animações */
+@keyframes slideInFromRight {
     from {
-        transform: translateX(100%);
         opacity: 0;
+        transform: translateX(50px);
     }
     to {
-        transform: translateX(0);
         opacity: 1;
+        transform: translateX(0);
     }
 }
 
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(19, 102, 203, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(19, 102, 203, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(19, 102, 203, 0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(19, 102, 203, 0.2),
+                    0 0 10px rgba(19, 102, 203, 0.2),
+                    0 0 15px rgba(19, 102, 203, 0.2);
+    }
+    to {
+        box-shadow: 0 0 10px rgba(19, 102, 203, 0.4),
+                    0 0 20px rgba(19, 102, 203, 0.4),
+                    0 0 30px rgba(19, 102, 203, 0.4);
+    }
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes notificationPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    .header-top {
-        flex-direction: column;
-        gap: 1rem;
+    .container {
+        padding: 1rem;
     }
 
-    .main-nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .account-nav {
-        flex-wrap: wrap;
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .nav-btn {
-        flex: 1;
+        width: 100%;
+    }
+
+    .profile-section,
+    .account-section,
+    .security-section {
+        padding: 1.5rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
         justify-content: center;
     }
+
+    .avatar-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+}
+
+/* Seção de Segurança */
+.security-section .password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.security-section .password-input input {
+    padding-right: 40px;
+}
+
+.security-section .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.security-section .toggle-password:hover {
+    color: var(--primary-color);
+}
+
+.security-section .password-strength {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: var(--light-color);
+}
+
+.security-section .strength-bar {
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+}
+
+.security-section .strength-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0;
+    background-color: var(--danger-color);
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.security-section .strength-bar.weak::before {
+    width: 25%;
+    background-color: var(--danger-color);
+}
+
+.security-section .strength-bar.medium::before {
+    width: 50%;
+    background-color: #ffc107;
+}
+
+.security-section .strength-bar.strong::before {
+    width: 75%;
+    background-color: #28a745;
+}
+
+.security-section .strength-bar.very-strong::before {
+    width: 100%;
+    background-color: #198754;
+}
+
+.security-section .strength-text {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+    margin-top: 0.25rem;
+}
+
+.security-section .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.security-section .checkbox-label:hover {
+    background-color: var(--light-color);
+}
+
+.security-section .checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.security-section .password-requirements {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    font-size: 0.875rem;
+}
+
+.security-section .password-requirements ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.security-section .password-requirements li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.security-section .password-requirements li i {
+    font-size: 0.75rem;
+}
+
+.security-section .password-requirements li.valid {
+    color: var(--success-color);
+}
+
+.security-section .password-requirements li.invalid {
+    color: var(--danger-color);
 }
