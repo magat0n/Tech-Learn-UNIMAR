@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Sign-In API -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <div class="login-container">
@@ -26,22 +24,22 @@
             </div>
 
             <div class="social-login">
-                <button id="google-login" class="social-btn">
-                    <img src="../images/google-icon.png" alt="Google">
-                    Entrar com Google
-                </button>
+                <p>Entre com sua conta social</p>
+                <div class="social-buttons">
+                    <button id="google-login" class="btn-social">
+                        <img src="../images/google.svg" alt="Google">
+                        Google
+                    </button>
+                </div>
             </div>
 
-            <div class="divider">
-                <span>ou</span>
-            </div>
-
-            <form id="login-form">
+            <form id="login-form" class="login-form" novalidate>
                 <div class="form-group">
                     <label for="email">
                         <i class="fas fa-envelope"></i> Email
                     </label>
-                    <input type="email" id="email" placeholder="Seu email" required>
+                    <input type="email" id="email" name="email" placeholder="Seu email" required>
+                    <div class="error-message" id="email-error"></div>
                 </div>
 
                 <div class="form-group">
@@ -49,23 +47,28 @@
                         <i class="fas fa-lock"></i> Senha
                     </label>
                     <div class="password-input">
-                        <input type="password" id="password" placeholder="Sua senha" required>
-                        <button type="button" class="toggle-password">
+                        <input type="password" id="password" name="password" placeholder="Sua senha" required>
+                        <button type="button" class="toggle-password" aria-label="Mostrar senha">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
+                    <div class="error-message" id="password-error"></div>
                 </div>
 
                 <div class="form-options">
                     <label class="remember-me">
-                        <input type="checkbox" id="remember">
+                        <input type="checkbox" id="remember" name="remember">
                         <span>Lembrar-me</span>
                     </label>
-                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                    <a href="recuperar-senha.html" class="forgot-password">Esqueceu a senha?</a>
                 </div>
 
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-sign-in-alt"></i> Entrar
+                <button type="submit" class="login-btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Entrar</span>
+                    <div class="loading-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
                 </button>
             </form>
 
@@ -75,7 +78,9 @@
         </div>
     </div>
 
-    <!-- JWT Decode -->
+    <div id="notification" class="notification" style="display: none;"></div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-decode/3.1.2/jwt-decode.min.js"></script>
     <script src="../scripts/login.js"></script>
 </body>
