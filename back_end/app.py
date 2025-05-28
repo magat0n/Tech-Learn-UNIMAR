@@ -41,10 +41,9 @@ db = SQLAlchemy(app)
 # Modelo de Usuário
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=True)
-    name = db.Column(db.String(100), nullable=True)
+    name = db.Column(db.String(100), nullable=False)
     picture = db.Column(db.String(200), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -69,14 +68,6 @@ def validate_password(password):
         return False
     return True
 
-def validate_username(username):
-    # Mínimo 3 caracteres, apenas letras, números e underscore
-    if len(username) < 3:
-        return False
-    if not re.match(r'^[a-zA-Z0-9_]+$', username):
-        return False
-    return True
-
 # Criar todas as tabelas
 with app.app_context():
     db.create_all()
@@ -88,12 +79,12 @@ def register():
         data = request.get_json()
         
         # Verificar se todos os campos necessários estão presentes
-        if not all(k in data for k in ['username', 'email', 'password']):
+        if not all(k in data for k in ['name', 'email', 'password']):
             return jsonify({'error': 'Dados incompletos'}), 400
         
         # Validar dados
-        if not validate_username(data['username']):
-            return jsonify({'error': 'Nome de usuário inválido. Deve ter no mínimo 3 caracteres e conter apenas letras, números e underscore.'}), 400
+        if not data['name'] or len(data['name']) < 3:
+            return jsonify({'error': 'Nome inválido. Deve ter no mínimo 3 caracteres.'}), 400
         
         if not validate_email(data['email']):
             return jsonify({'error': 'Email inválido'}), 400
@@ -101,16 +92,13 @@ def register():
         if not validate_password(data['password']):
             return jsonify({'error': 'Senha inválida. Deve ter no mínimo 6 caracteres, incluindo letras e números.'}), 400
         
-        # Verificar se o usuário já existe
-        if User.query.filter_by(username=data['username']).first():
-            return jsonify({'error': 'Nome de usuário já existe'}), 400
-        
+        # Verificar se o email já existe
         if User.query.filter_by(email=data['email']).first():
             return jsonify({'error': 'Email já cadastrado'}), 400
         
         # Criar novo usuário
         new_user = User(
-            username=data['username'],
+            name=data['name'],
             email=data['email']
         )
         new_user.set_password(data['password'])
@@ -122,7 +110,7 @@ def register():
             'message': 'Usuário registrado com sucesso',
             'user': {
                 'id': new_user.id,
-                'username': new_user.username,
+                'name': new_user.name,
                 'email': new_user.email
             }
         }), 201
@@ -146,7 +134,7 @@ def login():
                 'message': 'Login realizado com sucesso',
                 'user': {
                     'id': user.id,
-                    'username': user.username,
+                    'name': user.name,
                     'email': user.email
                 }
             }), 200
@@ -155,24 +143,6 @@ def login():
         
     except Exception as e:
         return jsonify({'error': 'Erro ao realizar login'}), 500
-
-@app.route('/api/check-username', methods=['POST'])
-def check_username():
-    try:
-        data = request.get_json()
-        username = data.get('username')
-        
-        if not username:
-            return jsonify({'error': 'Nome de usuário não fornecido'}), 400
-        
-        if not validate_username(username):
-            return jsonify({'error': 'Nome de usuário inválido'}), 400
-        
-        exists = User.query.filter_by(username=username).first() is not None
-        return jsonify({'exists': exists}), 200
-        
-    except Exception as e:
-        return jsonify({'error': 'Erro ao verificar nome de usuário'}), 500
 
 @app.route('/api/check-email', methods=['POST'])
 def check_email():
@@ -229,9 +199,8 @@ def google_auth():
             'message': 'Login realizado com sucesso',
             'user': {
                 'id': user.id,
-                'username': user.username,
-                'email': user.email,
                 'name': user.name,
+                'email': user.email,
                 'picture': user.picture
             }
         }), 200
