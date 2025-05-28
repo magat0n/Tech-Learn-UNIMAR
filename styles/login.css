@@ -160,7 +160,7 @@
     background: white;
     padding: 0 var(--spacing-md);
     z-index: 1;
-    transition: color 0.3s ease, background 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 @media (prefers-color-scheme: dark) {
