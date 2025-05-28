@@ -132,16 +132,23 @@
     color: var(--primary-dark);
 }
 
-.login-btn, .register-btn {
-    width: 100%;
-    padding: var(--spacing-md);
-    font-size: 1rem;
-    margin-bottom: var(--spacing-lg);
-}
-
+/* Social login */
 .social-login {
     text-align: center;
-    margin-bottom: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    position: relative;
+    animation: slideDown 0.5s ease-out 0.5s backwards;
+}
+
+.social-login::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+    z-index: 0;
 }
 
 .social-login p {
@@ -149,71 +156,108 @@
     font-size: 0.9rem;
     margin-bottom: var(--spacing-md);
     position: relative;
+    display: inline-block;
+    background: white;
+    padding: 0 var(--spacing-md);
+    z-index: 1;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
-.social-login p::before,
-.social-login p::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 30%;
-    height: 1px;
-    background: var(--border);
-}
-
-.social-login p::before {
-    left: 0;
-}
-
-.social-login p::after {
-    right: 0;
+@media (prefers-color-scheme: dark) {
+    .social-login p {
+        background: rgba(30, 30, 30, 0.95);
+        color: var(--text-secondary);
+    }
 }
 
 .social-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
     gap: var(--spacing-md);
+    flex-wrap: wrap;
 }
 
-.social-buttons button {
+.btn-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: white;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.btn-social-icon:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-social-icon:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn-social-icon i {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-social-icon:hover i {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Botão de login principal */
+.login-btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
-    border: 1px solid var(--border);
-    background: white;
-    color: var(--text-primary);
-    font-size: 0.9rem;
     transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.5s ease-out 0.4s backwards;
 }
 
-.social-buttons button:hover {
-    background: var(--light);
-    border-color: var(--primary);
+.login-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.btn-social {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
-    border: 1px solid var(--border);
-    background: white;
-    color: var(--text-primary);
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
-.btn-social:hover {
-    background: var(--light);
-    border-color: var(--primary);
+.login-btn i {
+    transition: transform 0.3s ease;
 }
 
-.btn-social img {
-    width: 20px;
-    height: 20px;
+.login-btn:hover i {
+    transform: scale(1.1);
+}
+
+.login-btn .loading-spinner {
+    position: absolute;
+    right: var(--spacing-md);
 }
 
 .register-link, .login-link {
@@ -252,13 +296,50 @@
     }
 }
 
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsividade */
 @media (max-width: 480px) {
     .login-card {
         padding: var(--spacing-lg);
     }
 
+    .social-login {
+        margin: var(--spacing-lg) 0;
+    }
+
     .social-buttons {
-        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .btn-social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .login-btn {
+        padding: var(--spacing-sm);
+        font-size: 1rem;
     }
 }
