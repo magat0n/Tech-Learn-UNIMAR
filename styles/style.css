@@ -1783,3 +1783,168 @@ img {
         opacity: 0.2;
     }
 }
+
+/* =============================
+   MELHORIAS DE RESPONSIVIDADE
+   ============================= */
+
+/* HERO SECTION */
+@media (max-width: 600px) {
+  .hero {
+    padding: 24px 0 32px 0;
+  }
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-md);
+  }
+  .hero-content {
+    gap: var(--spacing-sm);
+  }
+  .hero-stats {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  .hero-code-editor {
+    transform: none;
+    max-width: 100vw;
+    padding: 0;
+  }
+  .code-editor {
+    max-width: 100vw;
+    min-width: 0;
+  }
+}
+
+/* FEATURES SECTION */
+@media (max-width: 600px) {
+  .features {
+    padding: var(--spacing-lg) 0;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-md);
+  }
+  .feature-card {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* COURSES SECTION */
+@media (max-width: 900px) {
+  .courses-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+}
+@media (max-width: 600px) {
+  .courses {
+    padding: var(--spacing-lg) 0;
+  }
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+  }
+  .course-card {
+    max-width: 100%;
+  }
+  .course-image {
+    height: 140px;
+  }
+  .section-header-with-button {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-md);
+  }
+}
+
+/* CTA SECTION */
+@media (max-width: 600px) {
+  .cta {
+    padding: var(--spacing-lg) 0;
+  }
+  .cta-content {
+    padding: 0 var(--spacing-md);
+  }
+  .cta-header-flex {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cta-logo {
+    width: 64px;
+    height: 64px;
+  }
+  .cta-logo img {
+    width: 64px;
+    height: 64px;
+  }
+  .cta-techlearn {
+    font-size: 1.3rem;
+  }
+  .cta-content h2 {
+    font-size: 1.1rem;
+  }
+}
+
+/* FOOTER SECTION */
+@media (max-width: 600px) {
+  .footer {
+    padding: var(--spacing-lg) 0;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-md);
+  }
+  .footer-about p {
+    font-size: 0.8rem;
+  }
+  .footer h3 {
+    font-size: 1rem;
+    padding-bottom: 6px;
+  }
+  .footer-links a, .footer-contact li {
+    font-size: 0.8rem;
+  }
+  .footer-bottom {
+    gap: var(--spacing-sm);
+    padding-top: var(--spacing-md);
+  }
+  .footer-legal {
+    gap: var(--spacing-md);
+  }
+}
+
+/* BOTÕES */
+@media (max-width: 600px) {
+  .btn, .btn-primary, .btn-outline {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 0.95rem;
+  }
+  .btn-sm {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+  }
+}
+
+/* AJUSTES GERAIS PARA MOBILE */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  .main-nav ul {
+    gap: var(--spacing-md);
+  }
+  .mobile-menu {
+    padding: var(--spacing-md);
+  }
+  .mobile-menu a {
+    font-size: 0.95rem;
+  }
+}
