@@ -9,36 +9,45 @@
     <title>Suporte - TechLearn</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/suporte.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container header-container">
             <div class="logo">
-                <div class="logo-icon" aria-label="Logo TechLearn">
-                    <img src="../images/logo.png" alt="Logo TechLearn">
-                </div>
+                <div class="logo-icon"><img src="../images/logo.png" alt="logo"></div>
                 <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
             </div>
 
             <nav class="main-nav">
                 <ul>
                     <li><a href="../index.html">Início</a></li>
-                    <li><a href="../paginas/cursos.html">Cursos</a></li>
-                    <li><a href="../paginas/desafios.html">Desafios</a></li>
-                    <li><a href="../index.html#leaderboard">Ranking</a></li>
-                    <li><a href="conta.html">Perfil</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="desafios.html">Desafios</a></li>
                 </ul>
             </nav>
 
             <div class="user-menu">
-                <div class="level-badge" aria-label="Nível do usuário">Nível 5</div>
-                <div class="xp-badge" aria-label="Experiência do usuário">2.450 XP</div>
-                <div class="avatar" aria-label="Avatar do usuário">JS</div>
+                <div class="level-badge">Nível 5</div>
+                <div class="xp-badge">2.450 XP</div>
+                <div class="avatar">JS</div>
                 <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu">☰</button>
             </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu">
+            <ul>
+                <li><a href="../index.html"><span>🏠</span> Início</a></li>
+                <li><a href="cursos.html"><span>📚</span> Cursos</a></li>
+                <li><a href="desafios.html"><span>🏆</span> Desafios</a></li>
+                <li><a href="../index.html#leaderboard"><span>📊</span> Ranking</a></li>
+                <li><a href="#"><span>📝</span> Cadastrar</a></li>
+                <li><a href="login.html" class="btn btn-primary mobile-menu-login-btn"><span>🔑</span> Entrar</a></li>
+            </ul>
         </div>
     </header>
 
@@ -56,26 +65,30 @@
     <!-- Support Categories -->
     <section class="support-categories">
         <div class="container">
+            <div class="section-header">
+                <h2>Como podemos ajudar?</h2>
+                <p>Escolha uma categoria para encontrar a ajuda que você precisa</p>
+            </div>
             <div class="categories-grid">
                 <div class="category-card">
-                    <div class="category-icon" aria-label="Ícone de cursos">📚</div>
+                    <div class="category-icon">📚</div>
                     <h3>Cursos e Conteúdo</h3>
-                    <p>Dúvidas sobre progresso, materiais e trilhas.</p>
-                    <a href="../paginas/cursos.html" class="btn btn-outline">Explorar</a>
+                    <p>Dúvidas sobre progresso, materiais e trilhas de aprendizado.</p>
+                    <a href="cursos.html" class="btn btn-outline">Explorar</a>
                 </div>
 
                 <div class="category-card">
-                    <div class="category-icon" aria-label="Ícone de problemas técnicos">💻</div>
+                    <div class="category-icon">💻</div>
                     <h3>Problemas Técnicos</h3>
-                    <p>Relate erros, bugs ou dificuldades técnicas.</p>
-                    <a href="../paginas/tecnicos.html" class="btn btn-outline">Explorar</a>
+                    <p>Relate erros, bugs ou dificuldades técnicas que você encontrou.</p>
+                    <a href="tecnicos.html" class="btn btn-outline">Explorar</a>
                 </div>
             
                 <div class="category-card">
-                    <div class="category-icon" aria-label="Ícone de conta e perfil">👤</div>
+                    <div class="category-icon">👤</div>
                     <h3>Conta e Perfil</h3>
-                    <p>Gerencie suas informações e preferências.</p>
-                    <a href="../paginas/conta.html" class="btn btn-outline">Explorar</a>
+                    <p>Gerencie suas informações pessoais e preferências da conta.</p>
+                    <a href="conta.html" class="btn btn-outline">Explorar</a>
                 </div>
             </div>
         </div>
@@ -84,35 +97,38 @@
     <!-- FAQ Section -->
     <section class="faq-section">
         <div class="container">
-            <h2>Perguntas Frequentes</h2>
+            <div class="section-header">
+                <h2>Perguntas Frequentes</h2>
+                <p>Encontre respostas rápidas para as dúvidas mais comuns</p>
+            </div>
             <div class="faq-grid">
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Como redefinir minha senha?</h3>
-                        <span class="toggle-icon" aria-label="Expandir resposta">+</span>
+                        <span class="toggle-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Na página de login, clique em "Esqueceu a senha?" e siga as instruções enviadas por e-mail.</p>
+                        <p>Na página de login, clique em "Esqueceu a senha?" e siga as instruções enviadas por e-mail. Você receberá um link seguro para criar uma nova senha.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Como acumular XP?</h3>
-                        <span class="toggle-icon" aria-label="Expandir resposta">+</span>
+                        <span class="toggle-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Você acumula XP ao concluir cursos, desafios e projetos. Atividades mais difíceis valem mais pontos!</p>
+                        <p>Você acumula XP ao concluir cursos, desafios e projetos. Atividades mais difíceis valem mais pontos! Mantenha-se engajado e complete as tarefas para subir de nível.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>É possível acessar os cursos offline?</h3>
-                        <span class="toggle-icon" aria-label="Expandir resposta">+</span>
+                        <span class="toggle-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>No momento, o acesso é apenas online. Em breve teremos novidades!</p>
+                        <p>No momento, o acesso é apenas online. Em breve teremos novidades! Estamos trabalhando em uma solução para download de conteúdo.</p>
                     </div>
                 </div>
             </div>
@@ -122,13 +138,16 @@
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
-            <h2>Precisa de ajuda direta?</h2>
+            <div class="section-header">
+                <h2>Precisa de ajuda direta?</h2>
+                <p>Entre em contato conosco através dos canais abaixo</p>
+            </div>
             <div class="contact-grid">
                 <div class="contact-card">
-                    <div class="contact-icon" aria-label="Ícone de email">📧</div>
+                    <div class="contact-icon">📧</div>
                     <h3>Email</h3>
                     <p>00001109778594sp@al.educacao.sp.gov.br</p>
-                    <p class="response-time">Respondemos em até 24h úteis.</p>
+                    <p class="response-time">Respondemos em até 24h úteis</p>
                 </div>
 
                 <div class="contact-card">
@@ -139,7 +158,7 @@
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-icon" aria-label="Ícone de WhatsApp">📱</div>
+                    <div class="contact-icon">📱</div>
                     <h3>WhatsApp</h3>
                     <p>+55 (14) 99895-2975</p>
                     <p class="response-time">Chamar por Giovani Magaton</p>
@@ -154,7 +173,7 @@
             <div class="footer-grid">
                 <div class="footer-about">
                     <div class="logo footer-logo">
-                        <div class="logo-icon small" aria-label="Logo TechLearn">TL</div>
+                        <div class="logo-icon small">TL</div>
                         <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
                     </div>
                     <p>Transformando aprendizes em profissionais através de experiências práticas e desafios reais.</p>
@@ -165,7 +184,7 @@
                     <ul>
                         <li><a href="../index.html">Início</a></li>
                         <li><a href="../index.html#courses">Cursos</a></li>
-                        <li><a href="challenges.html">Desafios</a></li>
+                        <li><a href="desafios.html">Desafios</a></li>
                         <li><a href="../index.html#leaderboard">Ranking</a></li>
                     </ul>
                 </div>
