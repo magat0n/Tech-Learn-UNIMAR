@@ -194,9 +194,9 @@ registerForm.addEventListener('submit', async (event) => {
         if (response.ok) {
             showNotification('Conta criada com sucesso!', 'success');
             
-            // Redireciona para a página de login após um breve delay
+            // Redireciona para a página de conta após um breve delay
             setTimeout(() => {
-                window.location.href = 'login.html';
+                window.location.href = 'conta.html';
             }, 1000);
         } else {
             throw new Error(data.error || 'Erro ao criar conta');
@@ -243,7 +243,7 @@ async function handleGoogleSignIn(response) {
             showNotification('Conta criada com sucesso!', 'success');
             
             setTimeout(() => {
-                window.location.href = 'login.html';
+                window.location.href = 'conta.html';
             }, 1000);
         } else {
             throw new Error(data.error || 'Erro ao criar conta com Google');
