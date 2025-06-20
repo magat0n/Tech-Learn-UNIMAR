@@ -12,122 +12,117 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/suporte.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen font-sans">
     <!-- Header -->
-    <header class="header">
-        <div class="container header-container">
-            <div class="logo">
-                <div class="logo-icon"><img src="../images/logo.png" alt="logo"></div>
-                <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+    <header class="header bg-white shadow-md sticky top-0 z-50">
+        <div class="container header-container flex items-center justify-between py-4 px-6 mx-auto">
+            <div class="logo flex items-center gap-2">
+                <div class="logo-icon"><img src="../images/logo.png" alt="logo" class="h-10 w-10"></div>
+                <div class="logo-text text-2xl font-bold text-gray-800">Tech<span class="primary-text text-blue-600">Learn</span></div>
             </div>
-
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="../index.html">Início</a></li>
-                    <li><a href="cursos.html">Cursos</a></li>
-                    <li><a href="desafios.html">Desafios</a></li>
+            <nav class="main-nav hidden md:block">
+                <ul class="flex gap-6 text-base font-medium">
+                    <li><a href="../index.html" class="hover:text-blue-600">Início</a></li>
+                    <li><a href="cursos.html" class="hover:text-blue-600">Cursos</a></li>
+                    <li><a href="desafios.html" class="hover:text-blue-600">Desafios</a></li>
                 </ul>
             </nav>
-
-            <div class="user-menu">
-                <div class="level-badge">Nível 5</div>
-                <div class="xp-badge">2.450 XP</div>
-                <div class="avatar">JS</div>
-                <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu">☰</button>
+            <div class="user-menu flex items-center gap-4">
+                <div class="level-badge hidden md:flex bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">Nível 5</div>
+                <div class="xp-badge hidden md:flex border border-blue-200 px-2 py-1 rounded text-xs text-blue-700">2.450 XP</div>
+                <div class="avatar bg-gradient-to-br from-blue-600 to-blue-400 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold">JS</div>
+                <button id="menuToggle" class="menu-toggle md:hidden text-2xl text-gray-700" aria-label="Abrir menu">☰</button>
             </div>
         </div>
-
-        <div id="mobileMenu" class="mobile-menu">
-            <ul>
+        <div id="mobileMenu" class="mobile-menu md:hidden bg-white shadow-lg absolute w-full left-0 top-full hidden">
+            <ul class="flex flex-col gap-2 p-4">
                 <li><a href="../index.html"><span>🏠</span> Início</a></li>
                 <li><a href="cursos.html"><span>📚</span> Cursos</a></li>
                 <li><a href="desafios.html"><span>🏆</span> Desafios</a></li>
                 <li><a href="../index.html#leaderboard"><span>📊</span> Ranking</a></li>
                 <li><a href="#"><span>📝</span> Cadastrar</a></li>
-                <li><a href="login.html" class="btn btn-primary mobile-menu-login-btn"><span>🔑</span> Entrar</a></li>
+                <li><a href="login.html" class="btn btn-primary mobile-menu-login-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition"><span>🔑</span> Entrar</a></li>
             </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="support-hero">
-        <div class="container">
-            <h1>Estamos aqui para ajudar!</h1>
-            <div class="search-box">
-                <input type="text" placeholder="Nos conte qual é sua dúvida..." aria-label="Campo de busca">
-                <button class="search-btn" aria-label="Buscar">🔍</button>
+    <section class="support-hero bg-blue-600 py-12 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Estamos aqui para ajudar!</h1>
+            <div class="search-box flex justify-center mt-6 max-w-xl mx-auto">
+                <input type="text" placeholder="Nos conte qual é sua dúvida..." aria-label="Campo de busca" class="w-full rounded-l px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                <button class="search-btn bg-blue-800 hover:bg-blue-900 text-white px-4 py-2 rounded-r transition" aria-label="Buscar">🔍</button>
             </div>
         </div>
     </section>
 
     <!-- Support Categories -->
-    <section class="support-categories">
-        <div class="container">
-            <div class="section-header">
-                <h2>Como podemos ajudar?</h2>
-                <p>Escolha uma categoria para encontrar a ajuda que você precisa</p>
+    <section class="support-categories py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-8">
+                <h2 class="text-2xl font-bold mb-2">Como podemos ajudar?</h2>
+                <p class="text-gray-600">Escolha uma categoria para encontrar a ajuda que você precisa</p>
             </div>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">📚</div>
-                    <h3>Cursos e Conteúdo</h3>
-                    <p>Dúvidas sobre progresso, materiais e trilhas de aprendizado.</p>
-                    <a href="cursos.html" class="btn btn-outline">Explorar</a>
+            <div class="categories-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="category-card bg-blue-50 rounded-lg shadow p-6 flex flex-col items-center text-center">
+                    <div class="category-icon text-4xl mb-2">📚</div>
+                    <h3 class="font-semibold text-lg mb-1">Cursos e Conteúdo</h3>
+                    <p class="text-gray-600 mb-4">Dúvidas sobre progresso, materiais e trilhas de aprendizado.</p>
+                    <a href="cursos.html" class="btn btn-outline border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded transition">Explorar</a>
                 </div>
-
-                <div class="category-card">
-                    <div class="category-icon">💻</div>
-                    <h3>Problemas Técnicos</h3>
-                    <p>Relate erros, bugs ou dificuldades técnicas que você encontrou.</p>
-                    <a href="tecnicos.html" class="btn btn-outline">Explorar</a>
+                <div class="category-card bg-blue-50 rounded-lg shadow p-6 flex flex-col items-center text-center">
+                    <div class="category-icon text-4xl mb-2">💻</div>
+                    <h3 class="font-semibold text-lg mb-1">Problemas Técnicos</h3>
+                    <p class="text-gray-600 mb-4">Relate erros, bugs ou dificuldades técnicas que você encontrou.</p>
+                    <a href="tecnicos.html" class="btn btn-outline border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded transition">Explorar</a>
                 </div>
-            
-                <div class="category-card">
-                    <div class="category-icon">👤</div>
-                    <h3>Conta e Perfil</h3>
-                    <p>Gerencie suas informações pessoais e preferências da conta.</p>
-                    <a href="conta.html" class="btn btn-outline">Explorar</a>
+                <div class="category-card bg-blue-50 rounded-lg shadow p-6 flex flex-col items-center text-center">
+                    <div class="category-icon text-4xl mb-2">👤</div>
+                    <h3 class="font-semibold text-lg mb-1">Conta e Perfil</h3>
+                    <p class="text-gray-600 mb-4">Gerencie suas informações pessoais e preferências da conta.</p>
+                    <a href="conta.html" class="btn btn-outline border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded transition">Explorar</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Perguntas Frequentes</h2>
-                <p>Encontre respostas rápidas para as dúvidas mais comuns</p>
+    <section class="faq-section py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-8">
+                <h2 class="text-2xl font-bold mb-2">Perguntas Frequentes</h2>
+                <p class="text-gray-600">Encontre respostas rápidas para as dúvidas mais comuns</p>
             </div>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Como redefinir minha senha?</h3>
-                        <span class="toggle-icon">+</span>
+            <div class="faq-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="faq-item bg-white rounded-lg shadow p-6">
+                    <div class="faq-question flex items-center justify-between cursor-pointer">
+                        <h3 class="font-semibold">Como redefinir minha senha?</h3>
+                        <span class="toggle-icon text-2xl">+</span>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer mt-2 hidden">
                         <p>Na página de login, clique em "Esqueceu a senha?" e siga as instruções enviadas por e-mail. Você receberá um link seguro para criar uma nova senha.</p>
                     </div>
                 </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Como acumular XP?</h3>
-                        <span class="toggle-icon">+</span>
+                <div class="faq-item bg-white rounded-lg shadow p-6">
+                    <div class="faq-question flex items-center justify-between cursor-pointer">
+                        <h3 class="font-semibold">Como acumular XP?</h3>
+                        <span class="toggle-icon text-2xl">+</span>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer mt-2 hidden">
                         <p>Você acumula XP ao concluir cursos, desafios e projetos. Atividades mais difíceis valem mais pontos! Mantenha-se engajado e complete as tarefas para subir de nível.</p>
                     </div>
                 </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>É possível acessar os cursos offline?</h3>
-                        <span class="toggle-icon">+</span>
+                <div class="faq-item bg-white rounded-lg shadow p-6">
+                    <div class="faq-question flex items-center justify-between cursor-pointer">
+                        <h3 class="font-semibold">É possível acessar os cursos offline?</h3>
+                        <span class="toggle-icon text-2xl">+</span>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer mt-2 hidden">
                         <p>No momento, o acesso é apenas online. Em breve teremos novidades! Estamos trabalhando em uma solução para download de conteúdo.</p>
                     </div>
                 </div>
@@ -136,83 +131,77 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Precisa de ajuda direta?</h2>
-                <p>Entre em contato conosco através dos canais abaixo</p>
+    <section class="contact-section py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-8">
+                <h2 class="text-2xl font-bold mb-2">Precisa de ajuda direta?</h2>
+                <p class="text-gray-600">Entre em contato conosco através dos canais abaixo</p>
             </div>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>00001109778594sp@al.educacao.sp.gov.br</p>
-                    <p class="response-time">Respondemos em até 24h úteis</p>
+            <div class="contact-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="contact-card bg-blue-50 rounded-lg shadow p-6 flex flex-col items-center text-center">
+                    <div class="contact-icon text-4xl mb-2">📧</div>
+                    <h3 class="font-semibold text-lg mb-1">Email</h3>
+                    <p class="text-gray-600">00001109778594sp@al.educacao.sp.gov.br</p>
+                    <p class="response-time text-xs text-gray-400">Respondemos em até 24h úteis</p>
                 </div>
-
-                <div class="contact-card">
-                    <img src="../images/discordlogo.jpg" alt="Logo do Discord" class="discord-icon">
-                    <h3>Comunidade no Discord</h3>
-                    <p>Entre no nosso servidor para suporte em tempo real e conversar com outros estudantes!</p>
-                    <a href="https://discord.gg/seuservidor" target="_blank" class="btn btn-primary">Entrar no Discord</a>
+                <div class="contact-card bg-blue-50 rounded-lg shadow p-6 flex flex-col items-center text-center">
+                    <img src="../images/discordlogo.jpg" alt="Logo do Discord" class="discord-icon w-16 h-16 rounded-full mb-2">
+                    <h3 class="font-semibold text-lg mb-1">Comunidade no Discord</h3>
+                    <p class="text-gray-600">Entre no nosso servidor para suporte em tempo real e conversar com outros estudantes!</p>
+                    <a href="https://discord.gg/seuservidor" target="_blank" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition mt-2">Entrar no Discord</a>
                 </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">📱</div>
-                    <h3>WhatsApp</h3>
-                    <p>+55 (14) 99895-2975</p>
-                    <p class="response-time">Chamar por Giovani Magaton</p>
+                <div class="contact-card bg-blue-50 rounded-lg shadow p-6 flex flex-col items-center text-center">
+                    <div class="contact-icon text-4xl mb-2">📱</div>
+                    <h3 class="font-semibold text-lg mb-1">WhatsApp</h3>
+                    <p class="text-gray-600">+55 (14) 99895-2975</p>
+                    <p class="response-time text-xs text-gray-400">Chamar por Giovani Magaton</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
+    <footer class="footer bg-gray-900 text-gray-100 py-10 mt-12">
+        <div class="container max-w-6xl mx-auto px-4">
+            <div class="footer-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 <div class="footer-about">
-                    <div class="logo footer-logo">
-                        <div class="logo-icon small">TL</div>
-                        <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+                    <div class="logo footer-logo flex items-center gap-2 mb-2">
+                        <div class="logo-icon small bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-full font-bold">TL</div>
+                        <div class="logo-text text-xl font-bold">Tech<span class="primary-text text-blue-400">Learn</span></div>
                     </div>
-                    <p>Transformando aprendizes em profissionais através de experiências práticas e desafios reais.</p>
+                    <p class="text-gray-400">Transformando aprendizes em profissionais através de experiências práticas e desafios reais.</p>
                 </div>
-
                 <div class="footer-links">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="../index.html">Início</a></li>
-                        <li><a href="../index.html#courses">Cursos</a></li>
-                        <li><a href="desafios.html">Desafios</a></li>
-                        <li><a href="../index.html#leaderboard">Ranking</a></li>
+                    <h3 class="font-semibold mb-2">Links Rápidos</h3>
+                    <ul class="space-y-1">
+                        <li><a href="../index.html" class="hover:text-blue-400">Início</a></li>
+                        <li><a href="../index.html#courses" class="hover:text-blue-400">Cursos</a></li>
+                        <li><a href="desafios.html" class="hover:text-blue-400">Desafios</a></li>
+                        <li><a href="../index.html#leaderboard" class="hover:text-blue-400">Ranking</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
-                    <h3>Recursos</h3>
-                    <ul>
-                        <li><a href="#">Documentação</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Comunidade</a></li>
-                        <li><a href="suporte.html">Central de Ajuda</a></li>
+                    <h3 class="font-semibold mb-2">Recursos</h3>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="hover:text-blue-400">Documentação</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Blog</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Comunidade</a></li>
+                        <li><a href="suporte.html" class="hover:text-blue-400">Central de Ajuda</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-contact">
-                    <h3>Contato</h3>
-                    <ul>
+                    <h3 class="font-semibold mb-2">Contato</h3>
+                    <ul class="space-y-1">
                         <li>00001109778594sp@al.educacao.sp.gov.br</li>
                         <li>+55 (14) 99895-2975</li>
                     </ul>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 TechLearn. Todos os direitos reservados.</p>
-                <div class="footer-legal">
-                    <a href="#">Política de Privacidade</a>
-                    <a href="#">Termos de Serviço</a>
+            <div class="footer-bottom flex flex-col md:flex-row md:items-center md:justify-between border-t border-gray-800 pt-4">
+                <p class="text-gray-400">&copy; 2025 TechLearn. Todos os direitos reservados.</p>
+                <div class="footer-legal flex gap-4 mt-2 md:mt-0">
+                    <a href="#" class="hover:text-blue-400">Política de Privacidade</a>
+                    <a href="#" class="hover:text-blue-400">Termos de Serviço</a>
                 </div>
             </div>
         </div>

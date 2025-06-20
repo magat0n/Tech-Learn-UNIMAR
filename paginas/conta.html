@@ -6,37 +6,33 @@
     <title>Conta e Perfil - TechLearn</title>
     <link rel="stylesheet" href="../styles/conta.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <!-- Header Principal -->
-    <header class="main-header">
-        <div class="header-content">
-            <div class="header-top">
-                <div class="logo">
-                    <div class="logo-icon"><img src="../images/logo.png" alt="logo"></div>
-                    <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+    <header class="main-header bg-white shadow-md sticky top-0 z-50">
+        <div class="header-content max-w-5xl mx-auto px-4">
+            <div class="header-top flex items-center justify-between py-4">
+                <div class="logo flex items-center gap-2">
+                    <div class="logo-icon"><img src="../images/logo.png" alt="logo" class="h-10 w-10"></div>
+                    <div class="logo-text text-2xl font-bold text-gray-800">Tech<span class="primary-text text-blue-600">Learn</span></div>
                 </div>
                 <nav class="main-nav">
-                    <ul>
-                        <li><a href="../index.html">Início</a></li>
-                        <li><a href="cursos.html">Cursos</a></li>
-                        <li><a href="desafios.html">Desafios</a></li>
-                        <li><a href="#leaderboard">Ranking</a></li>
+                    <ul class="flex gap-6 text-base font-medium">
+                        <li><a href="../index.html" class="hover:text-blue-600">Início</a></li>
+                        <li><a href="cursos.html" class="hover:text-blue-600">Cursos</a></li>
+                        <li><a href="desafios.html" class="hover:text-blue-600">Desafios</a></li>
+                        <li><a href="#leaderboard" class="hover:text-blue-600">Ranking</a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="header-bottom">
-                <h1><i class="fas fa-user-circle"></i> Gerenciamento de Conta</h1>
-                <nav class="account-nav">
-                    <button class="nav-btn active" data-section="profile">
-                        <i class="fas fa-user"></i> Perfil
-                    </button>
-                    <button class="nav-btn" data-section="account">
-                        <i class="fas fa-cog"></i> Conta
-                    </button>
-                    <button class="nav-btn" data-section="security">
-                        <i class="fas fa-shield-alt"></i> Segurança
-                    </button>
+            <div class="header-bottom border-t pt-4 mt-2">
+                <h1 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-user-circle"></i> Gerenciamento de Conta</h1>
+                <nav class="account-nav flex gap-2 mt-2">
+                    <button class="nav-btn active bg-blue-600 text-white px-4 py-2 rounded font-semibold flex items-center gap-2 transition"> <i class="fas fa-user"></i> Perfil </button>
+                    <button class="nav-btn bg-gray-100 text-gray-700 px-4 py-2 rounded font-semibold flex items-center gap-2 transition" data-section="account"> <i class="fas fa-cog"></i> Conta </button>
+                    <button class="nav-btn bg-gray-100 text-gray-700 px-4 py-2 rounded font-semibold flex items-center gap-2 transition" data-section="security"> <i class="fas fa-shield-alt"></i> Segurança </button>
                 </nav>
             </div>
         </div>
@@ -103,11 +99,11 @@
                         </div>
                     </div>
 
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" onclick="resetProfile()">
+                    <div class="form-actions flex gap-2 mt-4">
+                        <button type="button" class="btn btn-secondary bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded transition flex items-center gap-2" onclick="resetProfile()">
                             <i class="fas fa-undo"></i> Resetar
                         </button>
-                        <button type="button" class="btn btn-primary" onclick="updateProfile()">
+                        <button type="button" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition flex items-center gap-2" onclick="updateProfile()">
                             <i class="fas fa-save"></i> Salvar Perfil
                         </button>
                     </div>
@@ -162,11 +158,11 @@
                         </div>
                     </div>
 
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" onclick="resetAccount()">
+                    <div class="form-actions flex gap-2 mt-4">
+                        <button type="button" class="btn btn-secondary bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded transition flex items-center gap-2" onclick="resetAccount()">
                             <i class="fas fa-undo"></i> Resetar
                         </button>
-                        <button type="button" class="btn btn-primary" onclick="updateAccount()">
+                        <button type="button" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition flex items-center gap-2" onclick="updateAccount()">
                             <i class="fas fa-save"></i> Salvar Configurações
                         </button>
                     </div>
@@ -253,11 +249,11 @@
                         </div>
                     </div>
 
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" onclick="resetSecurity()">
+                    <div class="form-actions flex gap-2 mt-4">
+                        <button type="button" class="btn btn-secondary bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded transition flex items-center gap-2" onclick="resetSecurity()">
                             <i class="fas fa-undo"></i> Resetar
                         </button>
-                        <button type="button" class="btn btn-primary" onclick="updateSecurity()">
+                        <button type="button" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition flex items-center gap-2" onclick="updateSecurity()">
                             <i class="fas fa-save"></i> Atualizar Segurança
                         </button>
                     </div>

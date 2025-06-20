@@ -10,83 +10,69 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <a href="../index.html" class="logo">
-                    <div class="logo-icon"><img src="../images/logo.png" alt="Logo TechLearn"></div>
-                    <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+<body class="bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 min-h-screen flex items-center justify-center font-sans">
+    <div class="login-container flex items-center justify-center w-full min-h-screen">
+        <div class="login-card bg-white rounded-2xl shadow-lg p-8 w-full max-w-md flex flex-col gap-6">
+            <div class="login-header flex flex-col items-center gap-2">
+                <a href="../index.html" class="logo flex items-center gap-2 mb-2">
+                    <div class="logo-icon"><img src="../images/logo.png" alt="Logo TechLearn" class="h-10 w-10"></div>
+                    <div class="logo-text text-2xl font-bold text-gray-800">Tech<span class="primary-text text-blue-600">Learn</span></div>
                 </a>
-                <h1>Bem-vindo de volta!</h1>
-                <p>Entre para continuar sua jornada de aprendizado</p>
+                <h1 class="text-2xl font-bold text-gray-800">Bem-vindo de volta!</h1>
+                <p class="text-gray-500">Entre para continuar sua jornada de aprendizado</p>
             </div>
 
-            <div class="social-login">
-                <p>Entre com sua conta social</p>
-                <div class="social-buttons">
-                    <button id="google-login" class="btn-social-icon">
-                        <i class="fab fa-google"></i>
-                    </button>
-                    <button class="btn-social-icon">
-                        <i class="fab fa-facebook-f"></i>
-                    </button>
-                    <button class="btn-social-icon">
-                        <i class="fab fa-github"></i>
-                    </button>
-                    <button class="btn-social-icon">
-                         <i class="fab fa-twitter"></i>
-                    </button>
+            <div class="social-login text-center">
+                <p class="mb-2 text-gray-600">Entre com sua conta social</p>
+                <div class="social-buttons flex justify-center gap-3">
+                    <button id="google-login" class="btn-social-icon bg-white border border-gray-300 rounded-full p-3 text-xl shadow hover:bg-blue-50 transition"><i class="fab fa-google"></i></button>
+                    <button class="btn-social-icon bg-white border border-gray-300 rounded-full p-3 text-xl shadow hover:bg-blue-50 transition"><i class="fab fa-facebook-f"></i></button>
+                    <button class="btn-social-icon bg-white border border-gray-300 rounded-full p-3 text-xl shadow hover:bg-blue-50 transition"><i class="fab fa-github"></i></button>
+                    <button class="btn-social-icon bg-white border border-gray-300 rounded-full p-3 text-xl shadow hover:bg-blue-50 transition"><i class="fab fa-twitter"></i></button>
                 </div>
             </div>
 
-            <form id="login-form" class="login-form" novalidate>
-                <div class="form-group">
-                    <label for="email">
-                        <i class="fas fa-envelope"></i> Email
-                    </label>
-                    <input type="email" id="email" name="email" placeholder="Seu email" required>
-                    <div class="error-message" id="email-error"></div>
+            <form id="login-form" class="login-form flex flex-col gap-4" novalidate>
+                <div class="form-group flex flex-col gap-1">
+                    <label for="email" class="font-medium text-gray-700 flex items-center gap-1"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="Seu email" required class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <div class="error-message text-red-500 text-xs" id="email-error"></div>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">
-                        <i class="fas fa-lock"></i> Senha
-                    </label>
-                    <div class="password-input">
-                        <input type="password" id="password" name="password" placeholder="Sua senha" required>
-                        <button type="button" class="toggle-password" aria-label="Mostrar senha">
-                            <i class="fas fa-eye"></i>
-                        </button>
+                <div class="form-group flex flex-col gap-1">
+                    <label for="password" class="font-medium text-gray-700 flex items-center gap-1"><i class="fas fa-lock"></i> Senha</label>
+                    <div class="password-input flex items-center gap-2">
+                        <input type="password" id="password" name="password" placeholder="Sua senha" required class="border border-gray-300 rounded px-3 py-2 flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <button type="button" class="toggle-password text-gray-500 hover:text-blue-600 transition" aria-label="Mostrar senha"><i class="fas fa-eye"></i></button>
                     </div>
-                    <div class="error-message" id="password-error"></div>
+                    <div class="error-message text-red-500 text-xs" id="password-error"></div>
                 </div>
 
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="remember" name="remember">
+                <div class="form-options flex items-center justify-between text-sm">
+                    <label class="remember-me flex items-center gap-1">
+                        <input type="checkbox" id="remember" name="remember" class="accent-blue-600">
                         <span>Lembrar-me</span>
                     </label>
-                    <a href="recuperar-senha.html" class="forgot-password">Esqueceu a senha?</a>
+                    <a href="recuperar-senha.html" class="forgot-password text-blue-600 hover:underline">Esqueceu a senha?</a>
                 </div>
 
-                <button type="submit" class="login-btn btn-primary">
+                <button type="submit" class="login-btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition flex items-center justify-center gap-2">
                     <i class="fas fa-sign-in-alt"></i>
                     <span>Entrar</span>
-                    <div class="loading-spinner" style="display: none;">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </div>
+                    <div class="loading-spinner hidden"><i class="fas fa-spinner fa-spin"></i></div>
                 </button>
             </form>
 
-            <div class="register-link">
-                Não tem uma conta? <a href="registro.html">Registre-se</a>
+            <div class="register-link text-center text-sm text-gray-600">
+                Não tem uma conta? <a href="registro.html" class="text-blue-600 hover:underline">Registre-se</a>
             </div>
         </div>
     </div>
 
-    <div id="notification" class="notification" style="display: none;"></div>
+    <div id="notification" class="notification fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg hidden"></div>
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-decode/3.1.2/jwt-decode.min.js"></script>

@@ -9,383 +9,331 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/style.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>TechLearn</title>
   <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
 </head>
 
-<body>
+<body class="bg-gray-50 min-h-screen font-sans">
   <!-- Header -->
-  <header class="header">
-    <div class="container header-container">
-      <div class="logo">
-        <div class="logo-icon"><img src="images/logo.png" alt="logo"></div>
-        <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
+      <div class="flex items-center gap-2">
+        <img src="images/logo.png" alt="logo" class="h-10 w-10 rounded-lg animate-pulse">
+        <span class="text-2xl font-bold text-gray-800">Tech<span class="text-blue-600 font-bold">Learn</span></span>
       </div>
-
-      <nav class="main-nav">
-        <ul>
-          <li><a href="#home" class="active">Início</a></li>
-          <li><a href="../paginas/cursos.html">Cursos</a></li>
-          <li><a href="../paginas/desafios.html">Desafios</a></li>
+      <nav class="hidden md:block">
+        <ul class="flex gap-6 text-base font-medium">
+          <li><a href="#home" class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-1">Início</a></li>
+          <li><a href="paginas/cursos.html" class="hover:text-blue-600 transition">Cursos</a></li>
+          <li><a href="paginas/desafios.html" class="hover:text-blue-600 transition">Desafios</a></li>
         </ul>
       </nav>
+      <button class="md:hidden block text-2xl text-gray-700" id="mobileMenuButton">☰</button>
     </div>
-
-    <div id="mobileMenu" class="mobile-menu">
-      <ul>
-        <li><a href="#"><span>🏠</span> Início</a></li>
-        <li><a href="#courses"><span>📚</span> Cursos</a></li>
-        <li><a href="../paginas/desafios.html"><span>🏆</span> Desafios</a></li>
-        <li><a href="#leaderboard"><span>📊</span> Ranking</a></li>
-        <li><a href="#"><span>📝</span> Cadastrar</a></li>
-        <!-- Changed the login link below -->
-        <li><a href="paginas/login.html" class="btn btn-primary mobile-menu-login-btn"><span>🔑</span> Entrar</a></li>
+    <div id="mobileMenu" class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full hidden">
+      <ul class="flex flex-col gap-2 p-4">
+        <li><a href="#" class="flex items-center gap-2"><span>🏠</span> Início</a></li>
+        <li><a href="#courses" class="flex items-center gap-2"><span>📚</span> Cursos</a></li>
+        <li><a href="paginas/desafios.html" class="flex items-center gap-2"><span>🏆</span> Desafios</a></li>
+        <li><a href="#leaderboard" class="flex items-center gap-2"><span>📊</span> Ranking</a></li>
+        <li><a href="#" class="flex items-center gap-2"><span>📝</span> Cadastrar</a></li>
+        <li><a href="paginas/login.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition flex items-center gap-2"><span>🔑</span> Entrar</a></li>
       </ul>
-    </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="container hero-container">
-      <div class="hero-content">
-        <div class="badge">Plataforma Interativa de Programação</div>
-        <h1>Aprenda a programar <span class="accent-text">do jeito certo</span> com TechLearn</h1>
-        <p>Domine habilidades de programação através de aulas interativas, projetos do mundo real e desafios de código.
-          Junte-se a milhares de estudantes hoje!</p>
-
-        <div class="hero-buttons">
-          <a href="paginas/login.html" class="btn btn-primary">Começar Agora <span class="arrow">→</span></a>
-          <a href="paginas/cursos.html" class="btn btn-outline">Explorar Cursos</a>
+  <section class="bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 text-white py-16 relative overflow-hidden" id="home">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10 px-6">
+      <div class="flex flex-col gap-6 items-start">
+        <div class="inline-block px-4 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium mb-2">Plataforma Interativa de Programação</div>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">Aprenda a programar <span class="text-yellow-300 font-bold">do jeito certo</span> com TechLearn</h1>
+        <p class="text-lg text-blue-100 max-w-xl">Domine habilidades de programação através de aulas interativas, projetos do mundo real e desafios de código. Junte-se a milhares de estudantes hoje!</p>
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4">
+          <a href="paginas/login.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition flex items-center">Começar Agora <span class="ml-2">→</span></a>
+          <a href="paginas/cursos.html" class="border border-white text-white hover:bg-white hover:text-blue-700 font-bold py-2 px-6 rounded transition flex items-center">Explorar Cursos</a>
         </div>
-
-        <div class="hero-stats">
-          <div class="stat-item">✓ 4 Cursos Interativos(até o momento)</div>
-          <div class="stat-item">✓ 12+ Desafios de Código</div>
-          <div class="stat-item">✓ Suporte da Comunidade 24/7</div>
+        <div class="flex flex-wrap gap-6 mt-6">
+          <div>✓ 4 Cursos Interativos(até o momento)</div>
+          <div>✓ 12+ Desafios de Código</div>
+          <div>✓ Suporte da Comunidade 24/7</div>
         </div>
       </div>
-
-      <div class="hero-code-editor">
-        <div class="code-editor">
-          <div class="code-header">
-            <div class="window-controls">
-              <div class="control red"></div>
-              <div class="control yellow"></div>
-              <div class="control green"></div>
+      <div class="flex justify-center items-center">
+        <div class="w-full max-w-md bg-gray-900 rounded-lg shadow-lg overflow-hidden relative">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <div class="flex gap-1">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
-            <div class="language">JavaScript</div>
-            <div class="code-actions">
-              <button class="icon-btn" title="Copiar código">📋</button>
-              <button class="icon-btn" title="Executar código">▶️</button>
+            <div class="text-xs text-gray-300">JavaScript</div>
+            <div class="flex gap-2">
+              <button class="text-gray-400 hover:text-white transition" title="Copiar código">📋</button>
+              <button class="text-gray-400 hover:text-white transition" title="Executar código">▶️</button>
             </div>
           </div>
-
-          <div class="code-tabs">
-            <button class="tab active">Código</button>
-            <button class="tab">Instruções</button>
-            <button class="tab">Saída</button>
+          <div class="flex border-b border-gray-700 bg-gray-800">
+            <button class="px-4 py-2 text-white bg-gray-900">Código</button>
+            <button class="px-4 py-2 text-gray-400 hover:text-white">Instruções</button>
+            <button class="px-4 py-2 text-gray-400 hover:text-white">Saída</button>
           </div>
-
-          <div class="code-content">
-            <pre><code>// Bem-vindo ao TechLearn!
-// Experimente nosso editor de código
-
-function bemVindo() {
-  const mensagem = "Olá, Programador!";
-  const xp = 1000;
-  
-  console.log(mensagem);
-  console.log(`Ganhe até ${xp} XP em desafios!`);
-  
-  return "Comece a aprender agora!";
-}
-
-// Execute o código para ver o resultado
-bemVindo();</code></pre>
+          <div class="p-4 bg-gray-900 text-white font-mono text-sm overflow-x-auto">
+            <pre><code>// Bem-vindo ao TechLearn!\n// Experimente nosso editor de código\n\nfunction bemVindo() {\n  const mensagem = "Olá, Programador!";\n  const xp = 1000;\n  \n  console.log(mensagem);\n  console.log(`Ganhe até ${xp} XP em desafios!`);\n  \n  return "Comece a aprender agora!";\n}\n\n// Execute o código para ver o resultado\nbemVindo();</code></pre>
           </div>
         </div>
       </div>
     </div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-400 bg-opacity-10 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-300 bg-opacity-10 rounded-full blur-3xl -z-10"></div>
   </section>
 
   <!-- Features Section -->
-  <section class="features">
-    <div class="container">
-      <div class="section-header">
-        <h2>Por que Escolher TechLearn</h2>
-        <p>Combinamos teoria e prática para ajudar você a se tornar um desenvolvedor profissional</p>
+  <section class="features py-16 bg-white relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="section-header text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl font-bold mb-2">Por que Escolher TechLearn</h2>
+        <p class="text-gray-600">Combinamos teoria e prática para ajudar você a se tornar um desenvolvedor profissional</p>
       </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <img src="images/pc.png" alt="Computador" />
-          </div>
-          <h3>Aprendizado Interativo</h3>
-          <p>Aprenda fazendo com nosso editor de código interativo e sistema de feedback instantâneo.</p>
+      <div class="features-grid grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+        <div class="feature-card p-8 rounded-lg bg-white border border-gray-200 text-center shadow hover:shadow-lg transition">
+          <div class="feature-icon flex items-center justify-center w-20 h-20 mx-auto mb-4"><img src="images/pc.png" alt="Computador" class="h-16 w-16"></div>
+          <h3 class="text-lg font-bold mb-2 text-blue-700">Aprendizado Interativo</h3>
+          <p class="text-gray-500">Aprenda fazendo com nosso editor de código interativo e sistema de feedback instantâneo.</p>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <img src="images/image 3.png" alt="Troféu" />
-          </div>
-          <h3>Desafios de Habilidades</h3>
-          <p>Teste seu conhecimento com desafios de código e ganhe XP para subir de nível.</p>
+        <div class="feature-card p-8 rounded-lg bg-white border border-gray-200 text-center shadow hover:shadow-lg transition">
+          <div class="feature-icon flex items-center justify-center w-20 h-20 mx-auto mb-4"><img src="images/image 3.png" alt="Troféu" class="h-16 w-16"></div>
+          <h3 class="text-lg font-bold mb-2 text-blue-700">Desafios de Habilidades</h3>
+          <p class="text-gray-500">Teste seu conhecimento com desafios de código e ganhe XP para subir de nível.</p>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <img src="images/image 2.png" alt="Comunidade" />
-          </div>
-          <h3>Suporte da Comunidade</h3>
-          <p>Junte-se à nossa comunidade de estudantes e obtenha ajuda sempre que precisar.</p>
+        <div class="feature-card p-8 rounded-lg bg-white border border-gray-200 text-center shadow hover:shadow-lg transition">
+          <div class="feature-icon flex items-center justify-center w-20 h-20 mx-auto mb-4"><img src="images/image 2.png" alt="Comunidade" class="h-16 w-16"></div>
+          <h3 class="text-lg font-bold mb-2 text-blue-700">Suporte da Comunidade</h3>
+          <p class="text-gray-500">Junte-se à nossa comunidade de estudantes e obtenha ajuda sempre que precisar.</p>
         </div>
       </div>
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-400 bg-opacity-10 rounded-full blur-3xl -z-10"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-300 bg-opacity-10 rounded-full blur-3xl -z-10"></div>
     </div>
   </section>
 
-
   <!-- Courses Section -->
-  <section id="courses" class="courses">
-    <div class="container">
-      <div class="section-header-with-button">
+  <section id="courses" class="py-20 bg-blue-50 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
-          <h2>Cursos Populares</h2>
-          <p>Inicie sua jornada de programação com nossos cursos mais procurados</p>
+          <h2 class="text-3xl font-bold text-blue-800 mb-2">Cursos Populares</h2>
+          <p class="text-gray-600">Inicie sua jornada de programação com nossos cursos mais procurados</p>
         </div>
-        <a href="#" class="btn btn-outline">Ver Todos os Cursos <span class="arrow">→</span></a>
+        <a href="#" class="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded-lg transition shadow-sm">Ver Todos os Cursos <span class="ml-1">→</span></a>
       </div>
-
-      <!-- Scroll horizontal -->
-      <div class="courses-wrapper">
-        <div class="courses-scroll">
-
-          <div class="courses-grid">
-            <div class="course-card">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" alt="Fundamentos de JavaScript">
-                <div class="course-badges">
-                  <div class="new-badge">Novo</div>
-                </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Card 1 -->
+        <div class="relative bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col transition hover:scale-105 hover:shadow-2xl duration-300 group overflow-hidden">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" alt="Fundamentos de JavaScript" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+            <span class="absolute top-3 left-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold shadow">Novo</span>
+          </div>
+          <div class="flex-1 flex flex-col p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-blue-600 font-semibold">JavaScript</span>
+              <span class="text-yellow-400">★★★★★</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Fundamentos de JavaScript</h3>
+            <p class="text-gray-600 mb-3">Aprenda os conceitos fundamentais da programação JavaScript desde o início.</p>
+            <div class="flex gap-2 text-xs text-gray-500 mb-2">
+              <span>📚 15 Capítulos</span>
+              <span>⏱️ 12h</span>
+            </div>
+            <div class="mb-2">
+              <div class="flex justify-between text-xs mb-1">
+                <span>Progresso</span>
+                <span>0%</span>
               </div>
-              <div class="course-content">
-                <div class="course-header">
-                  <div class="course-category">JavaScript</div>
-                  <div class="course-rating">★★★★★</div>
-                </div>
-                <h3>Fundamentos de JavaScript</h3>
-                <p>Aprenda os conceitos fundamentais da programação JavaScript desde o início.</p>
-                <div class="course-stats">
-                  <div class="stat">📚 15 Capítulos</div>
-                  <div class="stat">⏱️ 12 Horas</div>
-                </div>
-                <div class="course-progress">
-                  <div class="progress-label">
-                    <span>Progresso</span>
-                    <span>0%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="course-footer">
-                  <div class="level-tag">Iniciante</div>
-                  <a href="#" class="btn btn-sm">Começar</a>
-                </div>
+              <div class="w-full h-2 bg-gray-200 rounded">
+                <div class="bg-blue-500 h-2 rounded transition-all duration-700" style="width: 0%"></div>
               </div>
             </div>
-
-            <div class="course-card">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="React Essencial">
-              </div>
-              <div class="course-content">
-                <div class="course-header">
-                  <div class="course-category">React</div>
-                  <div class="course-rating">★★★★☆</div>
-                </div>
-                <h3>React Essencial</h3>
-                <p>Domine React.js e construa aplicações web modernas e responsivas.</p>
-                <div class="course-stats">
-                  <div class="stat">📚 12 Capítulos</div>
-                  <div class="stat">⏱️ 10 Horas</div>
-                </div>
-                <div class="course-progress">
-                  <div class="progress-label">
-                    <span>Progresso</span>
-                    <span>0%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="course-footer">
-                  <div class="level-tag intermediate">Intermediário</div>
-                  <a href="#" class="btn btn-sm">Começar</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="course-card">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" alt="Python para Iniciantes">
-              </div>
-              <div class="course-content">
-                <div class="course-header">
-                  <div class="course-category">Python</div>
-                  <div class="course-rating">★★★★★</div>
-                </div>
-                <h3>Python para Iniciantes</h3>
-                <p>Comece sua jornada de programação com Python, a linguagem mais amigável para iniciantes.</p>
-                <div class="course-stats">
-                  <div class="stat">📚 18 Capítulos</div>
-                  <div class="stat">⏱️ 15 Horas</div>
-                  <div class="stat">📝 8 Projetos</div>
-                </div>
-                <div class="course-progress">
-                  <div class="progress-label">
-                    <span>Progresso</span>
-                    <span>0%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="course-footer">
-                  <div class="level-tag">Iniciante</div>
-                  <a href="#" class="btn btn-sm">Começar</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="course-card">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
-                  alt="Estruturas de Dados e Algoritmos">
-              </div>
-              <div class="course-content">
-                <div class="course-header">
-                  <div class="course-category">CS Core</div>
-                  <div class="course-rating">★★★★☆</div>
-                </div>
-                <h3>Estruturas de Dados e Algoritmos</h3>
-                <p>Entenda estruturas de dados e algoritmos fundamentais para se destacar em entrevistas técnicas.</p>
-                <div class="course-stats">
-                  <div class="stat">📚 20 Capítulos</div>
-                  <div class="stat">⏱️ 24 Horas</div>
-                  <div class="stat">📝 12 Projetos</div>
-                </div>
-                <div class="course-progress">
-                  <div class="progress-label">
-                    <span>Progresso</span>
-                    <span>0%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="course-footer">
-                  <div class="level-tag advanced">Avançado</div>
-                  <a href="#" class="btn btn-sm">Começar</a>
-                </div>
-              </div>
+            <div class="flex items-center justify-between mt-auto pt-2">
+              <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">Iniciante</span>
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded text-sm transition shadow">Começar</a>
             </div>
           </div>
-
-
-          <!-- Mensagem sobre mais cursos -->
-          <div class="more-courses-message">
-            <p>Mais cursos incríveis estão chegando em breve! Fique ligado!</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="relative bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col transition hover:scale-105 hover:shadow-2xl duration-300 group overflow-hidden">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="React Essencial" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
           </div>
-
-          <!-- Bolhas decorativas -->
-          <div class="blur-circle circle-top-right"></div>
-          <div class="blur-circle circle-bottom-left"></div>
-          <div class="blur-circle circle-center"></div>
+          <div class="flex-1 flex flex-col p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-blue-500 font-semibold">React</span>
+              <span class="text-yellow-400">★★★★☆</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">React Essencial</h3>
+            <p class="text-gray-600 mb-3">Domine React.js e construa aplicações web modernas e responsivas.</p>
+            <div class="flex gap-2 text-xs text-gray-500 mb-2">
+              <span>📚 12 Capítulos</span>
+              <span>⏱️ 10h</span>
+            </div>
+            <div class="mb-2">
+              <div class="flex justify-between text-xs mb-1">
+                <span>Progresso</span>
+                <span>0%</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 rounded">
+                <div class="bg-blue-400 h-2 rounded transition-all duration-700" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-2">
+              <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-semibold">Intermediário</span>
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded text-sm transition shadow">Começar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="relative bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col transition hover:scale-105 hover:shadow-2xl duration-300 group overflow-hidden">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" alt="Python para Iniciantes" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+          </div>
+          <div class="flex-1 flex flex-col p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-green-600 font-semibold">Python</span>
+              <span class="text-yellow-400">★★★★★</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Python para Iniciantes</h3>
+            <p class="text-gray-600 mb-3">Comece sua jornada de programação com Python, a linguagem mais amigável para iniciantes.</p>
+            <div class="flex gap-2 text-xs text-gray-500 mb-2">
+              <span>📚 18 Capítulos</span>
+              <span>⏱️ 15h</span>
+              <span>📝 8 Projetos</span>
+            </div>
+            <div class="mb-2">
+              <div class="flex justify-between text-xs mb-1">
+                <span>Progresso</span>
+                <span>0%</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 rounded">
+                <div class="bg-green-500 h-2 rounded transition-all duration-700" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-2">
+              <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">Iniciante</span>
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded text-sm transition shadow">Começar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="relative bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col transition hover:scale-105 hover:shadow-2xl duration-300 group overflow-hidden">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" alt="Estruturas de Dados e Algoritmos" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+          </div>
+          <div class="flex-1 flex flex-col p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-purple-600 font-semibold">CS Core</span>
+              <span class="text-yellow-400">★★★★☆</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Estruturas de Dados e Algoritmos</h3>
+            <p class="text-gray-600 mb-3">Entenda estruturas de dados e algoritmos fundamentais para se destacar em entrevistas técnicas.</p>
+            <div class="flex gap-2 text-xs text-gray-500 mb-2">
+              <span>📚 20 Capítulos</span>
+              <span>⏱️ 24h</span>
+              <span>📝 12 Projetos</span>
+            </div>
+            <div class="mb-2">
+              <div class="flex justify-between text-xs mb-1">
+                <span>Progresso</span>
+                <span>0%</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 rounded">
+                <div class="bg-purple-500 h-2 rounded transition-all duration-700" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-2">
+              <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-semibold">Avançado</span>
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded text-sm transition shadow">Começar</a>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="text-center mt-10 text-gray-500 text-lg font-semibold flex items-center justify-center gap-2">
+        <span class="animate-bounce">🚀</span> Mais cursos incríveis estão chegando em breve! Fique ligado!
+      </div>
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-400 bg-opacity-10 rounded-full blur-3xl -z-10"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-300 bg-opacity-10 rounded-full blur-3xl -z-10"></div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-content">
-        <div class="cta-header-flex">
-          <div class="cta-logo">
-            <img src="images/logo.png" alt="logo">
-          </div>
-          <div class="cta-techlearn">
-            Tech<span class="primary-text">Learn</span>
-          </div>
+  <section class="cta py-16 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300">
+    <div class="container mx-auto px-4">
+      <div class="cta-content max-w-xl mx-auto bg-white rounded-lg shadow p-8 flex flex-col items-center gap-4">
+        <div class="cta-header-flex flex items-center gap-4 mb-4">
+          <div class="cta-logo w-20 h-20 flex items-center justify-center"><img src="images/logo.png" alt="logo" class="h-16 w-16"></div>
+          <div class="cta-techlearn text-3xl font-bold text-gray-800">Tech<span class="primary-text text-blue-600">Learn</span></div>
         </div>
-        <h2>Comece Sua Jornada de Aprendizado Hoje</h2>
-        <p>Junte-se a milhares de estudantes e torne-se um desenvolvedor habilidoso com nossa plataforma interativa.</p>
-        <a href="paginas/registro.html" class="btn btn-primary">Comece Agora <span class="arrow">→</span></a>
-        <div class="cta-small">Já tem uma conta? <a href="paginas/login.html">Entre aqui</a></div>
+        <h2 class="text-2xl font-bold text-center">Comece Sua Jornada de Aprendizado Hoje</h2>
+        <p class="text-gray-600 text-center">Junte-se a milhares de estudantes e torne-se um desenvolvedor habilidoso com nossa plataforma interativa.</p>
+        <a href="paginas/registro.html" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">Comece Agora <span class="arrow">→</span></a>
+        <div class="cta-small text-gray-700 text-sm">Já tem uma conta? <a href="paginas/login.html" class="text-blue-600 hover:underline">Entre aqui</a></div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
+  <footer class="footer bg-gray-900 text-gray-100 py-10 mt-12">
+    <div class="container max-w-6xl mx-auto px-4">
+      <div class="footer-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
         <div class="footer-about">
-          <div class="logo footer-logo">
-            <div class="logo-icon small"><img src="images/logo.png" alt=""></div>
-            <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+          <div class="logo footer-logo flex items-center gap-2 mb-2">
+            <div class="logo-icon small bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-full font-bold">TL</div>
+            <div class="logo-text text-xl font-bold">Tech<span class="primary-text text-blue-400">Learn</span></div>
           </div>
-          <p>TechLearn é uma plataforma de aprendizado interativo para desenvolvedores aspirantes. Aprenda programação
-            através de prática prática e projetos do mundo real.</p>
+          <p class="text-gray-400">TechLearn é uma plataforma de aprendizado interativo para desenvolvedores aspirantes. Aprenda programação através de prática prática e projetos do mundo real.</p>
         </div>
-
         <div class="footer-links">
-          <h3>Links Rápidos</h3>
-          <ul>
-            <li><a href="#home">Início</a></li>
-            <li><a href="#courses">Cursos</a></li>
-            <li><a href="paginas/desafios.html">Desafios</a></li>
+          <h3 class="font-semibold mb-2">Links Rápidos</h3>
+          <ul class="space-y-1">
+            <li><a href="#home" class="hover:text-blue-400">Início</a></li>
+            <li><a href="#courses" class="hover:text-blue-400">Cursos</a></li>
+            <li><a href="paginas/desafios.html" class="hover:text-blue-400">Desafios</a></li>
           </ul>
         </div>
-
         <div class="footer-links">
-          <h3>Recursos</h3>
-          <ul>
-            <li><a href="#">Documentação</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="paginas/suporte.html#comunidade">Comunidade</a></li>
-            <li><a href="paginas/suporte.html">Central de Ajuda</a></li>
+          <h3 class="font-semibold mb-2">Recursos</h3>
+          <ul class="space-y-1">
+            <li><a href="#" class="hover:text-blue-400">Documentação</a></li>
+            <li><a href="#" class="hover:text-blue-400">Blog</a></li>
+            <li><a href="paginas/suporte.html#comunidade" class="hover:text-blue-400">Comunidade</a></li>
+            <li><a href="paginas/suporte.html" class="hover:text-blue-400">Central de Ajuda</a></li>
           </ul>
         </div>
-
         <div class="footer-contact">
-          <h3>Contato</h3>
-          <ul>
+          <h3 class="font-semibold mb-2">Contato</h3>
+          <ul class="space-y-1">
             <li>00001109778594sp@al.educacao.sp.gov.br</li>
             <li>+55 (14) 99895-2975</li>
           </ul>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2025 TechLearn. Todos os direitos reservados.</p>
-        <div class="footer-legal">
-          <a href="#">Política de Privacidade</a>
-          <a href="#">Termos de Serviço</a>
+      <div class="footer-bottom flex flex-col md:flex-row md:items-center md:justify-between border-t border-gray-800 pt-4">
+        <p class="text-gray-400">&copy; 2025 TechLearn. Todos os direitos reservados.</p>
+        <div class="footer-legal flex gap-4 mt-2 md:mt-0">
+          <a href="#" class="hover:text-blue-400">Política de Privacidade</a>
+          <a href="#" class="hover:text-blue-400">Termos de Serviço</a>
         </div>
       </div>
       <!-- Chat Flutuante -->
-      <div class="floating-chat">
-        <a href="paginas/suporte.html" class="chat-toggle" id="chatToggle">
-          <span class="chat-icon">💬</span>
-          <span class="chat-label">Suporte</span>
+      <div class="floating-chat fixed bottom-8 right-8 z-50">
+        <a href="paginas/suporte.html" class="chat-toggle flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition" id="chatToggle">
+          <span class="chat-icon text-xl">💬</span>
+          <span class="chat-label font-semibold">Suporte</span>
         </a>
-
       </div>
+    </div>
   </footer>
-
   <script src="scripts/script.js"></script>
 </body>
 </html>

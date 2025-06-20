@@ -9,98 +9,95 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header class="header">
-    <div class="logo">
-      <img class="logo-icon" src="../images/logo.png" alt="Tech-Learn Logo">
-      <div class="logo-text">Tech<span class="primary-text">Learn</span></div>
+<body class="bg-gray-50 min-h-screen font-sans">
+  <header class="header bg-white shadow-md sticky top-0 z-50 flex flex-col md:flex-row md:items-center md:justify-between px-6 py-4">
+    <div class="logo flex items-center gap-2 mb-2 md:mb-0">
+      <img class="logo-icon h-10 w-10" src="../images/logo.png" alt="Tech-Learn Logo">
+      <div class="logo-text text-2xl font-bold text-gray-800">Tech<span class="primary-text text-blue-600">Learn</span></div>
     </div>
-    <nav class="main-nav" >
-      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="../paginas/cursos.html"><i class="fas fa-graduation-cap"></i> Cursos</a>
-      <a href="../paginas/desafios.html" class="active"><i class="fas fa-code"></i> Desafios</a>
-      <a href="../paginas/conta.html"><i class="fas fa-user"></i> Perfil</a>
+    <nav class="main-nav flex gap-6 text-base font-medium">
+      <a href="../index.html" class="hover:text-blue-600 flex items-center gap-1"><i class="fas fa-home"></i> Home</a>
+      <a href="../paginas/cursos.html" class="hover:text-blue-600 flex items-center gap-1"><i class="fas fa-graduation-cap"></i> Cursos</a>
+      <a href="../paginas/desafios.html" class="active text-blue-600 flex items-center gap-1"><i class="fas fa-code"></i> Desafios</a>
+      <a href="../paginas/conta.html" class="hover:text-blue-600 flex items-center gap-1"><i class="fas fa-user"></i> Perfil</a>
     </nav>
   </header>
 
-  <main class="container">
-    <div class="sidebar">
-      <h3>Desafios</h3>
-      <div id="lista-desafios" class="lista-desafios">
+  <main class="container max-w-7xl mx-auto flex flex-col md:flex-row gap-8 py-8 px-4">
+    <aside class="sidebar w-full md:w-1/4 bg-white rounded-lg shadow p-4 mb-6 md:mb-0">
+      <h3 class="text-lg font-bold mb-4">Desafios</h3>
+      <div id="lista-desafios" class="lista-desafios space-y-2">
         <!-- Desafios serão inseridos aqui via JavaScript -->
       </div>
-    </div>
+    </aside>
 
-    <div class="content">
+    <section class="content flex-1 bg-white rounded-lg shadow p-6">
       <div id="desafio-container">
-        <div class="desafio-header">
-          <h2 id="titulo-desafio"></h2>
-          <div class="dificuldade">
-            <span id="nivel-dificuldade"></span>
-            <span id="pontos-desafio"></span>
+        <div class="desafio-header flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
+          <h2 id="titulo-desafio" class="text-2xl font-bold"></h2>
+          <div class="dificuldade flex gap-2 text-sm">
+            <span id="nivel-dificuldade" class="font-semibold"></span>
+            <span id="pontos-desafio" class="text-blue-600"></span>
           </div>
         </div>
-        
-        <div class="desafio-content">
+        <div class="desafio-content grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div class="descricao-container">
-            <h3>Descrição</h3>
-            <div id="descricao-desafio" class="descricao"></div>
-            
-            <div class="exemplos">
-              <h3>Exemplos</h3>
+            <h3 class="text-lg font-semibold mb-2">Descrição</h3>
+            <div id="descricao-desafio" class="descricao mb-4"></div>
+            <div class="exemplos mb-4">
+              <h3 class="font-semibold">Exemplos</h3>
               <div id="exemplos-desafio"></div>
             </div>
-
-            <div class="templates">
-              <h3>Templates</h3>
-              <div class="template-buttons">
-                <button class="template-btn" data-language="javascript">JavaScript</button>
-                <button class="template-btn" data-language="python">Python</butto>
+            <div class="templates mb-4">
+              <h3 class="font-semibold">Templates</h3>
+              <div class="template-buttons flex gap-2 mt-2">
+                <button class="template-btn bg-gray-200 hover:bg-blue-100 text-gray-800 font-semibold py-1 px-3 rounded transition" data-language="javascript">JavaScript</button>
+                <button class="template-btn bg-gray-200 hover:bg-blue-100 text-gray-800 font-semibold py-1 px-3 rounded transition" data-language="python">Python</button>
               </div>
             </div>
           </div>
-
           <div class="editor-container">
-            <div class="code-header">
-              <div class="window-controls">
-                <div class="control red"></div>
-                <div class="control yellow"></div>
-                <div class="control green"></div>
+            <div class="code-header flex items-center justify-between bg-gray-100 rounded-t px-4 py-2">
+              <div class="window-controls flex gap-1">
+                <div class="control w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="control w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div class="control w-3 h-3 rounded-full bg-green-500"></div>
               </div>
               <div class="language-selector">
-                <select id="code-language">
+                <select id="code-language" class="bg-white border border-gray-300 rounded px-2 py-1 text-sm">
                   <option value="javascript">JavaScript</option>
                   <option value="python">Python</option>
                 </select>
               </div>
-              <div class="code-actions">
-                <button id="btn-limpar" class="icon-btn" title="Limpar código"><i class="fas fa-trash"></i></button>
-                <button id="btn-executar" class="icon-btn" title="Executar código"><i class="fas fa-play"></i></button>
+              <div class="code-actions flex gap-2">
+                <button id="btn-limpar" class="icon-btn text-gray-500 hover:text-red-500 transition" title="Limpar código"><i class="fas fa-trash"></i></button>
+                <button id="btn-executar" class="icon-btn text-white bg-blue-600 hover:bg-blue-700 rounded px-2 py-1 transition" title="Executar código"><i class="fas fa-play"></i></button>
               </div>
             </div>
             <div class="code-content">
-              <textarea id="code-example" class="language-javascript line-numbers" spellcheck="false"></textarea>
+              <textarea id="code-example" class="language-javascript line-numbers w-full h-48 bg-gray-900 text-white rounded-b p-4 font-mono resize-y" spellcheck="false"></textarea>
             </div>
           </div>
-
-          <div class="io-container">
+          <div class="io-container grid grid-cols-1 md:grid-cols-2 gap-4 col-span-full mt-4">
             <div class="input-container">
-              <h3>Entrada</h3>
-              <textarea id="input" placeholder="Digite a entrada do problema..."></textarea>
+              <h3 class="font-semibold mb-1">Entrada</h3>
+              <textarea id="input" class="w-full bg-gray-100 rounded p-2" placeholder="Digite a entrada do problema..."></textarea>
             </div>
             <div class="output-container">
-              <h3>Saída</h3>
-              <pre id="saida"></pre>
+              <h3 class="font-semibold mb-1">Saída</h3>
+              <pre id="saida" class="w-full bg-gray-900 text-green-400 rounded p-2 min-h-[40px]"></pre>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 
-  <footer>
-    <p>© 2025 Tech-Learn UNIMAR | Desenvolvido com ❤️ para programadores</p>
+  <footer class="bg-gray-900 text-gray-100 py-6 mt-12 text-center">
+    <p class="text-gray-400">© 2025 Tech-Learn UNIMAR | Desenvolvido com ❤️ para programadores</p>
   </footer>
 
   <!-- Scripts necessários -->
