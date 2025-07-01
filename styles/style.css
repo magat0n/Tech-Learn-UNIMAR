@@ -32,6 +32,16 @@
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     --radius-full: 9999px;
+
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 /* Reset de margens, paddings e box-sizing para todos os elementos */
@@ -419,12 +429,17 @@ img {
     padding: var(--spacing-md) var(--spacing-xl);
     border-radius: var(--radius-lg);
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     cursor: pointer;
     border: none;
     font-family: inherit;
     position: relative;
     overflow: hidden;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 .btn::after {
@@ -592,10 +607,11 @@ img {
     cursor: pointer;
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
-.icon-btn:hover {
+.icon-btn:hover,
+.icon-btn:focus-visible {
     color: white;
     transform: scale(1.1);
 }
