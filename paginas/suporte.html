@@ -57,7 +57,7 @@
             <h1>Estamos aqui para ajudar!</h1>
             <div class="search-box">
                 <input type="text" placeholder="Nos conte qual é sua dúvida..." aria-label="Campo de busca">
-                <button class="search-btn" aria-label="Buscar">🔍</button>
+                <button class="search-btn" aria-label="Buscar dúvida ou palavra-chave">🔍</button>
             </div>
         </div>
     </section>
@@ -103,31 +103,31 @@
             </div>
             <div class="faq-grid">
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" aria-expanded="false" aria-controls="faq1" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this)}">
                         <h3>Como redefinir minha senha?</h3>
-                        <span class="toggle-icon">+</span>
+                        <span class="toggle-icon" id="icon-faq1">+</span>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq1" hidden>
                         <p>Na página de login, clique em "Esqueceu a senha?" e siga as instruções enviadas por e-mail. Você receberá um link seguro para criar uma nova senha.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" aria-expanded="false" aria-controls="faq2" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this)}">
                         <h3>Como acumular XP?</h3>
-                        <span class="toggle-icon">+</span>
+                        <span class="toggle-icon" id="icon-faq2">+</span>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq2" hidden>
                         <p>Você acumula XP ao concluir cursos, desafios e projetos. Atividades mais difíceis valem mais pontos! Mantenha-se engajado e complete as tarefas para subir de nível.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" aria-expanded="false" aria-controls="faq3" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this)}">
                         <h3>É possível acessar os cursos offline?</h3>
-                        <span class="toggle-icon">+</span>
+                        <span class="toggle-icon" id="icon-faq3">+</span>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq3" hidden>
                         <p>No momento, o acesso é apenas online. Em breve teremos novidades! Estamos trabalhando em uma solução para download de conteúdo.</p>
                     </div>
                 </div>
@@ -220,5 +220,55 @@
 
     <script src="../scripts/script.js"></script>
     <script src="../scripts/suporte.js"></script>
+    <script>
+    function toggleFaq(el) {
+        const expanded = el.getAttribute('aria-expanded') === 'true';
+        const id = el.getAttribute('aria-controls');
+        const answer = document.getElementById(id);
+        const icon = document.getElementById('icon-' + id);
+        el.setAttribute('aria-expanded', !expanded);
+        if (answer) {
+            answer.hidden = expanded;
+            answer.style.maxHeight = expanded ? null : answer.scrollHeight + 'px';
+        }
+        if (icon) icon.textContent = expanded ? '+' : '-';
+    }
+    // Foco visível para FAQ
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(q => {
+        q.addEventListener('focus', () => q.style.outline = '2px solid #247ba0');
+        q.addEventListener('blur', () => q.style.outline = 'none');
+    });
+    </script>
+    <script>
+    function showContactFeedback(msg, success=true) {
+        let feedback = document.getElementById('contact-feedback');
+        if (!feedback) {
+            feedback = document.createElement('div');
+            feedback.id = 'contact-feedback';
+            feedback.setAttribute('aria-live', 'polite');
+            feedback.style.margin = '16px 0';
+            feedback.style.padding = '12px';
+            feedback.style.borderRadius = '8px';
+            feedback.style.fontWeight = 'bold';
+            document.querySelector('.contact-section .container').prepend(feedback);
+        }
+        feedback.textContent = msg;
+        feedback.style.background = success ? '#e0f7e9' : '#ffe0e0';
+        feedback.style.color = success ? '#247ba0' : '#b00020';
+        setTimeout(() => { feedback.remove(); }, 4000);
+    }
+    // Exemplo de uso: showContactFeedback('Mensagem enviada com sucesso!');
+    </script>
+    <style>
+    .faq-question:focus { outline: 2px solid #247ba0; }
+    .faq-answer { transition: max-height 0.3s ease; overflow: hidden; }
+    .btn, .btn-primary, .btn-outline { transition: background 0.2s, color 0.2s, box-shadow 0.2s; }
+    .btn-primary:focus, .btn-outline:focus { outline: 2px solid #247ba0; }
+    .section-header { margin-bottom: 32px; }
+    .contact-card { box-shadow: 0 2px 12px #0001; border-radius: 12px; }
+    .contact-card h3 { display: flex; align-items: center; gap: 8px; }
+    .contact-icon { font-size: 2rem; }
+    </style>
 </body>
 </html>

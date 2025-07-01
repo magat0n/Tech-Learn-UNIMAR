@@ -22,7 +22,7 @@
                 <ul>
                     <li><a href="../index.html">Início</a></li>
                     <li><a href="../index.html#courses">Cursos</a></li>
-                    <li><a href="challenges.html">Desafios</a></li>
+                    <li><a href="desafios.html">Desafios</a></li>
                     <li><a href="../index.html#leaderboard">Ranking</a></li>
                     <li><a href="conta.html">Perfil</a></li>
                 </ul>
@@ -36,9 +36,9 @@
             <div class="container">
                 <h1>Relate um Problema Técnico</h1>
                 <p>Descreva o problema que você está enfrentando para que possamos ajudar o mais rápido possível.</p>
-                <form id="report-form">
+                <form id="report-form" onsubmit="event.preventDefault(); submitReport();">
                     <label for="category">Categoria do Problema:</label>
-                    <select id="category">
+                    <select id="category" aria-label="Categoria do Problema" required>
                         <option value="" disabled selected>Selecione uma categoria</option>
                         <option value="login">Problemas de Login</option>
                         <option value="performance">Desempenho do Sistema</option>
@@ -47,15 +47,21 @@
                     </select>
 
                     <label for="issue">Descrição do Problema:</label>
-                    <textarea id="issue" placeholder="Descreva o problema que você está enfrentando"></textarea>
+                    <textarea id="issue" placeholder="Descreva o problema que você está enfrentando" aria-label="Descrição do problema" required minlength="10"></textarea>
+                    <div id="issue-error" style="color:#b00020;font-size:0.95em;display:none"></div>
                     
                     <label for="screenshot">Anexar Captura de Tela:</label>
-                    <input type="file" id="screenshot" accept="image/*">
-                    <div class="progress-bar">
+                    <input type="file" id="screenshot" accept="image/*" aria-label="Anexar captura de tela" onchange="previewImage(event)">
+                    <div id="image-preview" style="margin:10px 0;"></div>
+                    <div class="progress-bar" aria-live="polite">
                         <div class="progress" id="progress"></div>
                     </div>
                     
-                    <button type="button" class="btn btn-primary" onclick="submitReport()">Enviar Relato</button>
+                    <button type="submit" class="btn btn-primary" aria-label="Enviar relato de problema" id="submit-btn">
+                        <span id="btn-text">Enviar Relato</span>
+                        <span id="btn-loading" style="display:none"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    <div id="form-feedback" aria-live="polite" style="margin-top:12px;font-weight:bold;"></div>
                 </form>
             </div>
         </section>
@@ -78,7 +84,7 @@
                     <ul>
                         <li><a href="../index.html">Início</a></li>
                         <li><a href="../index.html#courses">Cursos</a></li>
-                        <li><a href="challenges.html">Desafios</a></li>
+                        <li><a href="desafios.html">Desafios</a></li>
                         <li><a href="../index.html#leaderboard">Ranking</a></li>
                     </ul>
                 </div>
@@ -112,6 +118,80 @@
         </div>
     </footer>
 
-    <script src="../scripts/tecnicos.js"></script>
+    <script>
+    function previewImage(event) {
+        const preview = document.getElementById('image-preview');
+        preview.innerHTML = '';
+        const file = event.target.files[0];
+        if (file) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.style.maxWidth = '180px';
+            img.style.maxHeight = '120px';
+            img.alt = 'Preview da imagem anexada';
+            preview.appendChild(img);
+        }
+    }
+    function submitReport() {
+        const category = document.getElementById('category');
+        const issue = document.getElementById('issue');
+        const error = document.getElementById('issue-error');
+        const feedback = document.getElementById('form-feedback');
+        const btn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoading = document.getElementById('btn-loading');
+        error.style.display = 'none';
+        feedback.textContent = '';
+        if (!category.value) {
+            category.focus();
+            feedback.textContent = 'Selecione uma categoria.';
+            feedback.style.color = '#b00020';
+            return;
+        }
+        if (issue.value.trim().length < 10) {
+            issue.focus();
+            error.textContent = 'Descreva o problema com pelo menos 10 caracteres.';
+            error.style.display = 'block';
+            return;
+        }
+        btn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline-block';
+        // Simula envio
+        setTimeout(() => {
+            btn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoading.style.display = 'none';
+            feedback.textContent = 'Relato enviado com sucesso!';
+            feedback.style.color = '#247ba0';
+            document.getElementById('report-form').reset();
+            document.getElementById('image-preview').innerHTML = '';
+            document.getElementById('progress').style.width = '0%';
+        }, 1800);
+    }
+    // Barra de progresso animada (simulação)
+    const screenshot = document.getElementById('screenshot');
+    screenshot && screenshot.addEventListener('change', function() {
+        const progress = document.getElementById('progress');
+        progress.style.width = '0%';
+        let val = 0;
+        const interval = setInterval(() => {
+            val += 10;
+            progress.style.width = val + '%';
+            if (val >= 100) clearInterval(interval);
+        }, 60);
+    });
+    </script>
+    <style>
+    #report-form { display: flex; flex-direction: column; gap: 18px; max-width: 480px; margin: 0 auto; }
+    #report-form label { font-weight: 500; margin-bottom: 4px; }
+    #report-form input, #report-form select, #report-form textarea { border-radius: 6px; border: 1px solid #cfd8dc; padding: 8px; font-size: 1rem; }
+    #report-form input:focus, #report-form select:focus, #report-form textarea:focus { outline: 2px solid #247ba0; border-color: #247ba0; }
+    #report-form button:focus { outline: 2px solid #247ba0; }
+    .progress-bar { background: #e0e0e0; border-radius: 8px; height: 8px; margin: 8px 0; width: 100%; }
+    .progress { background: #247ba0; height: 100%; border-radius: 8px; width: 0%; transition: width 0.4s; }
+    #image-preview img { border-radius: 8px; box-shadow: 0 2px 8px #0002; }
+    #form-feedback { min-height: 24px; }
+    </style>
 </body>
 </html>

@@ -55,8 +55,8 @@
             <div class="templates">
               <h3>Templates</h3>
               <div class="template-buttons">
-                <button class="template-btn" data-language="javascript">JavaScript</button>
-                <button class="template-btn" data-language="python">Python</butto>
+                <button class="template-btn" data-language="javascript" aria-label="Selecionar template JavaScript">JavaScript</button>
+                <button class="template-btn" data-language="python" aria-label="Selecionar template Python">Python</button>
               </div>
             </div>
           </div>
@@ -75,11 +75,12 @@
                 </select>
               </div>
               <div class="code-actions">
-                <button id="btn-limpar" class="icon-btn" title="Limpar código"><i class="fas fa-trash"></i></button>
-                <button id="btn-executar" class="icon-btn" title="Executar código"><i class="fas fa-play"></i></button>
+                <button id="btn-limpar" class="icon-btn" title="Limpar código" aria-label="Limpar código"><i class="fas fa-trash"></i></button>
+                <button id="btn-executar" class="icon-btn" title="Executar código" aria-label="Executar código"><i class="fas fa-play"></i></button>
               </div>
             </div>
             <div class="code-content">
+              <label for="code-example">Código</label>
               <textarea id="code-example" class="language-javascript line-numbers" spellcheck="false"></textarea>
             </div>
           </div>
@@ -87,10 +88,12 @@
           <div class="io-container">
             <div class="input-container">
               <h3>Entrada</h3>
+              <label for="input">Entrada</label>
               <textarea id="input" placeholder="Digite a entrada do problema..."></textarea>
             </div>
             <div class="output-container">
               <h3>Saída</h3>
+              <label for="saida">Saída</label>
               <pre id="saida"></pre>
             </div>
           </div>
